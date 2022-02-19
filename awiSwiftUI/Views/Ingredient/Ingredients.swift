@@ -9,7 +9,9 @@ import SwiftUI
 
 struct Ingredients: View {
     
-    @State var ingredients : [Ingredient] = []
+    @ObservedObject var ingredientsVM : IngredientListVM = IngredientListVM(ingredients: [])
+    //@State var ingredients : [Ingredient] = []
+    @State var selectedIngredient : Ingredient? = nil
     @State var ingredientCategories : [IngredientCategory] = []
     @State var searchedIngredientName = ""
     @State var isFormDisplayed = false
@@ -18,9 +20,9 @@ struct Ingredients: View {
     
     var searchResult : [Ingredient]{
         if(searchedIngredientName.isEmpty){
-            return ingredients;
+            return ingredientsVM.ingredients;
         }
-        return ingredients.filter({$0.name.contains(searchedIngredientName)})
+        return ingredientsVM.ingredients.filter({$0.name.contains(searchedIngredientName)})
     }
     
     var body: some View {
@@ -43,6 +45,11 @@ struct Ingredients: View {
             List(searchResult){
                 ingredient in
                 IngredientRow(ingredient: ingredient)
+                    .onTapGesture {
+                        print(ingredient.name)
+                        selectedIngredient = ingredient
+                        isFormDisplayed = true
+                    }
                 /*
                  NavigationLink(destination: Text(ingredient.name)) {
                  Text(ingredient.name)
@@ -80,7 +87,7 @@ struct Ingredients: View {
             switch(await reqIngredients){
                 
             case .success(let resIngredients):
-                ingredients = resIngredients
+                ingredientsVM.ingredients = resIngredients
             case .failure(let error):
                 print(error)
             }
@@ -95,7 +102,7 @@ struct Ingredients: View {
             
         }
         .sheet(isPresented: $isFormDisplayed, onDismiss: didDismiss){
-            IngredientForm()
+            IngredientForm(ingredient: selectedIngredient, ingredientsVM: ingredientsVM)
             
         }
         .toolbar {
@@ -117,7 +124,7 @@ struct Ingredients: View {
 struct Ingredients_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView(){
-            Ingredients(ingredients: Ingredient.ingredients)
+            Ingredients()
         }
         
     }

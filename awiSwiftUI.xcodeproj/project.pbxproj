@@ -62,6 +62,9 @@
 		ACBBE54727C10458002B59C8 /* IngredientListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54627C10458002B59C8 /* IngredientListViewModel.swift */; };
 		ACBBE54927C10466002B59C8 /* IngredientFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */; };
 		ACBBE54B27C12978002B59C8 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54A27C12978002B59C8 /* HTTPError.swift */; };
+		ACBBE54F27C1425C002B59C8 /* IngredientIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54E27C1425C002B59C8 /* IngredientIntent.swift */; };
+		ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */; };
+		ACBBE55527C14943002B59C8 /* IngredientListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE55427C14943002B59C8 /* IngredientListVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +143,9 @@
 		ACBBE54627C10458002B59C8 /* IngredientListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListViewModel.swift; sourceTree = "<group>"; };
 		ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientFormViewModel.swift; sourceTree = "<group>"; };
 		ACBBE54A27C12978002B59C8 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
+		ACBBE54E27C1425C002B59C8 /* IngredientIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientIntent.swift; sourceTree = "<group>"; };
+		ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientFormVM.swift; sourceTree = "<group>"; };
+		ACBBE55427C14943002B59C8 /* IngredientListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +389,9 @@
 				ACBBE53527C103A0002B59C8 /* IngredientRow.swift */,
 				ACBBE53727C103B1002B59C8 /* IngredientForm.swift */,
 				ACBBE53927C103BF002B59C8 /* Ingredients.swift */,
+				ACBBE54E27C1425C002B59C8 /* IngredientIntent.swift */,
+				ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */,
+				ACBBE55427C14943002B59C8 /* IngredientListVM.swift */,
 			);
 			path = Ingredient;
 			sourceTree = "<group>";
@@ -573,6 +582,7 @@
 				ACBBE53A27C103BF002B59C8 /* Ingredients.swift in Sources */,
 				ACBBE4D827C0FFDC002B59C8 /* Formatters.swift in Sources */,
 				ACBBE4EF27C100EC002B59C8 /* IngredientCategory.swift in Sources */,
+				ACBBE54F27C1425C002B59C8 /* IngredientIntent.swift in Sources */,
 				ACBBE52927C1032B002B59C8 /* HomeView.swift in Sources */,
 				ACBBE51F27C102C0002B59C8 /* RecipeGrid.swift in Sources */,
 				ACBBE52327C102E5002B59C8 /* LoginView.swift in Sources */,
@@ -593,6 +603,7 @@
 				ACBBE53627C103A0002B59C8 /* IngredientRow.swift in Sources */,
 				ACBBE54427C1043B002B59C8 /* AllergenCategoryFormViewModel.swift in Sources */,
 				ACBBE51527C1026B002B59C8 /* Recipes.swift in Sources */,
+				ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */,
 				ACBBE4E627C10086002B59C8 /* UnityDTO.swift in Sources */,
 				ACBBE53E27C103FF002B59C8 /* UnityFormViewModel.swift in Sources */,
 				ACBBE52627C10308002B59C8 /* IngredientCategoryForm.swift in Sources */,
@@ -611,6 +622,7 @@
 				ACBBE4E427C1007C002B59C8 /* UnityDAO.swift in Sources */,
 				ACBBE4DA27C10017002B59C8 /* Utils.swift in Sources */,
 				ACBBE4E827C10093002B59C8 /* Unity.swift in Sources */,
+				ACBBE55527C14943002B59C8 /* IngredientListVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
