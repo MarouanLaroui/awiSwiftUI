@@ -1,17 +1,71 @@
 //
-//  awiSwiftUIApp.swift
-//  awiSwiftUI
+//  IOSawiApp.swift
+//  IOSawi
 //
-//  Created by Marouan Laroui  on 19/02/2022.
+//  Created by Marouan Laroui  on 06/02/2022.
 //
-
 import SwiftUI
 
 @main
-struct awiSwiftUIApp: App {
+struct IOSawiApp: App {
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
+            TabView{
+                
+                NavigationView{
+                    HomeView()
+                        .navigationTitle("ACCUEIL")
+
+                }
+                .tabItem{
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+                
+                
+                NavigationView{
+                    RecipeCard()
+                        .navigationTitle("Allergènes")
+                }
+                .tabItem{
+                    Image(systemName: "cross.fill")
+                    Text("Allergènes")
+                }
+                
+                
+                NavigationView{
+                    Ingredients(ingredients: Ingredient.ingredients)
+                        .navigationTitle("Ingrédients")
+                }
+                .tabItem{
+                    Image(systemName: "applelogo")
+                    Text("Ingrédients")
+                }
+                
+                
+                NavigationView{
+                    Recipes()
+                        .navigationTitle("Recettes")
+                }
+                .tabItem{
+                    Image(systemName: "text.book.closed")
+                    Text("Recettes")
+                }
+                
+                
+                NavigationView{
+                    RecipeCard()
+                        .navigationTitle("Etiquettes")
+                }
+                .tabItem{
+                    Image(systemName: "tag.fill")
+                    Text("Etiquettes")
+                }
+            }
+            //LoginView()
+            //Badge(backgroundColor: Color.red, fontColor: Color.white, text: "Allergen")
+            
         }
     }
 }
