@@ -9,9 +9,26 @@ import Foundation
 
 struct JSONHelper{
     
-    
-    static func httpGet<T:Decodable>(url : String) async -> T?{
+    static func httpGet<T:Decodable>(url : String) async -> Result<T,Error>{
+        
         if let url = URL(string: url) {
+            do{
+                let (data, _) = try await URLSession.shared.data(from: url)
+                if let dtos : T = JSONHelper.decode(data: data){
+                    return .success(dtos)
+                }
+                return.failure(HTTPError.emptyResult)
+            }
+            catch(let error){
+                return .failure(error)
+            }
+        }
+        return .failure(HTTPError.badURL)
+    }
+    
+    /*
+    static func httpGet<T:Decodable>(url : String) async -> T?{
+        if let url = URL(string: "oorufuofvhojrh") {
             do{
                 let (data, _) = try await URLSession.shared.data(from: url)
                 if let dtos : T = JSONHelper.decode(data: data) {
@@ -25,6 +42,7 @@ struct JSONHelper{
         
         return nil
     }
+     */
     
     
     static func encodeInFile<T:Codable>(data : T,fileName : String, fileExtension : String){
@@ -75,6 +93,12 @@ struct JSONHelper{
       return .success(content)
     }
     
+    
+    static func encode<T: Encodable>(data: T) async -> Data?{
+        
+        let encoder = JSONEncoder() // création d'un décodeur
+        return try? encoder.encode(data)
+    }
     
     static func decode<T: Decodable>(data: Data) -> T?{
         

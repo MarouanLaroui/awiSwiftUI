@@ -60,37 +60,61 @@ struct IngredientDAO{
     
     
     /*REQUESTS*/
-    static func getIngredients()async ->[Ingredient]? {
-        if let url = URL(string: Utils.apiURL + "ingredient") {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dtos : [IngredientGetDTO] = JSONHelper.decodeList(data: data) {
-                    return IngredientDAO.DTOsToIngredients(dtos: dtos)
-                }
-                
-            }
-            catch{
-                
-            }
-        }
+    static func getIngredients()async ->Result<[Ingredient],Error> {
         
-        return nil
+        let getIngredientTask : Result<[IngredientGetDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "ingredient")
+        
+        switch(getIngredientTask){
+    
+            case .success(let ingredientDTOs):
+                return .success(IngredientDAO.DTOsToIngredients(dtos: ingredientDTOs))
+                
+                
+            case .failure(let error):
+                return .failure(error)
+        }
     }
     
-    static func getIngredient(id : Int)async ->Ingredient? {
-        if let url = URL(string: Utils.apiURL + "ingredient/:" + String(id)) {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dto : IngredientGetDTO = JSONHelper.decode(data: data) {
-                    return IngredientDAO.GetDTOtoIngredient(dto: dto)
-                }
+    static func getIngredients(id : Int)async ->Result<Ingredient,Error> {
+        
+        let getIngredientTask : Result<IngredientGetDTO,Error> = await JSONHelper.httpGet(url: Utils.apiURL + "ingredient/" + String(id))
+        
+        switch(getIngredientTask){
+    
+            case .success(let ingredientDTO):
+                return .success(IngredientDAO.GetDTOtoIngredient(dto: ingredientDTO))
                 
+                
+            case .failure(let error):
+                return .failure(error)
+        }
+    }
+    
+    
+    static func postIngredient(ingredient : Ingredient) async -> Ingredient?{
+        
+        let ingredientDTO = IngredientDAO.IngredientToDTO(ingredient: ingredient)
+        let encodedData = await JSONHelper.encode(data: ingredientDTO)
+        let url = URL(string: Utils.apiURL + "ingredient")!
+        let request = URLRequest(url: url)
+        
+        guard let data = encodedData
+        else{return nil}
+        do{
+            let (received_data, response) = try await URLSession.shared.upload(for: request, from: data)
+            let httpresponse = response as! HTTPURLResponse
+            
+            if(httpresponse.statusCode == 201){
+                guard let decoded : IngredientGetDTO = JSONHelper.decode(data: received_data)
+                else{return nil}
             }
-            catch{
-                
+            else{
+                print("Error \(httpresponse.statusCode)")
             }
         }
-        
+        catch(let err){
+            print(err.localizedDescription)
+        }
         return nil
     }
 }

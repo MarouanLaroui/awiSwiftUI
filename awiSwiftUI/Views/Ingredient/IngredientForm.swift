@@ -81,20 +81,34 @@ struct IngredientForm: View {
      
         }
         .task{
+            async let reqUnits =  UnityDAO.getUnits()
+            
             async let reqCategories = IngredientCategoryDAO.getIngredientCategories()
-            async let reqAllergens = AllergenCategoryDAO.getAllergens()
-            async let reqUnits = UnityDAO.getUnits()
             
-            if let categories = await reqCategories{
-                ingredientCategories = categories
+            async let reqAllergens = AllergenCategoryDAO.getAllergenCategories()
+            
+            switch(await reqUnits){
+                
+            case .success(let resUnits):
+                units = resUnits
+            case .failure(let error):
+                print(error)
             }
             
-            if let allergens = await reqAllergens{
-                allergenCategories = allergens
+            switch(await reqCategories){
+                
+            case .success(let resIngredientCategories):
+                ingredientCategories = resIngredientCategories
+            case .failure(let error):
+                print(error)
             }
             
-            if let unitsCategories = await reqUnits{
-                units = unitsCategories
+            switch(await reqAllergens){
+                
+            case .success(let resAllergenCategories):
+                allergenCategories = resAllergenCategories
+            case .failure(let error):
+                print(error)
             }
         }
         

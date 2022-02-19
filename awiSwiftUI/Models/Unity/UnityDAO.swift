@@ -27,38 +27,32 @@ struct UnityDAO{
     }
     
     /*REQUESTS*/
-    static func getUnits()async ->[Unity]? {
-        if let url = URL(string: Utils.apiURL + "unity") {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dtos : [UnityDTO] = JSONHelper.decodeList(data: data) {
-                    return UnityDAO.DTOsToUnits(dtos: dtos)
-                }
-                
-            }
-            catch{
-                
-            }
-        }
+    static func getUnits() async ->Result<[Unity],Error> {
         
-        return nil
+        let getUnitsReq : Result<[UnityDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "unity")
+        
+        switch(getUnitsReq){
+            
+        case .success(let unitsDTOs):
+            return .success(UnityDAO.DTOsToUnits(dtos: unitsDTOs))
+            
+            
+        case .failure(let error):
+            return .failure(error)
+        }
     }
-    
-    static func getUnity()async ->Unity? {
-        if let url = URL(string: Utils.apiURL + "unity") {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dto : UnityDTO = JSONHelper.decode(data: data) {
-                    return UnityDAO.DTOtoUnity(dto: dto)
-                }
-                
-            }
-            catch{
-                
-            }
-        }
+    static func getUnit(id : Int) async ->Result<Unity,Error> {
         
-        return nil
+        let getUnityReq : Result<UnityDTO,Error> = await JSONHelper.httpGet(url: Utils.apiURL + "unity/" + String(id))
+        
+        switch(getUnityReq){
+            
+        case .success(let unityDTO):
+            return .success(UnityDAO.DTOtoUnity(dto: unityDTO))
+            
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
 }

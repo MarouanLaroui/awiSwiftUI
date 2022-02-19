@@ -24,73 +24,86 @@ struct Ingredients: View {
     }
     
     var body: some View {
-            VStack{
-                HStack{
-                    Text("Catégorie :")
-                    
-                    Picker("Catégorie : ", selection: $selectedCategory) {
-                        Text("Toutes")
-                            .tag(nil as IngredientCategory?)
-                        ForEach(ingredientCategories) { category in
-                            Text(category.category_name)
-                        }
+        VStack{
+            HStack{
+                Text("Catégorie :")
+                
+                Picker("Catégorie : ", selection: $selectedCategory) {
+                    Text("Toutes")
+                        .tag(nil as IngredientCategory?)
+                    ForEach(ingredientCategories) { category in
+                        Text(category.category_name)
                     }
-                    
                 }
                 
-                //Button(action: {isFormDisplayed.toggle()}) {Text("+")}
+            }
+            
+            //Button(action: {isFormDisplayed.toggle()}) {Text("+")}
+            
+            List(searchResult){
+                ingredient in
+                IngredientRow(ingredient: ingredient)
+                /*
+                 NavigationLink(destination: Text(ingredient.name)) {
+                 Text(ingredient.name)
+                 }
+                 */
                 
-                List(searchResult){
-                    ingredient in
-                    IngredientRow(ingredient: ingredient)
-                    /*
-                    NavigationLink(destination: Text(ingredient.name)) {
-                        Text(ingredient.name)
-                                        }
-                     */
-                        
-                }
-                .searchable(text: $searchedIngredientName,placement: .navigationBarDrawer(displayMode: .always))
-                .overlay(
-                    VStack{
+            }
+            .searchable(text: $searchedIngredientName,placement: .navigationBarDrawer(displayMode: .always))
+            .overlay(
+                VStack{
+                    Spacer()
+                    HStack{
                         Spacer()
-                        HStack{
-                            Spacer()
-                            Button("+"){isFormDisplayed.toggle()}
-                            .frame(width: 25, height: 25)
-                            .font(.title)
-                            .padding()
-                            .background(Color.salmon)
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
-                            
+                        Button("+"){isFormDisplayed.toggle()}
+                        .frame(width: 25, height: 25)
+                        .font(.title)
+                        .padding()
+                        .background(Color.salmon)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
                         
-                        }
+                        
                     }
+                }
                     .padding()
-                )
-            }
-            .task{
-                async let reqIngredients : [Ingredient]? =  IngredientDAO.getIngredients()
-                async let reqCategories : [IngredientCategory]? = IngredientCategoryDAO.getIngredientCategories()
-                if let resIngredients = await reqIngredients{
-                    ingredients = resIngredients
-                }
-                if let resIngredientCategories = await reqCategories{
-                    ingredientCategories = resIngredientCategories
-                }
-
-            }
-            .sheet(isPresented: $isFormDisplayed, onDismiss: didDismiss){
-                IngredientForm()
+            )
+        }
+        .task{
+            
+            async let reqIngredients =  IngredientDAO.getIngredients()
+            
+            async let reqCategories = IngredientCategoryDAO.getIngredientCategories()
+            
+            
+            switch(await reqIngredients){
                 
+            case .success(let resIngredients):
+                ingredients = resIngredients
+            case .failure(let error):
+                print(error)
             }
-            .toolbar {
-                HStack{
-                    Image(systemName: "person")
-                }
+            
+            switch(await reqCategories){
                 
+            case .success(let resIngredientCategories):
+                ingredientCategories = resIngredientCategories
+            case .failure(let error):
+                print(error)
             }
+            
+        }
+        .sheet(isPresented: $isFormDisplayed, onDismiss: didDismiss){
+            IngredientForm()
+            
+        }
+        .toolbar {
+            HStack{
+                Image(systemName: "person")
+            }
+            
+        }
     }
     
     
@@ -98,7 +111,7 @@ struct Ingredients: View {
         
     }
     
-
+    
 }
 
 struct Ingredients_Previews: PreviewProvider {

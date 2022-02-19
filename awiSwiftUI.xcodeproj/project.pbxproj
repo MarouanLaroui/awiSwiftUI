@@ -61,6 +61,7 @@
 		ACBBE54427C1043B002B59C8 /* AllergenCategoryFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54327C1043B002B59C8 /* AllergenCategoryFormViewModel.swift */; };
 		ACBBE54727C10458002B59C8 /* IngredientListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54627C10458002B59C8 /* IngredientListViewModel.swift */; };
 		ACBBE54927C10466002B59C8 /* IngredientFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */; };
+		ACBBE54B27C12978002B59C8 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54A27C12978002B59C8 /* HTTPError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		ACBBE54327C1043B002B59C8 /* AllergenCategoryFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenCategoryFormViewModel.swift; sourceTree = "<group>"; };
 		ACBBE54627C10458002B59C8 /* IngredientListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListViewModel.swift; sourceTree = "<group>"; };
 		ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientFormViewModel.swift; sourceTree = "<group>"; };
+		ACBBE54A27C12978002B59C8 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				ACBBE4DB27C10029002B59C8 /* JSONError.swift */,
 				ACBBE4DD27C10042002B59C8 /* JSONHelper.swift */,
 				ACBBE4DF27C10051002B59C8 /* Color.swift */,
+				ACBBE54A27C12978002B59C8 /* HTTPError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				ACBBE51127C1021E002B59C8 /* IngredientGetDTO.swift in Sources */,
 				ACBBE4F227C1010B002B59C8 /* Recipe.swift in Sources */,
 				ACBBE50F27C1020E002B59C8 /* IngredientPostDTO.swift in Sources */,
+				ACBBE54B27C12978002B59C8 /* HTTPError.swift in Sources */,
 				ACBBE52D27C10357002B59C8 /* CreateUserForm.swift in Sources */,
 				ACBBE52B27C1033A002B59C8 /* TextUnderIcon.swift in Sources */,
 				ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */,
