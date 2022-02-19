@@ -9,8 +9,6 @@ import Foundation
 
 class AllergenCategoryFormViewModel : AllergenCategoryDelegate , ObservableObject{
     
-    
-    
     private var model : AllergenCategory
     
     @Published var name : String{
