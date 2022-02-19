@@ -39,37 +39,36 @@ struct AllergenCategoryDAO{
     }
     
     /*HTTP QUERIES*/
-    static func getAllergens()async ->[AllergenCategory]? {
-        if let url = URL(string: Utils.apiURL + "allergen-category") {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dtos : [AllergenCategoryDTO] = JSONHelper.decodeList(data: data) {
-                    return AllergenCategoryDAO.DTOsToAllergenCategories(dtos: dtos)
-                }
-            }
-            catch{
-                print("ALLERGEN CATEGORY DAO: error in the getAllergens request")
-            }
+    
+    /*REQUESTS*/
+    static func getAllergenCategories() async ->Result<[AllergenCategory],Error> {
+        
+        let getAllergenCategoriesDTOReq : Result<[AllergenCategoryDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "allergen-category")
+        
+        switch(getAllergenCategoriesDTOReq){
+            
+        case .success(let allergenCatDTO):
+            return .success(AllergenCategoryDAO.DTOsToAllergenCategories(dtos: allergenCatDTO))
+            
+        case .failure(let error):
+            return .failure(error)
         }
         
-        return nil
     }
     
-    static func getAllergen(id : Int)async ->AllergenCategory? {
-        if let url = URL(string: Utils.apiURL + "allergen-category/:" + String(id)) {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dto : AllergenCategoryDTO = JSONHelper.decode(data: data) {
-                    return AllergenCategoryDAO.DTOtoAllergenCategory(dto: dto)
-                }
-                
-            }
-            catch{
-                print("ALLERGEN CATEGORY DAO: error in the getAllergen request")
-            }
-        }
+    
+    static func getAllergenCategory(id : Int) async ->Result<AllergenCategory,Error> {
         
-        return nil
+        let getAllergenCatReq : Result<AllergenCategoryDTO,Error> = await JSONHelper.httpGet(url: Utils.apiURL + "allergen-category/" + String(id))
+        
+        switch(getAllergenCatReq){
+            
+        case .success(let allergenCatDTO):
+            return .success(AllergenCategoryDAO.DTOtoAllergenCategory(dto: allergenCatDTO))
+            
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
     static func getIngredientByAllergen(id: Int) async -> [Ingredient]?{

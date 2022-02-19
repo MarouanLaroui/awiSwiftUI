@@ -9,7 +9,7 @@ import Foundation
 
 
 struct IngredientCategoryDAO{
-
+    
     static func DTOtoIngredientCategory(dto : IngredientCategoryDTO)->IngredientCategory{
         return IngredientCategory(id: dto.id, category_name: dto.category_name)
     }
@@ -18,7 +18,7 @@ struct IngredientCategoryDAO{
         return IngredientCategoryDTO(id: ingredientCategory.id, category_name: ingredientCategory.category_name)
     }
     
-                                
+    
     static func ingredientCategoryToDTOs(ingredientCategories : [IngredientCategory])->[IngredientCategoryDTO]{
         var ingredientCategoriesDTO : [IngredientCategoryDTO] = []
         ingredientCategories.forEach({
@@ -34,39 +34,36 @@ struct IngredientCategoryDAO{
         })
         return ingredientCategories
     }
-         
+    
     /*REQUESTS*/
-    static func getIngredientCategories()async ->[IngredientCategory]? {
-        if let url = URL(string: Utils.apiURL + "ingredient-category") {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dtos : [IngredientCategoryDTO] = JSONHelper.decodeList(data: data) {
-                    return IngredientCategoryDAO.DTOsToIngredientCategory(ingredientCategoriesDTO: dtos)
-                }
-                
-            }
-            catch{
-                
-            }
-        }
+    static func getIngredientCategories() async ->Result<[IngredientCategory],Error> {
         
-        return nil
+        let getIngredientCategoriesReq : Result<[IngredientCategoryDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "ingredient-category/")
+        
+        switch(getIngredientCategoriesReq){
+            
+        case .success(let ingredientCatDTOs):
+            return .success(IngredientCategoryDAO.DTOsToIngredientCategory(ingredientCategoriesDTO: ingredientCatDTOs))
+            
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
-    static func getIngredientCategory(id : Int)async -> IngredientCategory? {
-        if let url = URL(string: Utils.apiURL + "ingredient-category/:" + String(id)) {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dto : IngredientCategoryDTO = JSONHelper.decode(data: data) {
-                    return IngredientCategoryDAO.DTOtoIngredientCategory(dto: dto)                }
-                
-            }
-            catch{
-                
-            }
-        }
+    
+    static func getIngredientCategory(id : Int) async ->Result<IngredientCategory,Error> {
         
-        return nil
+        let getIngredientCategoryReq : Result<IngredientCategoryDTO,Error> = await JSONHelper.httpGet(url: Utils.apiURL + "ingredient-category/" + String(id))
+        
+        switch(getIngredientCategoryReq){
+            
+        case .success(let ingredientCatDTO):
+            return .success(IngredientCategoryDAO.DTOtoIngredientCategory(dto : ingredientCatDTO))
+            
+            
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
 }
