@@ -8,23 +8,62 @@
 import Foundation
 import SwiftUI
 
+
+/*Button(String(ingredients.count)){
+    showingList.toggle()
+}
+.foregroundColor(.salmon)
+.sheet(isPresented: $showingList){
+    Spacer()
+    Text(allergen.name)
+        .font(.title)
+        .padding()
+    
+    ForEach(ingredients){ ingredient in
+        Text(ingredient.name)
+            .font(.title2)
+    }
+}*/
 struct AllergenIngredientsList: View{
     
     @State var allergen: AllergenCategory
     @State var ingredients: [Ingredient] = []
+    @State var showingList = false
+    var columns: [GridItem] =
+             Array(repeating: .init(.flexible()), count: 2)
+    
     
     var body: some View{
         HStack{
-            VStack(alignment: .leading){
-                List(ingredients){ ingredient in
-                    Text(ingredient.name)
-                    
+            VStack(alignment: .trailing){
+                
+                //Liste des ingrédients
+                if ingredients.count == 0{
+                    Text("Pas d'ingrédient")
+                        .font(.caption)
+                        .italic()
+                        .opacity(0.6)
+                }
+                else {
+                    //Il y a des ingrédients à afficher
+                    HStack{
+                        Image("warning")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                        
+                        VStack(alignment: .leading){
+                            ForEach(ingredients){ ingredient in
+                                Text(ingredient.name)
+                                    
+                            }
+                        }
+                        
+                    }
                 }
             }
             
         }
         .task{
-            print("id de l'allergène"+String(allergen.id!))
             async let requestIngredients = AllergenCategoryDAO.getIngredientByAllergen(id: self.allergen.id!)
             
             switch(await requestIngredients){

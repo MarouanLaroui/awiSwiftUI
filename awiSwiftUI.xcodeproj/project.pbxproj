@@ -282,7 +282,6 @@
 		ACBBE4E127C10058002B59C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ACBBE55A27C281E0002B59C8 /* New Group */,
 				ACBBE50727C101CA002B59C8 /* Ingredient */,
 				ACBBE50027C1018C002B59C8 /* AllergenCategory */,
 				ACBBE4FD27C10167002B59C8 /* Step */,
@@ -480,13 +479,6 @@
 				ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */,
 			);
 			path = Ingredient;
-			sourceTree = "<group>";
-		};
-		ACBBE55A27C281E0002B59C8 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

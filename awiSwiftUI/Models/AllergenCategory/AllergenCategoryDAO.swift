@@ -73,7 +73,7 @@ struct AllergenCategoryDAO{
     
     static func getIngredientByAllergen(id : Int) async ->Result<[Ingredient],Error> {
         
-        let getIngredientByAllergenReq : Result<[IngredientGetDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "allergen-category/:" + String(id) + "/ingredients")
+        let getIngredientByAllergenReq : Result<[IngredientGetDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "allergen-category/" + String(id) + "/ingredients")
         
         switch(getIngredientByAllergenReq){
             

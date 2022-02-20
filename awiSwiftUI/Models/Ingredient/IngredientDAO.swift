@@ -27,7 +27,6 @@ struct IngredientDAO{
     static func DTOsToIngredients(dtos : [IngredientGetDTO])->[Ingredient]{
         var ingredients : [Ingredient] = []
         dtos.forEach({
-            print(IngredientDAO.GetDTOtoIngredient(dto: $0))
             ingredients.append(IngredientDAO.GetDTOtoIngredient(dto: $0))
         })
         return ingredients

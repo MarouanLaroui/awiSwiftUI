@@ -14,19 +14,17 @@ struct AllergenRow: View{
     
     var body: some View{
         HStack{
-            VStack(alignment: .leading){
                 
-                //Allergen name
-                Text(allergen.name)
-                    .font(.title3)
-                    .bold()
+            //Allergen name
+            Text(allergen.name)
+                .font(.title3)
+                .bold()
+            
+            //Ingredients list associated
+            AllergenIngredientsList(allergen: allergen)
                 
-                //Ingredients list associated
-                AllergenIngredientsList(allergen: allergen)
-                
-            }
-            .padding()
         }
+        .padding()
         
     }
 }
