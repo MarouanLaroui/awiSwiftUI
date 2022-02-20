@@ -23,16 +23,16 @@ struct AllergenIngredientsList: View{
             }
             
         }
-        .onAppear(){
-            print("----- dans la liste des ingrédients")
-        }
-        .task {
-            print("dans task de allergenIngredientsList -----------------------------------")
-
-            async let requestIngredients : [Ingredient]? =  AllergenCategoryDAO.getIngredientByAllergen(id: self.allergen.id!)
-            print("récupération des ingrédients pour " + allergen.name + "-------------------------------------")
-            if let resAllergens = await requestIngredients{
-                self.ingredients = resAllergens
+        .task{
+            print("id de l'allergène"+String(allergen.id!))
+            async let requestIngredients = AllergenCategoryDAO.getIngredientByAllergen(id: self.allergen.id!)
+            
+            switch(await requestIngredients){
+                
+            case .success(let resIngredients):
+                ingredients = resIngredients
+            case .failure(let error):
+                print(error)
             }
         }
     }

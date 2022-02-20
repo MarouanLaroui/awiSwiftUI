@@ -71,21 +71,17 @@ struct AllergenCategoryDAO{
         }
     }
     
-    static func getIngredientByAllergen(id: Int) async -> [Ingredient]?{
-        if let url = URL(string: Utils.apiURL + ":" + String(id) + "/ingredients"){
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                print(data as NSData)
-                if let dto : [IngredientGetDTO] = JSONHelper.decodeList(data: data) {
-                    print(dto)
-                    return IngredientDAO.DTOsToIngredients(dtos: dto)
-                }
-            }
-            catch{
-                print("ALLERGEN CATEGORY DAO: error in the getIngredientByAllergen request")
-            }
+    static func getIngredientByAllergen(id : Int) async ->Result<[Ingredient],Error> {
+        
+        let getIngredientByAllergenReq : Result<[IngredientGetDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "allergen-category/:" + String(id) + "/ingredients")
+        
+        switch(getIngredientByAllergenReq){
+            
+        case .success(let ingredientDTO):
+            return .success(IngredientDAO.DTOsToIngredients(dtos: ingredientDTO))
+            
+        case .failure(let error):
+            return .failure(error)
         }
-        return nil
-    }
-    
+    }    
 }

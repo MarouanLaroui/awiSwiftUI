@@ -23,12 +23,15 @@ struct Allergens: View{
         }
         //récupération des allergènes en BD
         .task {
-            async let requestAllergens : [AllergenCategory]? =  AllergenCategoryDAO.getAllergens()
+            async let requestAllergens =  AllergenCategoryDAO.getAllergenCategories()
             
-            if let resAllergens = await requestAllergens{
-                self.allergens = resAllergens
+            switch(await requestAllergens){
+                
+            case .success(let resAllergens):
+                allergens = resAllergens
+            case .failure(let error):
+                print(error)
             }
-
         }
         
     }
