@@ -9,14 +9,18 @@ import SwiftUI
 
 struct Recipes: View {
     
+    @ObservedObject var recipesVM : RecipeListVM = RecipeListVM(recipes: [])
+    @State var recipeCategories : [RecipeCategory] = []
     @State var isFormDisplayed = false
     @State var selectedCategory : RecipeCategory? = nil
     @State var searchedRecipeName = ""
+    var gridItems = [GridItem(.adaptive(minimum : 150))]
+    
     var searchResult : [Recipe]{
         if(searchedRecipeName.isEmpty){
-            return Recipe.recipes
+            return recipesVM.recipes
         }
-        return Recipe.recipes.filter({ $0.title.contains(searchedRecipeName)})
+        return recipesVM.recipes.filter({ $0.title.contains(searchedRecipeName)})
     }
     
     var body: some View {
@@ -27,13 +31,20 @@ struct Recipes: View {
                 Picker("Catégorie : ", selection: $selectedCategory) {
                     Text("Toutes")
                         .tag(nil as RecipeCategory?)
-                    ForEach(RecipeCategory.categories) { category in
+                    ForEach(recipeCategories) { category in
                         Text(category.name)
                     }
                 }
             }
-            
-            RecipeGrid(recipes: searchResult)
+            ScrollView {
+                LazyVGrid(columns: gridItems,spacing: 0){
+                    ForEach(recipesVM.recipes){ recipe in
+                        RecipeCard(recipe: recipe)
+                            .frame(width: 170, height: 250)
+                    }
+                }
+            }
+            //RecipeGrid(recipes: searchResult)
                 .overlay(
                     VStack{
                         Spacer()
@@ -47,14 +58,41 @@ struct Recipes: View {
                             .foregroundColor(.white)
                             .clipShape(Circle())
                             
-                        
+                            
                         }
                     }
-                    .padding()
+                        .padding()
                 )
                 .searchable(text: $searchedRecipeName,placement: .navigationBarDrawer(displayMode: .always))
         }
+        .task{
+            if(self.recipesVM.recipes.count == 0){
+                
+                async let reqRecipes =  RecipeDAO.getRecipes()
+                async let reqRecipeCategories =  RecipeCategoryDAO.getRecipeCategories()
+                
+                switch(await reqRecipes){
+                    
+                case .success(let resRecipes):
+                    self.recipesVM.recipes = resRecipes
+                case .failure(let error):
+                    print(error)
+    
+                }
+                
+                switch(await reqRecipeCategories){
+                    
+                case .success(let resRecipeCategories):
+                    self.recipeCategories = resRecipeCategories
+                case .failure(let error):
+                    print(error)
+    
+                }
+    
+            }
+        }
     }
+    
 }
 
 struct Recipes_Previews: PreviewProvider {

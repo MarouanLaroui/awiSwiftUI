@@ -25,7 +25,7 @@ struct IOSawiApp: App {
                 
                 
                 NavigationView{
-                    RecipeCard()
+                    RecipeCard(recipe: Recipe.recipes[0])
                         .navigationTitle("Allergènes")
                 }
                 .tabItem{
@@ -55,7 +55,7 @@ struct IOSawiApp: App {
                 
                 
                 NavigationView{
-                    RecipeCard()
+                    RecipeCard(recipe: Recipe.recipes[0])
                         .navigationTitle("Etiquettes")
                 }
                 .tabItem{

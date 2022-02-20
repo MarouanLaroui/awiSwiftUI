@@ -16,23 +16,14 @@ struct RecipeGrid: View {
         
         ScrollView {
             LazyVGrid(columns: gridItems,spacing: 0){
-                RecipeCard()
-                    .frame(width: 170, height: 250)
-                RecipeCard()
-                    .frame(width: 170, height: 250)
-                RecipeCard()
-                    .frame(width: 170, height: 250)
-                RecipeCard()
-                    .frame(width: 170, height: 250)
-                RecipeCard()
-                    .frame(width: 170, height: 250)
-                RecipeCard()
-                    .minimumScaleFactor(0.01)
-                    .frame(width: 150, height: 250)
+                ForEach(recipes){ recipe in
+                    RecipeCard(recipe: recipe)
+                        .shadow(radius: 5)
+                        .frame(width: 170, height: 250)
+                        
+                }
             }
-      
         }
-        
     }
 }
 

@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct RecipeCard: View {
+    
+    @StateObject var recipe : Recipe
+    
     var body: some View {
         VStack{
             HStack{
-                Image("dahl")
+                Image(ImageHelper.randomPic())
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
             HStack{
                 VStack{
                     HStack{
-                        Text("Dahl lentille coraille")
+                        Text(recipe.title)
                             .font(.title3)
                             .minimumScaleFactor(0.01)
                     }
@@ -54,7 +57,7 @@ struct RecipeCard: View {
 struct RecipeCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            RecipeCard()
+            RecipeCard(recipe: Recipe.recipes[0])
                 .padding()
         }
         .background(.gray)
