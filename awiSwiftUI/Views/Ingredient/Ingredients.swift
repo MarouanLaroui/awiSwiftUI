@@ -9,18 +9,21 @@ import SwiftUI
 
 struct Ingredients: View {
     
-    @State var ingredients : [Ingredient] = []
+    @ObservedObject var ingredientsVM : IngredientListVM = IngredientListVM(ingredients: [])
+    //@State var ingredients : [Ingredient] = []
+    @State private var selectedIngredient : Ingredient?
     @State var ingredientCategories : [IngredientCategory] = []
     @State var searchedIngredientName = ""
     @State var isFormDisplayed = false
+    @State var isAlertShowed = false
     @State var selectedCategory : IngredientCategory?
     
     
     var searchResult : [Ingredient]{
         if(searchedIngredientName.isEmpty){
-            return ingredients;
+            return ingredientsVM.ingredients;
         }
-        return ingredients.filter({$0.name.contains(searchedIngredientName)})
+        return ingredientsVM.ingredients.filter({$0.name.contains(searchedIngredientName)})
     }
     
     var body: some View {
@@ -34,6 +37,7 @@ struct Ingredients: View {
                     ForEach(ingredientCategories) { category in
                         Text(category.category_name)
                     }
+                    
                 }
                 
             }
@@ -43,12 +47,34 @@ struct Ingredients: View {
             List(searchResult){
                 ingredient in
                 IngredientRow(ingredient: ingredient)
-                /*
-                 NavigationLink(destination: Text(ingredient.name)) {
-                 Text(ingredient.name)
-                 }
-                 */
-                
+                    .swipeActions {
+                        Button {
+                            selectedIngredient = ingredient
+                            print("Ingredient selectionné : " + selectedIngredient!.name)
+                            isFormDisplayed = true
+                        }
+                    label: {
+                        Image(systemName: "square.and.pencil")
+                    }
+                        Button {
+                            self.isAlertShowed = true
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                        .alert("Delete ?", isPresented: $isAlertShowed) {
+                            Button(role: .cancel) {
+                            } label: {
+                                Text("No")
+                            }
+                            Button(role: .destructive) {
+                                self.isAlertShowed = false
+                                // TODO: intentToRemoveIngredient
+                            } label: {
+                                Text("Yes")
+                                
+                            }
+                        }
+                    }
             }
             .searchable(text: $searchedIngredientName,placement: .navigationBarDrawer(displayMode: .always))
             .overlay(
@@ -56,46 +82,55 @@ struct Ingredients: View {
                     Spacer()
                     HStack{
                         Spacer()
-                        Button("+"){isFormDisplayed.toggle()}
+                        Button("+"){
+                            isFormDisplayed.toggle()
+                            selectedIngredient = nil
+                        }
                         .frame(width: 25, height: 25)
                         .font(.title)
                         .padding()
                         .background(Color.salmon)
                         .foregroundColor(.white)
                         .clipShape(Circle())
-                        
-                        
                     }
                 }
                     .padding()
             )
         }
         .task{
-            
-            async let reqIngredients =  IngredientDAO.getIngredients()
-            
-            async let reqCategories = IngredientCategoryDAO.getIngredientCategories()
-            
-            
-            switch(await reqIngredients){
+            if(self.ingredientsVM.ingredients.count == 0){
+                print("--------Ingredient Init ----------")
+                async let reqIngredients =  IngredientDAO.getIngredients()
                 
-            case .success(let resIngredients):
-                ingredients = resIngredients
-            case .failure(let error):
-                print(error)
+                async let reqCategories = IngredientCategoryDAO.getIngredientCategories()
+                
+                
+                switch(await reqIngredients){
+                    
+                case .success(let resIngredients):
+                    ingredientsVM.ingredients = resIngredients
+                case .failure(let error):
+                    print(error)
+                }
+                
+                switch(await reqCategories){
+                    
+                case .success(let resIngredientCategories):
+                    ingredientCategories = resIngredientCategories
+                case .failure(let error):
+                    print(error)
+                }
             }
             
-            switch(await reqCategories){
-                
-            case .success(let resIngredientCategories):
-                ingredientCategories = resIngredientCategories
-            case .failure(let error):
-                print(error)
-            }
             
         }
-        .sheet(isPresented: $isFormDisplayed, onDismiss: didDismiss){
-            IngredientForm()
+        .sheet(isPresented: $isFormDisplayed){
+            if let selectedIngredientNN = selectedIngredient {
+                IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredientNN), ingredientsVM: ingredientsVM)
+            }
+            else{
+                IngredientForm(ingredientVM : nil, ingredientsVM: ingredientsVM)
+            }
             
         }
         .toolbar {
@@ -105,19 +140,12 @@ struct Ingredients: View {
             
         }
     }
-    
-    
-    func didDismiss(){
-        
-    }
-    
-    
 }
 
 struct Ingredients_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView(){
-            Ingredients(ingredients: Ingredient.ingredients)
+            Ingredients()
         }
         
     }

@@ -13,7 +13,7 @@ struct HorizontalScrollRecipes: View {
         ScrollView(.horizontal){
             HStack(spacing:20){
                 ForEach(1..<4){ in_ in
-                    RecipeCard()
+                    RecipeCard(recipe: Recipe.recipes[0])
                         .frame(width: 170, height: 240)
                         .shadow(radius: 3)
                 }

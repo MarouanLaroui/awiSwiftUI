@@ -22,14 +22,6 @@ class Step : Stepable{
     }
 }
 
-
-//
-//  Stepable.swift
-//  IOSawi
-//
-//  Created by Marouan Laroui  on 15/02/2022.
-//
-
 import Foundation
 
 protocol Stepable{
