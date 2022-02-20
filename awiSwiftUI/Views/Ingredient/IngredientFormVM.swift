@@ -34,6 +34,8 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         
         self.model = model
         self.model.delegate = self
+        
+        print("in IngredientFORMVM model :" + model.name)
     }
     
     func ingredientChange(name: String) {

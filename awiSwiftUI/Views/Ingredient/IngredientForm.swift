@@ -10,6 +10,7 @@ import SwiftUI
 struct IngredientForm: View {
     
     //@StateObject var ingredientFormView = IngredientFormViewModel(model: Ingredient(name:"",unitaryPrice: 1, nbInStock : 1, ingredientCategory: IngredientCategory.categories[0],  unity: Unity.units[0]))
+    
     @ObservedObject var ingredientFormVM : IngredientFormVM
     @State var ingredientCategories : [IngredientCategory] = []
     @State var allergenCategories :[AllergenCategory] = []
@@ -17,17 +18,15 @@ struct IngredientForm: View {
     var intent : Intent
     @State var isUpdate = false
     
-    init(ingredient : Ingredient?, ingredientsVM : IngredientListVM){
+    init(ingredientVM : IngredientFormVM?, ingredientsVM : IngredientListVM){
         
-        print(ingredient?.name)
-        if let ingredient = ingredient{
-            print("ingredient non vide")
-            self.ingredientFormVM = IngredientFormVM(model: ingredient)
+        if let ingredientVM = ingredientVM{
+            print("Ingredient non nul :" + ingredientVM.name)
+            self.ingredientFormVM = ingredientVM
             isUpdate = true
         }
         else{
-            /*TO CHANGE TO INIT WITH REAL PROPERTIES*/
-            print("pas d'ingredient ?????")
+            print("Ingredient nul dans IngredientForm")
             self.ingredientFormVM = IngredientFormVM(model: Ingredient(name: "", unitaryPrice: 1, nbInStock: 1, ingredientCategory: IngredientCategory.categories[0], unity: Unity.units[0]))
         }
         
@@ -145,6 +144,6 @@ struct IngredientForm: View {
 
 struct IngredientForm_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientForm(ingredient: nil, ingredientsVM: IngredientListVM(ingredients: Ingredient.ingredients))
+        IngredientForm(ingredientVM: nil, ingredientsVM: IngredientListVM(ingredients: Ingredient.ingredients))
     }
 }
