@@ -12,12 +12,37 @@ class Ingredient : Identifiable{
     var delegate : IngredientDelegate?
     
     var id : Int?
-    var name : String
-    var unitaryPrice : Double
-    var nbInStock : Double
-    var allergen : AllergenCategory?
-    var category : IngredientCategory
-    var unity : Unity
+    var name : String{
+        didSet{
+            print("didSet Ingredient")
+            self.delegate?.ingredientChange(name: name)
+        }
+    }
+    var unitaryPrice : Double{
+        didSet{
+            self.delegate?.ingredientChange(unitaryPrice: unitaryPrice)
+        }
+    }
+    var nbInStock : Double{
+        didSet{
+            self.delegate?.ingredientChange(nbInStock: nbInStock)
+        }
+    }
+    var allergen : AllergenCategory?{
+        didSet{
+            self.delegate?.ingredientChange(allergenCategory: allergen)
+        }
+    }
+    var category : IngredientCategory{
+        didSet{
+            self.delegate?.ingredientChange(ingredientCategory: category)
+        }
+    }
+    var unity : Unity{
+        didSet{
+            self.delegate?.ingredientChange(unity: unity)
+        }
+    }
     
     
     internal init(id : Int? = nil,name: String, unitaryPrice: Double, nbInStock : Double, allergen: AllergenCategory? = nil, ingredientCategory: IngredientCategory, unity: Unity) {
@@ -45,7 +70,8 @@ extension Ingredient{
 protocol IngredientDelegate{
     func ingredientChange(name : String)
     func ingredientChange(unitaryPrice : Double)
-    func ingredientChange(allergenCategory : AllergenCategory)
+    func ingredientChange(nbInStock : Double)
+    func ingredientChange(allergenCategory : AllergenCategory?)
     func ingredientChange(ingredientCategory : IngredientCategory)
     func ingredientChange(unity : Unity)
     func ingredientChange(id : Int)

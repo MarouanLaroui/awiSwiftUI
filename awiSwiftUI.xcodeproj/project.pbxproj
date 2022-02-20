@@ -65,6 +65,8 @@
 		ACBBE54F27C1425C002B59C8 /* IngredientIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE54E27C1425C002B59C8 /* IngredientIntent.swift */; };
 		ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */; };
 		ACBBE55527C14943002B59C8 /* IngredientListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE55427C14943002B59C8 /* IngredientListVM.swift */; };
+		ACBBE55727C240F0002B59C8 /* RecipeDetailledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE55627C240F0002B59C8 /* RecipeDetailledView.swift */; };
+		ACBBE55927C26D88002B59C8 /* StepRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE55827C26D88002B59C8 /* StepRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		ACBBE54E27C1425C002B59C8 /* IngredientIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientIntent.swift; sourceTree = "<group>"; };
 		ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientFormVM.swift; sourceTree = "<group>"; };
 		ACBBE55427C14943002B59C8 /* IngredientListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListVM.swift; sourceTree = "<group>"; };
+		ACBBE55627C240F0002B59C8 /* RecipeDetailledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailledView.swift; sourceTree = "<group>"; };
+		ACBBE55827C26D88002B59C8 /* StepRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +253,7 @@
 		ACBBE4E127C10058002B59C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ACBBE55A27C281E0002B59C8 /* New Group */,
 				ACBBE50727C101CA002B59C8 /* Ingredient */,
 				ACBBE50027C1018C002B59C8 /* AllergenCategory */,
 				ACBBE4FD27C10167002B59C8 /* Step */,
@@ -362,6 +367,8 @@
 				ACBBE51A27C1029D002B59C8 /* RecipeRow.swift */,
 				ACBBE51C27C102B0002B59C8 /* HorizontalScrollRecipe.swift */,
 				ACBBE51E27C102C0002B59C8 /* RecipeGrid.swift */,
+				ACBBE55627C240F0002B59C8 /* RecipeDetailledView.swift */,
+				ACBBE55827C26D88002B59C8 /* StepRow.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -438,6 +445,13 @@
 				ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */,
 			);
 			path = Ingredient;
+			sourceTree = "<group>";
+		};
+		ACBBE55A27C281E0002B59C8 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACBBE51927C1028B002B59C8 /* CreateRecipeView.swift in Sources */,
+				ACBBE55727C240F0002B59C8 /* RecipeDetailledView.swift in Sources */,
 				ACBBE4ED27C100DC002B59C8 /* IngredientCategoryDTO.swift in Sources */,
 				ACBBE50227C1019B002B59C8 /* AllergenCategory.swift in Sources */,
 				ACBBE53127C10376002B59C8 /* HomeCoverSlider.swift in Sources */,
@@ -620,6 +635,7 @@
 				ACBBE54127C1041C002B59C8 /* IngredientCategoryFormViewModel.swift in Sources */,
 				ACBBE4F527C10122002B59C8 /* RecipeCategory.swift in Sources */,
 				ACBBE4E427C1007C002B59C8 /* UnityDAO.swift in Sources */,
+				ACBBE55927C26D88002B59C8 /* StepRow.swift in Sources */,
 				ACBBE4DA27C10017002B59C8 /* Utils.swift in Sources */,
 				ACBBE4E827C10093002B59C8 /* Unity.swift in Sources */,
 				ACBBE55527C14943002B59C8 /* IngredientListVM.swift in Sources */,

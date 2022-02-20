@@ -38,6 +38,7 @@ class IngredientListVM :  ObservableObject, Subscriber {
             break
             
         case .listUpdated:
+            print("Listeupdated")
             self.objectWillChange.send()
         }
         return .none

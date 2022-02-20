@@ -20,4 +20,8 @@ extension Color{
     public static var salmon: Color {
         return Color(red: 1.0, green: 128.0/255, blue: 114.0/255)
     }
+    
+    public static var lightgrey : Color{
+        return Color(red: 211.0/255, green: 211.0/255, blue: 211.0/255)
+    }
 }

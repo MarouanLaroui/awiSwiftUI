@@ -10,6 +10,10 @@ import SwiftUI
 import Combine
 
 class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
+    
+    
+    
+    
 
     
     private var model : Ingredient;
@@ -46,7 +50,11 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.unitaryPrice = unitaryPrice
     }
     
-    func ingredientChange(allergenCategory: AllergenCategory) {
+    func ingredientChange(nbInStock: Double) {
+        self.nbInStock = nbInStock
+    }
+    
+    func ingredientChange(allergenCategory: AllergenCategory?) {
         self.allergen = allergenCategory
     }
     
@@ -71,6 +79,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     func receive(_ input: IntentState) -> Subscribers.Demand {
+        print("receive Intent IngredientFormVM : ")
         switch(input){
             
         case .ready:

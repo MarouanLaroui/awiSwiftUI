@@ -82,7 +82,10 @@ struct Ingredients: View {
                     Spacer()
                     HStack{
                         Spacer()
-                        Button("+"){isFormDisplayed.toggle()}
+                        Button("+"){
+                            isFormDisplayed.toggle()
+                            selectedIngredient = nil
+                        }
                         .frame(width: 25, height: 25)
                         .font(.title)
                         .padding()
@@ -96,6 +99,7 @@ struct Ingredients: View {
         }
         .task{
             if(self.ingredientsVM.ingredients.count == 0){
+                print("--------Ingredient Init ----------")
                 async let reqIngredients =  IngredientDAO.getIngredients()
                 
                 async let reqCategories = IngredientCategoryDAO.getIngredientCategories()

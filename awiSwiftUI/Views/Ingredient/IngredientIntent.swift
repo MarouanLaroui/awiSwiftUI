@@ -33,10 +33,12 @@ struct Intent{
     
     
     func addListObserver(viewModel : IngredientListVM){
+        print("------ addListObserver IngredientIntent-------")
         self.listState.subscribe(viewModel)
     }
     
     func addObserver(viewModel : IngredientFormVM){
+        print("------ Observer IngredientIntent-------")
         self.state.subscribe(viewModel)
     }
     

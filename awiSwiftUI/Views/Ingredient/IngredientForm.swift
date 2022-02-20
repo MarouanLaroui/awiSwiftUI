@@ -94,12 +94,22 @@ struct IngredientForm: View {
                         }
                     
                         Divider()
-                    Button(" ajouter "){
+                    HStack{
+                        Button("Annuler"){
+                            
+                        }
+                        .padding(10)
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        Button("Ajouter"){
+                        }
+                        .padding(10)
+                        .background(Color.salmon)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                     }
-                    .padding(10)
-                    .background(Color.salmon)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    
 
                 }
             }

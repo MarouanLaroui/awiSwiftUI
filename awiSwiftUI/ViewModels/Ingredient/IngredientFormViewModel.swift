@@ -44,6 +44,20 @@ class IngredientFormViewModel : IngredientDelegate, ObservableObject{
             }
         }
     }
+    
+    @Published var nbInStock : Double{
+        didSet{
+            if(self.nbInStock != self.model.nbInStock){
+                self.model.nbInStock = self.nbInStock
+                if(self.nbInStock != self.model.nbInStock){
+                    self.nbInStock = self.model.nbInStock
+                }
+                
+            }
+        }
+    }
+    
+    
     @Published var allergenCategory : AllergenCategory?
     /*{
         /
@@ -85,6 +99,7 @@ class IngredientFormViewModel : IngredientDelegate, ObservableObject{
         self.id = model.id
         self.name = model.name
         self.unitaryPrice = model.unitaryPrice
+        self.nbInStock = model.nbInStock
         self.allergenCategory = model.allergen
         self.ingredientCategory = model.category
         self.unity = model.unity
@@ -102,7 +117,11 @@ class IngredientFormViewModel : IngredientDelegate, ObservableObject{
         self.unitaryPrice = unitaryPrice
     }
     
-    func ingredientChange(allergenCategory: AllergenCategory) {
+    func ingredientChange(nbInStock: Double) {
+        self.nbInStock = nbInStock
+    }
+    
+    func ingredientChange(allergenCategory: AllergenCategory?) {
         self.allergenCategory = allergenCategory
     }
     
