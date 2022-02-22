@@ -31,7 +31,7 @@ class IngredientCategory : Identifiable, Hashable, Equatable{
 
 extension IngredientCategory{
     static var categories : [IngredientCategory] = [
-        IngredientCategory(id: 1, category_name: "Légumes"),IngredientCategory(id: 2, category_name: "Fruits"),IngredientCategory(id: 3, category_name: "Viande")
+        IngredientCategory(id: 2, category_name: "Légumes"),IngredientCategory(id: 2, category_name: "Fruits"),IngredientCategory(id: 3, category_name: "Viande")
     ]
 }
 

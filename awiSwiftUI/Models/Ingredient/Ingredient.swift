@@ -60,9 +60,9 @@ class Ingredient : Identifiable{
 
 extension Ingredient{
     static var ingredients : [Ingredient] = [
-        Ingredient(id:0,name:"Carotte",unitaryPrice: 10 ,nbInStock : 1, allergen: nil, ingredientCategory: IngredientCategory.categories[0],unity: Unity.units[0]),
-        Ingredient(id:1,name:"Patate",unitaryPrice: 7,nbInStock : 1 ,allergen: nil, ingredientCategory: IngredientCategory.categories[0],unity: Unity.units[0]),
-        Ingredient(id:2,name:"Lait",unitaryPrice: 10,nbInStock : 1 ,allergen: AllergenCategory.allergens[2], ingredientCategory: IngredientCategory.categories[1],unity: Unity.units[1])
+        Ingredient(id:1,name:"TestPost",unitaryPrice: 10 ,nbInStock : 3, allergen: AllergenCategory.allergens[0], ingredientCategory: IngredientCategory.categories[0],unity: Unity.units[0]),
+        Ingredient(id:2,name:"Patate",unitaryPrice: 7,nbInStock : 1 ,allergen: nil, ingredientCategory: IngredientCategory.categories[0],unity: Unity.units[0]),
+        Ingredient(id:3,name:"Lait",unitaryPrice: 10,nbInStock : 1 ,allergen: AllergenCategory.allergens[2], ingredientCategory: IngredientCategory.categories[1],unity: Unity.units[1])
     ]
 }
 
