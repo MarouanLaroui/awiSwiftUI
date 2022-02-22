@@ -71,4 +71,17 @@ struct AllergenCategoryDAO{
         }
     }
     
+    static func getIngredientByAllergen(id : Int) async ->Result<[Ingredient],Error> {
+        
+        let getIngredientByAllergenReq : Result<[IngredientGetDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "allergen-category/" + String(id) + "/ingredients")
+        
+        switch(getIngredientByAllergenReq){
+            
+        case .success(let ingredientDTO):
+            return .success(IngredientDAO.DTOsToIngredients(dtos: ingredientDTO))
+            
+        case .failure(let error):
+            return .failure(error)
+        }
+    }    
 }
