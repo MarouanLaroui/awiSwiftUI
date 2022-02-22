@@ -33,7 +33,7 @@ struct LoginView: View {
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.salmon, lineWidth: 1)
                         )
-                    .padding(.bottom, 20)
+                    .padding([.horizontal, .bottom], 20)
     
                 
                 SecureField("password",text :$password)
@@ -43,7 +43,7 @@ struct LoginView: View {
                             RoundedRectangle(cornerRadius: 5)
                                 .stroke(Color.salmon, lineWidth: 1)
                         )
-                    .padding(.bottom, 15)
+                    .padding([.horizontal, .bottom], 20)
                 Text("Mot de passe oublié ?")
                     .font(.caption2)
                     .padding(.bottom,10)
@@ -51,7 +51,7 @@ struct LoginView: View {
                 Button("Se connecter"){
                     
                 }
-                .padding()
+                .padding(10)
                 .background(Color.salmon)
                 .foregroundColor(.white)
                 .cornerRadius(8)

@@ -10,7 +10,6 @@ import Foundation
 struct JSONHelper{
     
     static func httpGet<T:Decodable>(url : String) async -> Result<T,Error>{
-        
         if let url = URL(string: url) {
             do{
                 let (data, _) = try await URLSession.shared.data(from: url)

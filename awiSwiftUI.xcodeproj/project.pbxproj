@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F24949127C3B3AF00EEBFFF /* AllergenCategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24949027C3B3AF00EEBFFF /* AllergenCategoryListViewModel.swift */; };
-		6F24949327C3B49000EEBFFF /* AllergenCategoryIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24949227C3B49000EEBFFF /* AllergenCategoryIntent.swift */; };
 		6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */; };
-		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
+		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
 		ACBBE4B127C0FFC4002B59C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBBE4B027C0FFC4002B59C8 /* Assets.xcassets */; };
@@ -99,13 +97,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F24949027C3B3AF00EEBFFF /* AllergenCategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenCategoryListViewModel.swift; sourceTree = "<group>"; };
-		6F24949227C3B49000EEBFFF /* AllergenCategoryIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenCategoryIntent.swift; sourceTree = "<group>"; };
 		6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelManagement.swift; sourceTree = "<group>"; };
-		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
-		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
+		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
+		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = awiSwiftUIApp.swift; sourceTree = "<group>"; };
 		ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -485,8 +481,6 @@
 			isa = PBXGroup;
 			children = (
 				ACBBE54327C1043B002B59C8 /* AllergenCategoryFormViewModel.swift */,
-				6F24949027C3B3AF00EEBFFF /* AllergenCategoryListViewModel.swift */,
-				6F24949227C3B49000EEBFFF /* AllergenCategoryIntent.swift */,
 			);
 			path = AllergenCategory;
 			sourceTree = "<group>";
@@ -653,9 +647,7 @@
 				ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */,
 				ACBBE52F27C10369002B59C8 /* CreateAccountForm.swift in Sources */,
 				ACBBE55E27C28947002B59C8 /* RecipeDAO.swift in Sources */,
-				6F24949127C3B3AF00EEBFFF /* AllergenCategoryListViewModel.swift in Sources */,
 				ACBBE4FC27C10159002B59C8 /* UserDTO.swift in Sources */,
-				6F24949327C3B49000EEBFFF /* AllergenCategoryIntent.swift in Sources */,
 				ACBBE4FF27C10173002B59C8 /* Step.swift in Sources */,
 				6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */,
 				ACBBE4EB27C100B6002B59C8 /* IngredientCategoryDAO.swift in Sources */,
