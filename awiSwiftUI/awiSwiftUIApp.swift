@@ -55,7 +55,7 @@ struct IOSawiApp: App {
                 
                 
                 NavigationView{
-                    RecipeCard(recipe: Recipe.recipes[0])
+                    LabelManagement()
                         .navigationTitle("Etiquettes")
                 }
                 .tabItem{
