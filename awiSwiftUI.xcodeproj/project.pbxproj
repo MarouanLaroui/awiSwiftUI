@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
 		ACBBE4B127C0FFC4002B59C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBBE4B027C0FFC4002B59C8 /* Assets.xcassets */; };
@@ -93,6 +94,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
+		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = awiSwiftUIApp.swift; sourceTree = "<group>"; };
 		ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 		ACBBE4A027C0FFC3002B59C8 = {
 			isa = PBXGroup;
 			children = (
+				ACA4C10A27C4284A005CBF28 /* Empty.md */,
+				ACA4C10827C4282A005CBF28 /* Empty.xib */,
 				ACBBE4AB27C0FFC3002B59C8 /* awiSwiftUI */,
 				ACBBE4BC27C0FFC4002B59C8 /* awiSwiftUITests */,
 				ACBBE4C627C0FFC4002B59C8 /* awiSwiftUIUITests */,
@@ -576,6 +581,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */,
 				ACBBE4B427C0FFC4002B59C8 /* Preview Assets.xcassets in Resources */,
 				ACBBE4B127C0FFC4002B59C8 /* Assets.xcassets in Resources */,
 			);

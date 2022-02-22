@@ -32,7 +32,7 @@ class AllergenCategory : Identifiable, Hashable{
 
 extension AllergenCategory{
     static var allergens : [AllergenCategory] = [
-        AllergenCategory(id: 0, name: "Mollusques"),AllergenCategory(id: 1, name: "Fruits à coque"),AllergenCategory(id: 2, name: "Diary products")
+        AllergenCategory(id: 10, name: "Mollusques"),AllergenCategory(id: 1, name: "Fruits à coque"),AllergenCategory(id: 2, name: "Diary products")
     ]
 }
 

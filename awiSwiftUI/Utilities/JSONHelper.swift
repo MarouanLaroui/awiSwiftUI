@@ -97,7 +97,12 @@ struct JSONHelper{
     static func encode<T: Encodable>(data: T) async -> Data?{
         
         let encoder = JSONEncoder() // création d'un décodeur
-        return try? encoder.encode(data)
+        do {
+            return try encoder.encode(data)
+        } catch {
+            print("l'erreur elle est la gros")
+            return nil
+        }
     }
     
     static func decode<T: Decodable>(data: Data) -> T?{

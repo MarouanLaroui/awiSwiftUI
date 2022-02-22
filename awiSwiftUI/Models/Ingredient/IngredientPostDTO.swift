@@ -8,11 +8,11 @@
 import Foundation
 
 struct IngredientPostDTO : Decodable, Encodable{
-    var id : Int?
+    //var id : Int?
     var name : String
-    var unitaryPrice : Double
-    var nbInStock : Double
+    var unitaryPrice : Int
+    var nbInStock : Int
     var allergen : Int?
     var category : Int
-    var unity : Int?
+    var unity : Int
 }

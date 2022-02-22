@@ -34,7 +34,7 @@ class Unity : Identifiable, Hashable{
 
 extension Unity{
     static var units = [
-        Unity(id: 0, unityName: "Kg"),Unity(id: 1, unityName: "L"),Unity(id: 2, unityName: "unit")
+        Unity(id: 2, unityName: "Kg"),Unity(id: 2, unityName: "L"),Unity(id: 3, unityName: "unit")
     ]
 }
 

@@ -103,6 +103,11 @@ struct IngredientForm: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         Button("Ajouter"){
+                            Task{
+                                print("-------------------INGREDIENT CREATION----------------")
+                                async let ingredient = IngredientDAO.postIngredientTest()
+                            }
+                            
                         }
                         .padding(10)
                         .background(Color.salmon)
