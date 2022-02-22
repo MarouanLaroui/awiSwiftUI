@@ -10,6 +10,12 @@ import SwiftUI
 
 struct LabelManagement: View {
     var body: some View{
-        Text("Hello")
+        VStack{
+            Button("test post user"){}
+
+        }
+        .task {
+            await UserDAO.postUser()
+        }
     }
 }

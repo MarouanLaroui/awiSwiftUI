@@ -52,6 +52,62 @@ struct UserDAO{
     }
     
     //TODO: fonction de post d'un utilisateur
+    static func postUser() async -> User? {
+        
+        let user = User.users[0]
+        let userDTO = UserDAO.userToDTO(user: user)
+        
+        //Construction de l'url
+        guard let url = URL(string: Utils.apiURL + "user") else {
+            print("UserDAO --- postUser -- Bad URL")
+            return nil
+        }
+        
+        do{
+            var request = URLRequest(url: url)
+            // append a value to a field
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            //request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "POST"
+            // set (replace) a value to a field
+            //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
+            
+            
+            guard let encoded = await JSONHelper.encode(data: userDTO) else {
+                print("UserDAO --- postUser -- Bad encoding")
+                return nil
+            }
+            
+            let sencoded = String(data: encoded, encoding: .utf8)!
+            print(sencoded)
+            let datatest = "{\"name\":\"Fiorio\",\"last_name\":\"Christophe\",\"mail\":\"marouanlarouicode@gmail.com\",\"phone\":\"0658003255\",\"birthdate\":\"2022-01-21\",\"isAdmin\":true,\"password\":\"a9ahvd0t\"}".data(using: .utf8)!
+            
+            let sencoded2 = String(data: datatest, encoding: .utf8)
+            
+            //Upload
+            let (data, response) = try await URLSession.shared.upload(for: request, from: datatest)
+            
+            //traitement de la valeur de retour
+            let httpresponse = response as! HTTPURLResponse
+            
+            if httpresponse.statusCode == 201{
+                guard let decoded : UserDTO = await JSONHelper.decode(data: data) else {
+                    print("UserDAO --- postUser -- mauvaise récupération de données")
+                    return nil
+                }
+                return UserDAO.dtoToUser(dto: decoded)
+                //self.users.append(decoded.data)
+            }
+            else{
+                print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
+            }
+        }
+        catch(let error){
+            print("UserDAO --- postUser -- Bad request \(error)")
+        }
+        
+        return nil
+    }
     
     /*
     static func connect(user : User) async -> U?{
