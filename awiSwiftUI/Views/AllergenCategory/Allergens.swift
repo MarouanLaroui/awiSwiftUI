@@ -10,16 +10,23 @@ import SwiftUI
 
 struct Allergens: View{
     
-    @State var allergens: [AllergenCategory] = []
+    @ObservedObject var allergenVM : AllergenCategoryListViewModel = AllergenCategoryListViewModel(allergens: [])
+    @State var searchedAllergenName = ""
+
+    //Barre de recherche
+    var searchResult : [AllergenCategory]{
+        if(searchedAllergenName.isEmpty){
+            return allergenVM.allergens
+        }
+        return allergenVM.allergens.filter({$0.name.contains(searchedAllergenName)})
+    }
     
     var body: some View{
         VStack{
-            //TODO: ajouter une barre de recherche
-            
-            List(allergens){ allergen in
+            List(searchResult){ allergen in
                 AllergenRow(allergen: allergen)
             }
-            
+            .searchable(text: $searchedAllergenName, placement: .navigationBarDrawer(displayMode: .always))
         }
         //récupération des allergènes en BD
         .task {
@@ -28,14 +35,20 @@ struct Allergens: View{
             switch(await requestAllergens){
                 
             case .success(let resAllergens):
-                allergens = resAllergens
+                allergenVM.allergens = resAllergens
             case .failure(let error):
                 print(error)
+            }
+            
+        }
+        //Icône de compte
+        .toolbar{
+            HStack{
+                Image(systemName: "person")
             }
         }
         
     }
-    
     
 }
 

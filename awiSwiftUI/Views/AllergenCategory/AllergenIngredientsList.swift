@@ -29,35 +29,36 @@ struct AllergenIngredientsList: View{
     @State var allergen: AllergenCategory
     @State var ingredients: [Ingredient] = []
     @State var showingList = false
-    var columns: [GridItem] =
-             Array(repeating: .init(.flexible()), count: 2)
     
     
     var body: some View{
-        HStack{
-            VStack(alignment: .trailing){
-                
-                //Liste des ingrédients
-                if ingredients.count == 0{
-                    Text("Pas d'ingrédient")
+    HStack{
+            //Liste des ingrédients
+            if ingredients.count == 0{
+                Text("Pas d'ingrédient")
+                    .font(.caption)
+                    .italic()
+                    .opacity(0.6)
+            }
+            else {
+                //Il y a des ingrédients à afficher
+                HStack{
+                    Text(String(ingredients.count))
+                        .foregroundColor(.salmon)
                         .font(.caption)
-                        .italic()
-                        .opacity(0.6)
-                }
-                else {
-                    //Il y a des ingrédients à afficher
-                    HStack{
-                        Image("warning")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                        
+                    Image("warning")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .onTapGesture {
+                            showingList = !showingList
+                        }
+                    
+                    if showingList {
                         VStack(alignment: .leading){
                             ForEach(ingredients){ ingredient in
                                 Text(ingredient.name)
-                                    
                             }
                         }
-                        
                     }
                 }
             }

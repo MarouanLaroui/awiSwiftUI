@@ -38,9 +38,7 @@ extension AllergenCategory{
 
 
 protocol AllergenCategoryDelegate{
-    
     func allergenCategoryChange(name : String)
     func allergenCategoryChange(id : Int)
-    
 }
 
