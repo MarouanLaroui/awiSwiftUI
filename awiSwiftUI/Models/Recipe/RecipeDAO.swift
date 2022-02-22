@@ -47,7 +47,7 @@ struct RecipeDAO{
     }
     
     /*REQUESTS*/
-    static func getRecipes()async ->Result<[Recipe],Error> {
+    static func getRecipes() async ->Result<[Recipe],Error> {
         
         let getRecipeQuery : Result<[RecipeDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe")
         

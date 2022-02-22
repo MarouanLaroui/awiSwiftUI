@@ -11,11 +11,6 @@ import Combine
 
 class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
-    
-    
-    
-
-    
     private var model : Ingredient;
     
     @Published var id : Int?
@@ -41,6 +36,9 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         
         print("in IngredientFORMVM model :" + model.name)
     }
+    
+    // MARK: -
+    // MARK: Ingredient delegate
     
     func ingredientChange(name: String) {
         self.name = name
@@ -69,6 +67,8 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     func ingredientChange(id: Int) {
         self.id = id
     }
+    // MARK: -
+    // MARK: State observer
     
     typealias Input = IntentState
     
@@ -85,6 +85,8 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         case .ready:
             break
             
+
+
         case .ingredientNameChanging(let name):
             self.model.name = name
             

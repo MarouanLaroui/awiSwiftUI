@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
 		6FF0FFE227C130BC000AA621 /* AllergenIngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */; };
+		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
 		ACBBE4B127C0FFC4002B59C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBBE4B027C0FFC4002B59C8 /* Assets.xcassets */; };
@@ -77,6 +77,8 @@
 		ACBBE56227C29317002B59C8 /* RecipeCategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56127C29317002B59C8 /* RecipeCategoryDTO.swift */; };
 		ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56327C2933C002B59C8 /* RecipeCategoryDAO.swift */; };
 		ACBBE56627C2AF74002B59C8 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56527C2AF74002B59C8 /* Image.swift */; };
+		ACE6A90727C507CC00D82E05 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90627C507CC00D82E05 /* Token.swift */; };
+		ACE6A90927C5080900D82E05 /* UserLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,11 +99,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
-		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
 		6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenIngredientsList.swift; sourceTree = "<group>"; };
+		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
+		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = awiSwiftUIApp.swift; sourceTree = "<group>"; };
 		ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,8 @@
 		ACBBE56127C29317002B59C8 /* RecipeCategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryDTO.swift; sourceTree = "<group>"; };
 		ACBBE56327C2933C002B59C8 /* RecipeCategoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryDAO.swift; sourceTree = "<group>"; };
 		ACBBE56527C2AF74002B59C8 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		ACE6A90627C507CC00D82E05 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +291,7 @@
 		ACBBE4E127C10058002B59C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ACE6A90527C507BF00D82E05 /* Token */,
 				ACBBE50727C101CA002B59C8 /* Ingredient */,
 				ACBBE50027C1018C002B59C8 /* AllergenCategory */,
 				ACBBE4FD27C10167002B59C8 /* Step */,
@@ -345,6 +350,7 @@
 				ACBBE4F727C1013F002B59C8 /* UserDAO.swift */,
 				ACBBE4F927C10148002B59C8 /* User.swift */,
 				ACBBE4FB27C10159002B59C8 /* UserDTO.swift */,
+				ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -484,6 +490,14 @@
 				ACBBE54827C10466002B59C8 /* IngredientFormViewModel.swift */,
 			);
 			path = Ingredient;
+			sourceTree = "<group>";
+		};
+		ACE6A90527C507BF00D82E05 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				ACE6A90627C507CC00D82E05 /* Token.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -628,6 +642,7 @@
 				ACBBE4DC27C10029002B59C8 /* JSONError.swift in Sources */,
 				ACBBE50927C101D9002B59C8 /* Ingredient.swift in Sources */,
 				ACBBE53A27C103BF002B59C8 /* Ingredients.swift in Sources */,
+				ACE6A90727C507CC00D82E05 /* Token.swift in Sources */,
 				6FF0FFE227C130BC000AA621 /* AllergenIngredientsList.swift in Sources */,
 				ACBBE4D827C0FFDC002B59C8 /* Formatters.swift in Sources */,
 				ACBBE4EF27C100EC002B59C8 /* IngredientCategory.swift in Sources */,
@@ -656,6 +671,7 @@
 				ACBBE56227C29317002B59C8 /* RecipeCategoryDTO.swift in Sources */,
 				ACBBE53627C103A0002B59C8 /* IngredientRow.swift in Sources */,
 				ACBBE54427C1043B002B59C8 /* AllergenCategoryFormViewModel.swift in Sources */,
+				ACE6A90927C5080900D82E05 /* UserLoginDTO.swift in Sources */,
 				ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */,
 				ACBBE51527C1026B002B59C8 /* Recipes.swift in Sources */,
 				ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */,

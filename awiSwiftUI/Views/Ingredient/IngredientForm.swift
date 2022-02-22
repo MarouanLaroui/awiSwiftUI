@@ -38,8 +38,10 @@ struct IngredientForm: View {
     
     var body: some View {
         NavigationView{
+            
             List{
                 VStack{
+                    
                     Group{
                         HStack{
                             Text("Nom : ")
@@ -49,7 +51,7 @@ struct IngredientForm: View {
                                 }
                         }
                         Divider()
-                    
+                        
                         HStack{
                             Text("Prix unitaire : ")
                             TextField("",value : $ingredientFormVM.unitaryPrice, formatter:  Formatters.decimal)
@@ -58,13 +60,13 @@ struct IngredientForm: View {
                                 }
                         }
                         Divider()
-                    
+                        
                         Stepper(value: $ingredientFormVM.unitaryPrice, in:0...200, step:2){
                             //CHANGE THAT TO EURO
                             Label("\(ingredientFormVM.unitaryPrice)",systemImage: "eurosign.circle.fill")
                         }
                         Divider()
-                    
+                        
                         /*DROPDOWN*/
                         Picker("Catégorie : " + ingredientFormVM.category.category_name, selection: $ingredientFormVM.category) {
                             ForEach(ingredientCategories) { category in
@@ -72,56 +74,56 @@ struct IngredientForm: View {
                             }
                         }
                     }
-                        
-                        .padding(.bottom,5)
-                        
-                        Divider()
+                    
+                    .padding(.bottom,5)
+                    
+                    Divider()
                     
                     Picker("Unité : " + ingredientFormVM.unity.unityName, selection: $ingredientFormVM.unity) {
-                            ForEach(units) { unity in
-                                Text(unity.unityName)
-                            }
+                        ForEach(units) { unity in
+                            Text(unity.unityName)
                         }
-                        .padding(.bottom,5)
+                    }
+                    .padding(.bottom,5)
                     
-                        Divider()
-                        Picker("Allergène :", selection: $ingredientFormVM.allergen) {
-                            Text("Aucun")
-                                .tag(nil as AllergenCategory?)
-                            ForEach(allergenCategories) { allergen in
-                                Text(allergen.name)
-                            }
+                    Divider()
+                    Picker("Allergène :", selection: $ingredientFormVM.allergen) {
+                        Text("Aucun")
+                            .tag(nil as AllergenCategory?)
+                        ForEach(allergenCategories) { allergen in
+                            Text(allergen.name)
                         }
-                    
-                        Divider()
-                    HStack{
-                        Button("Annuler"){
-                            
-                        }
-                        .padding(10)
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        Button("Ajouter"){
-                            Task{
-                                print("-------------------INGREDIENT CREATION----------------")
-                                async let ingredient = IngredientDAO.postIngredientTest()
-                            }
-                            
-                        }
-                        .padding(10)
-                        .background(Color.salmon)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
                     }
                     
-
+                    Divider()
+                    
                 }
             }
             .navigationTitle("New ingredient")
-     
+            
+        }
+        HStack{
+            Button("Annuler"){
+                
+            }
+            .padding(10)
+            .background(.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            Button("Ajouter"){
+                Task{
+                    print("-------------------INGREDIENT CREATION----------------")
+                    let ingredient = await IngredientDAO.postIngredientTest()
+                }
+                
+            }
+            .padding(10)
+            .background(Color.salmon)
+            .foregroundColor(.white)
+            .cornerRadius(10)
         }
         .task{
+            print("-------IngredientFORM TASK----------------")
             async let reqUnits =  UnityDAO.getUnits()
             
             async let reqCategories = IngredientCategoryDAO.getIngredientCategories()
@@ -131,6 +133,7 @@ struct IngredientForm: View {
             switch(await reqUnits){
                 
             case .success(let resUnits):
+                print("Success unit")
                 units = resUnits
             case .failure(let error):
                 print(error)
@@ -139,6 +142,7 @@ struct IngredientForm: View {
             switch(await reqCategories){
                 
             case .success(let resIngredientCategories):
+                print("Success ingredientCategory")
                 ingredientCategories = resIngredientCategories
             case .failure(let error):
                 print(error)
@@ -147,6 +151,7 @@ struct IngredientForm: View {
             switch(await reqAllergens){
                 
             case .success(let resAllergenCategories):
+                print("Success allergenCategory")
                 allergenCategories = resAllergenCategories
             case .failure(let error):
                 print(error)
@@ -154,7 +159,9 @@ struct IngredientForm: View {
         }
         
         
+        
     }
+    
 }
 
 struct IngredientForm_Previews: PreviewProvider {

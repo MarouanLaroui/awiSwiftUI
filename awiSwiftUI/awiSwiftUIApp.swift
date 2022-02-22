@@ -22,7 +22,7 @@ struct IOSawiApp: App {
                     Image(systemName: "house")
                     Text("Home")
                 }
-                
+                /*
                 
                 NavigationView{
                     Allergens()
@@ -33,6 +33,7 @@ struct IOSawiApp: App {
                     Text("Allergènes")
                 }
                 
+                */
                 
                 NavigationView{
                     Ingredients()
@@ -43,7 +44,7 @@ struct IOSawiApp: App {
                     Text("Ingrédients")
                 }
                 
-                
+                /*
                 NavigationView{
                     Recipes()
                         .navigationTitle("Recettes")
@@ -52,6 +53,7 @@ struct IOSawiApp: App {
                     Image(systemName: "text.book.closed")
                     Text("Recettes")
                 }
+                 
                 
                 
                 NavigationView{
@@ -62,6 +64,8 @@ struct IOSawiApp: App {
                     Image(systemName: "tag.fill")
                     Text("Etiquettes")
                 }
+                 */
+                 
             }
             //LoginView()
             //Badge(backgroundColor: Color.red, fontColor: Color.white, text: "Allergen")

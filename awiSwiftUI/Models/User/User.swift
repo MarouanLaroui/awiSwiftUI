@@ -16,6 +16,8 @@ class User{
     var phone : String
     var birthdate : String
     var isAdmin : Bool
+    
+    //var access_token : String?
    
     
     internal init(id: Int? = nil, name: String, last_name: String, mail: String, phone : String, isAdmin: Bool, birthdate: String) {

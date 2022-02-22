@@ -14,6 +14,7 @@ struct Recipes: View {
     @State var isFormDisplayed = false
     @State var selectedCategory : RecipeCategory? = nil
     @State var searchedRecipeName = ""
+    
     var gridItems = [GridItem(.adaptive(minimum : 150))]
     
     var searchResult : [Recipe]{
@@ -71,13 +72,14 @@ struct Recipes: View {
         }
         .task{
             if(self.recipesVM.recipes.count == 0){
-                
+                print("--------__RECIPE TASK __----------")
                 async let reqRecipes =  RecipeDAO.getRecipes()
                 async let reqRecipeCategories =  RecipeCategoryDAO.getRecipeCategories()
                 
                 switch(await reqRecipes){
                     
                 case .success(let resRecipes):
+                    print("succcess recipe")
                     self.recipesVM.recipes = resRecipes
                 case .failure(let error):
                     print(error)
@@ -87,6 +89,7 @@ struct Recipes: View {
                 switch(await reqRecipeCategories){
                     
                 case .success(let resRecipeCategories):
+                    print("success recipeCategories")
                     self.recipeCategories = resRecipeCategories
                 case .failure(let error):
                     print(error)

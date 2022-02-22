@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+
     var body: some View {
         VStack(alignment:.leading){
+  
             Text("Fonctionnalités")
                 .font(.title2)
                 .bold()
@@ -26,6 +28,11 @@ struct HomeView: View {
             
             Spacer()
         }
+        /*
+        .task{
+            await IngredientDAO.postIngredientTest()
+        }
+         */
         .padding()
         .toolbar {
             HStack{

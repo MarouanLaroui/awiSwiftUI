@@ -91,6 +91,7 @@ struct IngredientDAO{
     
     static func postIngredientTest() async -> Ingredient?{
         
+        print("postIngredientTest")
         let ingredient = Ingredient.ingredients[0]
         let ingredientDTO = IngredientDAO.IngredientToDTO(ingredient: ingredient)
         print(ingredientDTO)
@@ -102,7 +103,7 @@ struct IngredientDAO{
             var request = URLRequest(url: url)
             // append a value to a field
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
+            //request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
             request.httpMethod = "POST"
             // set (replace) a value to a field
             //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
@@ -112,7 +113,7 @@ struct IngredientDAO{
             }
             let sencoded = String(data: encoded, encoding: .utf8)!
             print(sencoded)
-            let datatest = "{\"unity\":2,\"unitaryPrice\":10,\"allergen\":10,\"name\":\"TestPost\",\"nbInStock\":3,\"category\":2}".data(using: .utf8)!
+            let datatest = "{\"unity\":2,\"unitaryPrice\":10,\"allergen\":10,\"name\":\"MARCHEPTN\",\"nbInStock\":3,\"category\":2}".data(using: .utf8)!
             let sencoded2 = String(data: datatest, encoding: .utf8)!
             print(sencoded2)
             let (data, response) = try await URLSession.shared.upload(for: request, from: datatest)

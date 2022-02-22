@@ -7,12 +7,12 @@
 
 import Foundation
 
-class Ingredient : Identifiable{
+class Ingredient : Identifiable, ObservableObject{
     
     var delegate : IngredientDelegate?
     
     var id : Int?
-    var name : String{
+    @Published var name : String{
         didSet{
             print("didSet Ingredient")
             self.delegate?.ingredientChange(name: name)

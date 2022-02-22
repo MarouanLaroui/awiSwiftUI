@@ -38,7 +38,7 @@ struct IngredientCategoryDAO{
     /*REQUESTS*/
     static func getIngredientCategories() async ->Result<[IngredientCategory],Error> {
         
-        let getIngredientCategoriesReq : Result<[IngredientCategoryDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "ingredient-category/")
+        let getIngredientCategoriesReq : Result<[IngredientCategoryDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "ingredient-category")
         
         switch(getIngredientCategoriesReq){
             
