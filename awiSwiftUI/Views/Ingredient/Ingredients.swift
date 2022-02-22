@@ -10,7 +10,7 @@ import SwiftUI
 struct Ingredients: View {
     
     @ObservedObject var ingredientsVM : IngredientListVM = IngredientListVM(ingredients: [])
-    @State private var selectedIngredient : Ingredient? = nil
+    @State private var selectedIngredientIndex : Int = 0
     @State var ingredientCategories : [IngredientCategory] = []
     @State var searchedIngredientName = ""
     @State var isFormDisplayed = false
@@ -47,13 +47,12 @@ struct Ingredients: View {
             
             //Button(action: {isFormDisplayed.toggle()}) {Text("+")}
             
-            List(ingredientsVM.ingredients){
-                ingredient in
-                IngredientRow(ingredientVM: IngredientFormVM(model: ingredient))
+            ForEach(ingredientsVM.ingredients.indices){
+                ingredientIndex in
+                IngredientRow(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[ingredientIndex]))
                     .swipeActions {
                         Button {
-                            self.selectedIngredient = ingredient
-                            print("Ingredient selectionné : " + self.selectedIngredient!.name)
+                            self.selectedIngredientIndex = ingredientIndex
                             isFormDisplayed = true
                         }
                     label: {
@@ -133,7 +132,7 @@ struct Ingredients: View {
                     Spacer()
                     Button("+"){
                         isFormDisplayed.toggle()
-                        selectedIngredient = nil
+                        selectedIngredientIndex = 0
                     }
                     .frame(width: 25, height: 25)
                     .font(.title)
@@ -147,8 +146,8 @@ struct Ingredients: View {
         )
         
         .sheet(isPresented: $isFormDisplayed){
-            if let selectedIngredient = selectedIngredient {
-                IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), ingredientsVM: ingredientsVM)
+            if let selectedIngredientIndex = selectedIngredientIndex {
+                IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
             }
             else{
                 IngredientForm(ingredientVM : nil, ingredientsVM: ingredientsVM)
