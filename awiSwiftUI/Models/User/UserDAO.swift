@@ -51,16 +51,15 @@ struct UserDAO{
         }
     }
     
-    //TODO: fonction de post d'un utilisateur
-    static func postUser() async -> User? {
+    static func postUser(userDTO: UserDTO) async -> Result<User, Error> {
+        //User fictif pour les tests
+        //let user = User.users[0]
         
-        let user = User.users[0]
-        let userDTO = UserDAO.userToDTO(user: user)
+        //let userDTO = UserDAO.userToDTO(user: user)
         
         //Construction de l'url
         guard let url = URL(string: Utils.apiURL + "user") else {
-            print("UserDAO --- postUser -- Bad URL")
-            return nil
+            return .failure(HTTPError.badURL)
         }
         
         do{
@@ -74,39 +73,35 @@ struct UserDAO{
             
             
             guard let encoded = await JSONHelper.encode(data: userDTO) else {
-                print("UserDAO --- postUser -- Bad encoding")
-                return nil
+                return .failure(JSONError.JsonEncodingFailed)
             }
             
-            let sencoded = String(data: encoded, encoding: .utf8)!
-            print(sencoded)
-            let datatest = "{\"name\":\"Fiorio\",\"last_name\":\"Christophe\",\"mail\":\"marouanlarouicode@gmail.com\",\"phone\":\"0658003255\",\"birthdate\":\"2022-01-21\",\"isAdmin\":true,\"password\":\"a9ahvd0t\"}".data(using: .utf8)!
-            
-            let sencoded2 = String(data: datatest, encoding: .utf8)
-            
+            //Pour les tests
+            //let datatest = "{\"name\":\"Fiorio\",\"last_name\":\"Christophe\",\"mail\":\"marouanlarouicode@gmail.com\",\"phone\":\"0658003255\",\"birthdate\":\"2022-01-21\",\"isAdmin\":true,\"password\":\"a9ahvd0t\"}".data(using: .utf8)!
+            //let (data, response) = try await URLSession.shared.upload(for: request, from: datatest)
+                        
             //Upload
-            let (data, response) = try await URLSession.shared.upload(for: request, from: datatest)
+            let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
             //traitement de la valeur de retour
             let httpresponse = response as! HTTPURLResponse
             
             if httpresponse.statusCode == 201{
                 guard let decoded : UserDTO = await JSONHelper.decode(data: data) else {
-                    print("UserDAO --- postUser -- mauvaise récupération de données")
-                    return nil
+                    return .failure(HTTPError.emptyDTO)
                 }
-                return UserDAO.dtoToUser(dto: decoded)
+                return .success(UserDAO.dtoToUser(dto: decoded))
+                
                 //self.users.append(decoded.data)
             }
             else{
-                print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
+                return .failure(HTTPError.error(httpresponse))
             }
         }
         catch(let error){
-            print("UserDAO --- postUser -- Bad request \(error)")
+            //Bad request
+            return .failure(error)
         }
-        
-        return nil
     }
     
     /*

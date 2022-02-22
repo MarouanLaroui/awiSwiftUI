@@ -14,8 +14,5 @@ struct LabelManagement: View {
             Button("test post user"){}
 
         }
-        .task {
-            await UserDAO.postUser()
-        }
     }
 }
