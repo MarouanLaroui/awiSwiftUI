@@ -80,6 +80,7 @@
 		ACE6A90727C507CC00D82E05 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90627C507CC00D82E05 /* Token.swift */; };
 		ACE6A90927C5080900D82E05 /* UserLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */; };
 		ACE6A91327C6189800D82E05 /* DeleteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A91227C6189800D82E05 /* DeleteDTO.swift */; };
+		ACE6A91527C61D6600D82E05 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,7 @@
 		ACE6A90627C507CC00D82E05 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginDTO.swift; sourceTree = "<group>"; };
 		ACE6A91227C6189800D82E05 /* DeleteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDTO.swift; sourceTree = "<group>"; };
+		ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				ACBBE4DF27C10051002B59C8 /* Color.swift */,
 				ACBBE54A27C12978002B59C8 /* HTTPError.swift */,
 				ACBBE56527C2AF74002B59C8 /* Image.swift */,
+				ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 		ACBBE51227C10254002B59C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ACE6A91827C63A0F00D82E05 /* Login */,
 				6FE0BDFC27C4D01E00021B7A /* LabelManagement */,
 				6FF0FFDC27C12626000AA621 /* AllergenCategory */,
 				ACBBE53427C10394002B59C8 /* Ingredient */,
@@ -406,7 +410,6 @@
 				ACBBE52427C102F6002B59C8 /* IngredientCategory */,
 				ACBBE51327C1025D002B59C8 /* Recipe */,
 				ACBBE52027C102D6002B59C8 /* Carousel.swift */,
-				ACBBE52227C102E5002B59C8 /* LoginView.swift */,
 				ACBBE52827C1032B002B59C8 /* HomeView.swift */,
 				ACBBE52A27C1033A002B59C8 /* TextUnderIcon.swift */,
 				ACBBE53027C10376002B59C8 /* HomeCoverSlider.swift */,
@@ -519,6 +522,14 @@
 				6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		ACE6A91827C63A0F00D82E05 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ACBBE52227C102E5002B59C8 /* LoginView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +698,7 @@
 				ACBBE52127C102D6002B59C8 /* Carousel.swift in Sources */,
 				6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */,
 				ACBBE51D27C102B0002B59C8 /* HorizontalScrollRecipe.swift in Sources */,
+				ACE6A91527C61D6600D82E05 /* ArrayExtension.swift in Sources */,
 				ACBBE4FA27C10148002B59C8 /* User.swift in Sources */,
 				ACBBE4DE27C10042002B59C8 /* JSONHelper.swift in Sources */,
 				ACBBE56227C29317002B59C8 /* RecipeCategoryDTO.swift in Sources */,

@@ -10,6 +10,7 @@ import SwiftUI
 struct Ingredients: View {
     
     @ObservedObject var ingredientsVM : IngredientListVM = IngredientListVM(ingredients: [])
+    var intent : Intent
     @State private var selectedIngredientIndex : Int = 0
     @State private var selectedIngredient : Ingredient? = nil
     @State var ingredientCategories : [IngredientCategory] = []
@@ -20,14 +21,16 @@ struct Ingredients: View {
     @State var isDataLoading : Bool = false
     
     init(){
-        print("init")
+        self.intent = Intent()
+        self.intent.addListObserver(viewModel: ingredientsVM)
     }
+    
     var searchResult : [Ingredient]{
         if(searchedIngredientName.isEmpty){
             return ingredientsVM.ingredients;
         }
         return ingredientsVM.ingredients.filter({$0.name.contains(searchedIngredientName)})
-    }
+    }  
     
     var body: some View {
         VStack{
@@ -54,8 +57,9 @@ struct Ingredients: View {
                     .swipeActions {
                         Button {
                             //self.selectedIngredientIndex = ingredientIndex
-                            isFormDisplayed = true
+                            
                             selectedIngredient = ingredient
+                            isFormDisplayed = true
                         }
                     label: {
                         Image(systemName: "square.and.pencil")
@@ -63,9 +67,16 @@ struct Ingredients: View {
                 
                         Button {
                             self.isAlertShowed = true
-                        } label: {
+                            Task{
+                                await self.intent.intentToDeleteIngredient(ingredientId: ingredient.id!)
+                            }
+            
+                        }
+                        label: {
                             Image(systemName: "trash")
                         }
+                        .background(Color.red)
+                        /*
                         .alert("Delete ?", isPresented: $isAlertShowed) {
                             Button(role: .cancel) {
                             } label: {
@@ -79,6 +90,7 @@ struct Ingredients: View {
                                 
                             }
                         }
+                         */
                     }
             }
              
@@ -97,14 +109,9 @@ struct Ingredients: View {
 //                        print("after post")
 
 //                        isDataLoading = true
-                    print("--------Ingredient Init ----------")
-                    //async
-                    let reqIngredients = await IngredientDAO.getIngredients()
-                    print("reqIngredients")
-                    //async
-                    let reqCategories = await IngredientCategoryDAO.getIngredientCategories()
-                    print("reqCategories")
 
+                    let reqIngredients = await IngredientDAO.getIngredients()
+                    let reqCategories = await IngredientCategoryDAO.getIngredientCategories()
                     
                     switch( reqIngredients){
                         
@@ -149,11 +156,11 @@ struct Ingredients: View {
         
         .sheet(isPresented: $isFormDisplayed){
             if let selectedIngredient = selectedIngredient {
-                IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), ingredientsVM: ingredientsVM, isFormDisplayed: $isFormDisplayed)
+                IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), intent : self.intent, isFormDisplayed: $isFormDisplayed)
                 //IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
             }
             else{
-                IngredientForm(ingredientVM : nil, ingredientsVM: ingredientsVM, isFormDisplayed: $isFormDisplayed)
+                IngredientForm(ingredientVM : nil, intent: self.intent, isFormDisplayed: $isFormDisplayed)
             }
             
         }

@@ -27,23 +27,27 @@ struct JSONHelper{
     
     static func httpDelete(url : String) async -> Result<Int,Error>{
         
-        guard let url = URL(string: "https://awi-api.herokuapp.com/ingredient")
+        guard let url = URL(string: url)
         else {return .failure(HTTPError.badURL)}
         
         do{
             var request = URLRequest(url: url)
-            
+            print(url)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
             request.httpMethod = "DELETE"
-            //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
-            
-            let (data, response) = try await URLSession.shared.data(from: url)
+ 
+            let (data, response) = try await URLSession.shared.data(for: request)
             let httpresponse = response as! HTTPURLResponse
-            if httpresponse.statusCode == 201{
+            if httpresponse.statusCode == 200 {
                 
                 guard let decoded : DeleteDTO = JSONHelper.decode(data: data)
-                else {return .failure(HTTPError.badRecoveryOfData)}
+                else {
+                    print("Bad recovery of data")
+                    return .failure(HTTPError.badRecoveryOfData)
+                    
+                }
+                print("SUCCESS------------------------")
                 return .success(decoded.affected)
             }
             else{

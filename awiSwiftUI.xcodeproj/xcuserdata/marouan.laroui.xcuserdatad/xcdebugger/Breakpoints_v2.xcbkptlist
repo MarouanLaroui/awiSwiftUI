@@ -14,8 +14,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/Ingredients.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/Ingredients.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/Ingredients.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/Ingredients.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/IngredientListVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "receive(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/Ingredients.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -222,40 +222,40 @@
             filePath = "awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "intentToCreateIngredient(ingredient:isUpdate:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "7EE421C4-680E-489E-9254-40C2E74FD55F - 438b8d3a8853afd"
+                  uuid = "7EE421C4-680E-489E-9254-40C2E74FD55F - 20c376602debefff"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) await resume partial function for awiSwiftUI.Intent.intentToCreateIngredient(ingredient: awiSwiftUI.Ingredient) async -&gt; ()"
+                  symbolName = "(1) await resume partial function for awiSwiftUI.Intent.intentToCreateIngredient(ingredient: awiSwiftUI.Ingredient, isUpdate: Swift.Bool) async -&gt; ()"
                   moduleName = "awiSwiftUI"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marouan.laroui/Desktop/Work/Projects/Code/IOS/awiSwiftUI/awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "484">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "428">
                </Location>
                <Location
-                  uuid = "7EE421C4-680E-489E-9254-40C2E74FD55F - 438b8d3a8853afd"
+                  uuid = "7EE421C4-680E-489E-9254-40C2E74FD55F - 20c376602debefff"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) await resume partial function for awiSwiftUI.Intent.intentToCreateIngredient(ingredient: awiSwiftUI.Ingredient) async -&gt; ()"
+                  symbolName = "(1) await resume partial function for awiSwiftUI.Intent.intentToCreateIngredient(ingredient: awiSwiftUI.Ingredient, isUpdate: Swift.Bool) async -&gt; ()"
                   moduleName = "awiSwiftUI"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/marouan.laroui/Desktop/Work/Projects/Code/IOS/awiSwiftUI/awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "508">
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "452">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "intentToCreateIngredient(ingredient:isUpdate:)"
             landmarkType = "7">
             <Locations>
@@ -401,6 +401,198 @@
             startingLineNumber = "147"
             endingLineNumber = "147"
             landmarkName = "postIngredient(ingredient:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D6A0CD58-712E-426F-AD43-A0F4869B86D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "intentToDeleteIngredient(ingredientId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E87B8DB-F5E5-4366-BCC1-6CA23949831F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "intentToDeleteIngredient(ingredientId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7745D3F0-98FB-42C4-AE95-C7B3CA1B4BA3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Ingredient/IngredientListVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "receive(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5D98C6F-786D-4239-96F4-06477038BB3C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Ingredient/IngredientListVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "receive(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDB8A610-9EAB-43EF-9630-A1EF867A6F42"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Ingredient/IngredientListVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "receive(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A27ABD4E-76C1-4C6E-ABD8-78111A512336"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Utilities/JSONHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "httpDelete(url:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A27ABD4E-76C1-4C6E-ABD8-78111A512336 - dd2f13f475330c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static awiSwiftUI.JSONHelper.httpDelete(url: Swift.String) async -&gt; Swift.Result&lt;Swift.Int, Swift.Error&gt;"
+                  moduleName = "awiSwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/marouan.laroui/Desktop/Work/Projects/Code/IOS/awiSwiftUI/awiSwiftUI/Utilities/JSONHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1120">
+               </Location>
+               <Location
+                  uuid = "A27ABD4E-76C1-4C6E-ABD8-78111A512336 - 76030992156b9e4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for static awiSwiftUI.JSONHelper.httpDelete(url: Swift.String) async -&gt; Swift.Result&lt;Swift.Int, Swift.Error&gt;"
+                  moduleName = "awiSwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/marouan.laroui/Desktop/Work/Projects/Code/IOS/awiSwiftUI/awiSwiftUI/Utilities/JSONHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1932">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA97937D-B702-427C-91FD-F1D073E08A0C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Utilities/JSONHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "httpDelete(url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B9C58AD-70E7-42D6-84FE-8DC21CC70BE2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Utilities/JSONHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "httpDelete(url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B497745-9310-424F-9AA6-22595314BDB0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Utilities/JSONHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "httpDelete(url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E62780A-0752-4653-9567-0F703EB9A39E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Ingredient/IngredientIntent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "intentToDeleteIngredient(ingredientId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

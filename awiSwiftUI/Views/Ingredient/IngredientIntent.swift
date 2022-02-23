@@ -13,6 +13,7 @@ enum IntentListState{
     case upToDate
     case listUpdated
     case appendList(ingredient : Ingredient)
+    case deleteElement(ingredientId : Int)
 }
 
 enum IntentState{
@@ -33,14 +34,11 @@ struct Intent{
     private var listState = PassthroughSubject<IntentListState,Never>()
     
     
-    
     func addListObserver(viewModel : IngredientListVM){
-        print("------ addListObserver IngredientIntent-------")
         self.listState.subscribe(viewModel)
     }
     
     func addObserver(viewModel : IngredientFormVM){
-        print("------ Observer IngredientIntent-------")
         self.state.subscribe(viewModel)
     }
     
@@ -73,13 +71,11 @@ struct Intent{
     func intentToChange(unity : Unity){
         self.state.send(.unityChanging(unity: unity))
     }
+    
+    
+    
     func intentToCreateIngredient(ingredient : Ingredient, isUpdate : Bool) async {
-//
-//        Task{
-//            await
-//            Dispatch main async, permet d'executer une action a la fin d'une tache
-//
-//        }
+        
         let response = await IngredientDAO.postIngredient(ingredient: ingredient)
         
         switch(response){
@@ -98,8 +94,30 @@ struct Intent{
             print("ERROR : " + error.localizedDescription)
             return
         }
+
+    }
+    
+    func intentToDeleteIngredient(ingredientId : Int) async {
         
+        let response = await JSONHelper.httpDelete(url: Utils.apiURL + "ingredient/" +  String(ingredientId))
         
+        switch(response){
+            
+        case .success(let nbAffectedRows):
+            
+            if(nbAffectedRows>0){
+                self.listState.send(.deleteElement(ingredientId: ingredientId))
+            }
+            //Gérer cas fail ?
+            else{
+                self.listState.send(.listUpdated)
+            }
+            
+        case .failure(let error):
+            print("ERROR : " + error.localizedDescription)
+            return
+        }
+
     }
 
 }

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct IngredientForm: View {
     
-    //@StateObject var ingredientFormView = IngredientFormViewModel(model: Ingredient(name:"",unitaryPrice: 1, nbInStock : 1, ingredientCategory: IngredientCategory.categories[0],  unity: Unity.units[0]))
-    
     @ObservedObject var ingredientFormVM : IngredientFormVM
     @State var ingredientCategories : [IngredientCategory] = []
     @State var allergenCategories :[AllergenCategory] = []
@@ -21,22 +19,19 @@ struct IngredientForm: View {
     
     
     
-    init(ingredientVM : IngredientFormVM?, ingredientsVM : IngredientListVM, isFormDisplayed : Binding<Bool>){
+    init(ingredientVM : IngredientFormVM?, intent : Intent, isFormDisplayed : Binding<Bool>){
         
         if let ingredientVM = ingredientVM{
-            print("Ingredient non nul :" + ingredientVM.name)
             self.ingredientFormVM = ingredientVM
             isUpdate = true
         }
         else{
-            print("Ingredient nul dans IngredientForm")
             self.ingredientFormVM = IngredientFormVM(model: Ingredient(name: "", unitaryPrice: 1, nbInStock: 1, ingredientCategory: IngredientCategory.categories[0], unity: Unity.units[0]))
         }
         self._isFormDisplayed = isFormDisplayed
         
-        self.intent = Intent()
+        self.intent = intent
         self.intent.addObserver(viewModel: self.ingredientFormVM)
-        self.intent.addListObserver(viewModel: ingredientsVM)
         
     }
     

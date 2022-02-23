@@ -104,53 +104,47 @@ struct UserDAO{
         }
     }
     
-    /*
-    static func connect(user : User) async -> U?{
+    
+    static func login(mail: String, password : String) async -> Result<User, Error> {
         
-        let recipeCatDTO = RecipeCategorytoDTO(recipeCategory: recipeCategory)
+        let loginDTO = UserLoginDTO(mail: mail, password: password)
         
-        guard let url = URL(string: "https://awi-api.herokuapp.com/recipe-category") else {
-            print("bad URL")
-            return nil
+        //Construction de l'url
+        guard let url = URL(string: Utils.apiURL + "auth/login") else {
+            return .failure(HTTPError.badURL)
         }
+        
         do{
             var request = URLRequest(url: url)
-            // append a value to a field
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            //request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
-            request.httpMethod = "POST"
-            // set (replace) a value to a field
-            //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
-            guard let encoded = await JSONHelper.encode(data: recipeCatDTO) else {
-                print("GoRest: pb encodage")
-                return nil
-            }
 
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            
+            guard let encoded = await JSONHelper.encode(data: loginDTO) else {
+                return .failure(JSONError.JsonEncodingFailed)
+            }
+        
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
-            let sdata = String(data: data, encoding: .utf8)!
+            //traitement de la valeur de retour
             let httpresponse = response as! HTTPURLResponse
+            
             if httpresponse.statusCode == 201{
-                print("GoRest Result: \(sdata)")
-                guard let decoded : RecipeCategoryDTO = await JSONHelper.decode(data: data) else {
-                    print("GoRest: mauvaise récupération de données")
-                    return nil
+                guard let decoded : UserDTO = JSONHelper.decode(data: data) else {
+                    return .failure(HTTPError.emptyDTO)
                 }
-                print("---------successs----------------")
-                print(decoded)
-                return RecipeCategoryDAO.DTOtoRecipeCategory(dto: decoded)
+                return .success(UserDAO.dtoToUser(dto: decoded))
                 
+                //self.users.append(decoded.data)
             }
             else{
-                print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
+                return .failure(HTTPError.error(httpresponse))
             }
         }
-        catch(let error ){
-            
-            print("GoRest: bad request \(error)")
+        catch(let error){
+            //Bad request
+            return .failure(error)
         }
-        return nil
-        
     }
-    */
+    
 }

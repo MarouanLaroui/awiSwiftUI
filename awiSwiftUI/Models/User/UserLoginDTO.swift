@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct UserLoginDTO{
+struct UserLoginDTO : Encodable, Decodable{
+    
     var mail : String
     var password : String
 }

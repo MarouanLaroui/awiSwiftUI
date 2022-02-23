@@ -11,6 +11,11 @@ struct LoginView: View {
     
     @State private var email : String = "";
     @State private var password : String = "";
+    @Binding var isLoggedIn : Bool
+    
+    func login(){
+        
+    }
     
     var body: some View {
         NavigationView{
@@ -78,7 +83,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            LoginView()
+            
         }
         
     }
