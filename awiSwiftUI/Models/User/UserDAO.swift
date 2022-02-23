@@ -87,7 +87,7 @@ struct UserDAO{
             let httpresponse = response as! HTTPURLResponse
             
             if httpresponse.statusCode == 201{
-                guard let decoded : UserDTO = await JSONHelper.decode(data: data) else {
+                guard let decoded : UserDTO = JSONHelper.decode(data: data) else {
                     return .failure(HTTPError.emptyDTO)
                 }
                 return .success(UserDAO.dtoToUser(dto: decoded))

@@ -112,7 +112,7 @@ struct AllergenCategoryDAO{
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
                 print("GoRest Result: \(sdata)")
-                guard let decoded : AllergenCategoryDTO = await JSONHelper.decode(data: data) else {
+                guard let decoded : AllergenCategoryDTO = JSONHelper.decode(data: data) else {
                     print("GoRest: mauvaise récupération de données")
                     return nil
                 }

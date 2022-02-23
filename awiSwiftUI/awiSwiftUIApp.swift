@@ -31,6 +31,10 @@ struct IOSawiApp: App {
                     Text("Home")
                 }
                 .tint(Color("Salmon"))
+            }
+        }
+    }
+}
                 /*
                 
                 
@@ -82,3 +86,4 @@ struct IOSawiApp: App {
         }
     }
 }
+*/
