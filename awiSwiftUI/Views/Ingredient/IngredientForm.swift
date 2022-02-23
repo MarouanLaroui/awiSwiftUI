@@ -15,10 +15,13 @@ struct IngredientForm: View {
     @State var ingredientCategories : [IngredientCategory] = []
     @State var allergenCategories :[AllergenCategory] = []
     @State var units : [Unity] = []
+    @Binding var isFormDisplayed : Bool
     var intent : Intent
     @State var isUpdate = false
     
-    init(ingredientVM : IngredientFormVM?, ingredientsVM : IngredientListVM){
+    
+    
+    init(ingredientVM : IngredientFormVM?, ingredientsVM : IngredientListVM, isFormDisplayed : Binding<Bool>){
         
         if let ingredientVM = ingredientVM{
             print("Ingredient non nul :" + ingredientVM.name)
@@ -29,11 +32,12 @@ struct IngredientForm: View {
             print("Ingredient nul dans IngredientForm")
             self.ingredientFormVM = IngredientFormVM(model: Ingredient(name: "", unitaryPrice: 1, nbInStock: 1, ingredientCategory: IngredientCategory.categories[0], unity: Unity.units[0]))
         }
-        
+        self._isFormDisplayed = isFormDisplayed
         
         self.intent = Intent()
         self.intent.addObserver(viewModel: self.ingredientFormVM)
         self.intent.addListObserver(viewModel: ingredientsVM)
+        
     }
     
     var body: some View {
@@ -104,17 +108,20 @@ struct IngredientForm: View {
         }
         HStack{
             Button("Annuler"){
-                
+                self.isFormDisplayed = false
             }
             .padding(10)
             .background(.blue)
             .foregroundColor(.white)
             .cornerRadius(10)
             Button("Ajouter"){
+    
                 Task{
                     print("-------------------INGREDIENT CREATION----------------")
-                    let ingredient = await IngredientDAO.postIngredientTest()
+                    await self.intent.intentToCreateIngredient(ingredient : ingredientFormVM.copy, isUpdate: isUpdate)
+                    self.isFormDisplayed = false
                 }
+                
                 
             }
             .padding(10)
@@ -163,9 +170,10 @@ struct IngredientForm: View {
     }
     
 }
-
+/*
 struct IngredientForm_Previews: PreviewProvider {
     static var previews: some View {
         IngredientForm(ingredientVM: nil, ingredientsVM: IngredientListVM(ingredients: Ingredient.ingredients))
     }
 }
+*/

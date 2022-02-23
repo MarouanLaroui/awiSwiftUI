@@ -7,11 +7,12 @@
 
 import Foundation
 import Combine
-
+import SwiftUI
 
 enum IntentListState{
     case upToDate
     case listUpdated
+    case appendList(ingredient : Ingredient)
 }
 
 enum IntentState{
@@ -22,12 +23,13 @@ enum IntentState{
     case ingredientCategoryChanging(ingredientCategory : IngredientCategory)
     case allergenCategoryChanging(allergenCategory : AllergenCategory?)
     case unityChanging(unity : Unity)
+    case validateChange
 }
 
 
 struct Intent{
     
-    private var state = PassthroughSubject<IntentState,Never>()
+    @State private var state = PassthroughSubject<IntentState,Never>()
     private var listState = PassthroughSubject<IntentListState,Never>()
     
     
@@ -49,32 +51,55 @@ struct Intent{
     // 2) avertit les subsscriber que l'état a changé
     func intentToChange(name : String){
         self.state.send(.ingredientNameChanging(name : name))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(unitaryPrice : Double){
         self.state.send(.unitaryPriceChanging(unitaryPrice: unitaryPrice))
-        self.listState.send(.listUpdated)
+        
     }
     
     func intentToChange(nbInStock : Double){
         self.state.send(.nbInStockChanging(nbInStock: nbInStock))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(ingredientCategory : IngredientCategory){
         self.state.send(.ingredientCategoryChanging(ingredientCategory: ingredientCategory))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(allergenCategory : AllergenCategory?){
         self.state.send(.allergenCategoryChanging(allergenCategory: allergenCategory))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(unity : Unity){
         self.state.send(.unityChanging(unity: unity))
-        self.listState.send(.listUpdated)
+    }
+    func intentToCreateIngredient(ingredient : Ingredient, isUpdate : Bool) async {
+//
+//        Task{
+//            await
+//            Dispatch main async, permet d'executer une action a la fin d'une tache
+//
+//        }
+        let response = await IngredientDAO.postIngredient(ingredient: ingredient)
+        
+        switch(response){
+            
+        case .success(let postedIngredient):
+            
+            self.state.send(.validateChange)
+            if(!isUpdate){
+                self.listState.send(.appendList(ingredient: postedIngredient))
+            }
+            else{
+                self.listState.send(.listUpdated)
+            }
+            
+        case .failure(let error):
+            print("ERROR : " + error.localizedDescription)
+            return
+        }
+        
+        
     }
 
 }

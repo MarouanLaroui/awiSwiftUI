@@ -11,6 +11,7 @@ struct Ingredients: View {
     
     @ObservedObject var ingredientsVM : IngredientListVM = IngredientListVM(ingredients: [])
     @State private var selectedIngredientIndex : Int = 0
+    @State private var selectedIngredient : Ingredient? = nil
     @State var ingredientCategories : [IngredientCategory] = []
     @State var searchedIngredientName = ""
     @State var isFormDisplayed = false
@@ -41,19 +42,20 @@ struct Ingredients: View {
                     }
                     
                 }
- 
                 
             }
             
             //Button(action: {isFormDisplayed.toggle()}) {Text("+")}
-            
-            ForEach(ingredientsVM.ingredients.indices){
-                ingredientIndex in
-                IngredientRow(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[ingredientIndex]))
+            //List(ingredientsVM.ingredients.indices){
+              //  ingredientIndex in
+            List(ingredientsVM.ingredients){
+                ingredient in
+                IngredientRow(ingredientVM: IngredientFormVM(model: ingredient))
                     .swipeActions {
                         Button {
-                            self.selectedIngredientIndex = ingredientIndex
+                            //self.selectedIngredientIndex = ingredientIndex
                             isFormDisplayed = true
+                            selectedIngredient = ingredient
                         }
                     label: {
                         Image(systemName: "square.and.pencil")
@@ -132,7 +134,7 @@ struct Ingredients: View {
                     Spacer()
                     Button("+"){
                         isFormDisplayed.toggle()
-                        selectedIngredientIndex = 0
+                        selectedIngredient = nil
                     }
                     .frame(width: 25, height: 25)
                     .font(.title)
@@ -146,11 +148,12 @@ struct Ingredients: View {
         )
         
         .sheet(isPresented: $isFormDisplayed){
-            if let selectedIngredientIndex = selectedIngredientIndex {
-                IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
+            if let selectedIngredient = selectedIngredient {
+                IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), ingredientsVM: ingredientsVM, isFormDisplayed: $isFormDisplayed)
+                //IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
             }
             else{
-                IngredientForm(ingredientVM : nil, ingredientsVM: ingredientsVM)
+                IngredientForm(ingredientVM : nil, ingredientsVM: ingredientsVM, isFormDisplayed: $isFormDisplayed)
             }
             
         }
