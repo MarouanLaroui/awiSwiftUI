@@ -9,6 +9,8 @@ import Foundation
 
 struct UserDAO{
     
+    static var access_token : String? = nil
+    
     static func userToDTO(user : User)->UserDTO{
         return UserDTO(id: user.id, name: user.name, last_name: user.last_name, mail: user.mail, phone: user.phone, birthdate: user.birthdate, isAdmin: user.isAdmin)
     }
@@ -108,7 +110,7 @@ struct UserDAO{
     static func login(mail: String, password : String) async -> Result<User, Error> {
         
         let loginDTO = UserLoginDTO(mail: mail, password: password)
-        
+        print(loginDTO)
         //Construction de l'url
         guard let url = URL(string: Utils.apiURL + "auth/login") else {
             return .failure(HTTPError.badURL)
@@ -120,24 +122,31 @@ struct UserDAO{
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpMethod = "POST"
             
-            guard let encoded = await JSONHelper.encode(data: loginDTO) else {
-                return .failure(JSONError.JsonEncodingFailed)
-            }
+            guard let encoded = await JSONHelper.encode(data: loginDTO)
+            else {return .failure(JSONError.JsonEncodingFailed)}
         
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
             //traitement de la valeur de retour
             let httpresponse = response as! HTTPURLResponse
-            
+            print("http request passed ???")
             if httpresponse.statusCode == 201{
                 guard let decoded : UserDTO = JSONHelper.decode(data: data) else {
+                    print("decoded failure")
                     return .failure(HTTPError.emptyDTO)
                 }
-                return .success(UserDAO.dtoToUser(dto: decoded))
+                self.access_token = decoded.access_token
                 
-                //self.users.append(decoded.data)
+                print("ACCESS TOKEN : ")
+                if(access_token != nil){
+                    KeychainHelper.standard.saveJWT(token: access_token!)
+                    print(access_token)
+                }
+                return .success(UserDAO.dtoToUser(dto: decoded))
             }
             else{
+                print("else?")
+                print(httpresponse.statusCode)
                 return .failure(HTTPError.error(httpresponse))
             }
         }

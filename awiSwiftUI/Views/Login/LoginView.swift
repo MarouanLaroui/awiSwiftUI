@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var email : String = "";
+    @State private var mail : String = "";
     @State private var password : String = "";
     @Binding var isLoggedIn : Bool
     
@@ -31,7 +31,7 @@ struct LoginView: View {
                     .frame(width: 100, height: 100, alignment: .center)
                     .padding(.bottom,30)
             
-                TextField("email",text :$email)
+                TextField("email",text :$mail)
                     .padding()
                     .cornerRadius(5.0)
                     .overlay(
@@ -54,7 +54,16 @@ struct LoginView: View {
                     .padding(.bottom,10)
                 
                 Button("Se connecter"){
-                    
+                    Task{
+                        let result = await UserDAO.login(mail: self.mail, password: self.password)
+                        switch(result){
+                        case .success(let user):
+                            self.isLoggedIn = true
+                        case .failure(let error):
+                            print(error)
+                        
+                        }
+                    }
                 }
                 .padding(10)
                 .background(Color.salmon)

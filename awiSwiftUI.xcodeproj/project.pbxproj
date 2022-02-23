@@ -10,6 +10,7 @@
 		6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
+		AC4FC02927C6C175002A8F19 /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */; };
 		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
@@ -105,6 +106,7 @@
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
 		6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenIngredientsList.swift; sourceTree = "<group>"; };
+		AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
 		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
 		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +301,7 @@
 				ACBBE54A27C12978002B59C8 /* HTTPError.swift */,
 				ACBBE56527C2AF74002B59C8 /* Image.swift */,
 				ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */,
+				AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				ACBBE50927C101D9002B59C8 /* Ingredient.swift in Sources */,
 				ACBBE53A27C103BF002B59C8 /* Ingredients.swift in Sources */,
 				ACE6A90727C507CC00D82E05 /* Token.swift in Sources */,
+				AC4FC02927C6C175002A8F19 /* KeyChainHelper.swift in Sources */,
 				ACBBE4D827C0FFDC002B59C8 /* Formatters.swift in Sources */,
 				ACBBE4EF27C100EC002B59C8 /* IngredientCategory.swift in Sources */,
 				ACBBE54F27C1425C002B59C8 /* IngredientIntent.swift in Sources */,
