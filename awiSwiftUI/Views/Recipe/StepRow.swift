@@ -8,26 +8,30 @@
 import SwiftUI
 
 struct StepRow: View {
+    
     @State var numEtape : Int
+    @StateObject var step : Step
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack{
                 Text("Etape " + String(numEtape) + " :")
                     .font(.title2)
                     .bold()
-                Text("Mélanger les oeufs")
+                Text(step.title)
                     .font(.title3)
             }
-            Text("Dans un saladier mélangez les différents ingrédients jusqu`à obtention d'une pate homogène")
+            Text(step.description)
                 .font(.body)
             
         }
         
     }
 }
-
+/*
 struct StepRow_Previews: PreviewProvider {
     static var previews: some View {
-        StepRow(numEtape: 2)
+       // StepRow(numEtape: 2)
     }
 }
+*/

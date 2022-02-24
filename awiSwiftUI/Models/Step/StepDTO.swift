@@ -1,13 +1,13 @@
 //
-//  Step.swift
-//  IOSawi
+//  StepDTO.swift
+//  awiSwiftUI
 //
-//  Created by Marouan Laroui  on 15/02/2022.
+//  Created by Marouan Laroui  on 24/02/2022.
 //
 
 import Foundation
 
-class Step : Stepable, ObservableObject, Identifiable{
+class StepDTO : Decodable, Encodable{
     
     var id: Int?
     var title: String
@@ -20,13 +20,4 @@ class Step : Stepable, ObservableObject, Identifiable{
         self.description = description
         self.time = time
     }
-}
-
-import Foundation
-
-protocol Stepable{
-    
-    var id : Int? {get set}
-    var title : String {get set}
-    
 }

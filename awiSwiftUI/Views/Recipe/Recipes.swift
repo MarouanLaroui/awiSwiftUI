@@ -40,7 +40,7 @@ struct Recipes: View {
             ScrollView {
                 LazyVGrid(columns: gridItems,spacing: 0){
                     ForEach(recipesVM.recipes){ recipe in
-                        NavigationLink(destination: RecipeDetailledView()){
+                        NavigationLink(destination: RecipeDetailledView(recipe : recipe)){
                             RecipeCard(recipe: recipe)
                                 .frame(width: 170, height: 250)
                         }

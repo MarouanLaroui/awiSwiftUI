@@ -18,7 +18,7 @@ struct UserDAO{
     static func dtoToUser(dto : UserDTO)->User{
         return User(id: dto.id, name: dto.name, last_name: dto.last_name, mail: dto.mail, phone: dto.phone, isAdmin: dto.isAdmin, birthdate: dto.birthdate)
     }
-
+    
     static func dtosToUsers(dtos: [UserDTO]) -> [User]{
         var users : [User] = []
         dtos.forEach({
@@ -81,7 +81,7 @@ struct UserDAO{
             //Pour les tests
             //let datatest = "{\"name\":\"Fiorio\",\"last_name\":\"Christophe\",\"mail\":\"marouanlarouicode@gmail.com\",\"phone\":\"0658003255\",\"birthdate\":\"2022-01-21\",\"isAdmin\":true,\"password\":\"a9ahvd0t\"}".data(using: .utf8)!
             //let (data, response) = try await URLSession.shared.upload(for: request, from: datatest)
-                        
+            
             //Upload
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
@@ -118,34 +118,29 @@ struct UserDAO{
         
         do{
             var request = URLRequest(url: url)
-
+            
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpMethod = "POST"
             
             guard let encoded = await JSONHelper.encode(data: loginDTO)
             else {return .failure(JSONError.JsonEncodingFailed)}
-        
+            
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
-            //traitement de la valeur de retour
             let httpresponse = response as! HTTPURLResponse
-            print("http request passed ???")
+            
             if httpresponse.statusCode == 201{
-                guard let decoded : UserDTO = JSONHelper.decode(data: data) else {
-                    print("decoded failure")
-                    return .failure(HTTPError.emptyDTO)
-                }
+                
+                guard let decoded : UserDTO = JSONHelper.decode(data: data)
+                else {return .failure(HTTPError.emptyDTO)}
                 self.access_token = decoded.access_token
                 
-                print("ACCESS TOKEN : ")
                 if(access_token != nil){
                     KeychainHelper.standard.saveJWT(token: access_token!)
-                    print(access_token)
                 }
                 return .success(UserDAO.dtoToUser(dto: decoded))
             }
             else{
-                print("else?")
                 print(httpresponse.statusCode)
                 return .failure(HTTPError.error(httpresponse))
             }

@@ -9,7 +9,36 @@ import Foundation
 
 struct IngredientDAO{
     
+    static func getDTOtoDict(dtos : [IngredientGetDTO])->[Ingredient:Int]{
+        var dict :[Ingredient:Int] = [:]
+        dtos.forEach({
+            if let quantity = $0.quantity {
+            
+                dict[IngredientDAO.GetDTOtoIngredient(dto: $0)] = quantity
+            }
+            else{
+                dict[IngredientDAO.GetDTOtoIngredient(dto: $0)] = 0
+            }
+            
+        })
+        return dict
+    }
     
+    static func getTotalIngredients(recipeId : Int)async ->Result<[Ingredient:Int],Error> {
+        
+        let getIngredientTask : Result<[IngredientGetDTO],Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/" + String(recipeId) + "/ingredients/total")
+        
+        switch(getIngredientTask){
+            
+        case .success(let ingredientDTOs):
+            return .success(IngredientDAO.getDTOtoDict(dtos: ingredientDTOs))
+            
+            
+        case .failure(let error):
+            return .failure(error)
+        }
+    
+    }
     static func IngredientToDTO(ingredient : Ingredient)->IngredientPostDTO{
         
         return IngredientPostDTO(
@@ -32,8 +61,10 @@ struct IngredientDAO{
     }
     
     static func GetDTOtoIngredient(dto : IngredientGetDTO)->Ingredient{
+
         
         guard let allergenDTO = dto.allergen
+                
         else{
             return Ingredient(
                 id: dto.id,

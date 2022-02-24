@@ -10,6 +10,10 @@ import SwiftUI
 struct RecipeDetailledView: View {
     
     @State private var showIngredient = true
+    @State var ingredients : [Ingredient:Int] = [:]
+    @State private var steps : [Step] = []
+    @State var recipe : Recipe
+    @State var recipeImgStr : String = ""
     
     private func textColor(isSelected : Bool)->Color{
         return isSelected ? Color.salmon : .gray
@@ -22,7 +26,7 @@ struct RecipeDetailledView: View {
         ScrollView{
             VStack{
                 HStack{
-                    Image("dahl")
+                    Image(self.recipeImgStr)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
@@ -53,7 +57,7 @@ struct RecipeDetailledView: View {
                     HStack{
                         Spacer()
                         Button {
-           
+                            self.showIngredient = true
                         } label: {
                             Text("Ingrédients").bold()
                         }
@@ -65,10 +69,11 @@ struct RecipeDetailledView: View {
                     .foregroundColor(textColor(isSelected: showIngredient))
                     .cornerRadius(20)
                     
+                    
                     HStack{
                         Spacer()
                         Button {
-           
+                            self.showIngredient = false
                         } label: {
                             Text("Ustensiles").bold()
                         }
@@ -84,6 +89,39 @@ struct RecipeDetailledView: View {
                 .cornerRadius(20)
                 .padding(.horizontal)
                 
+                if(showIngredient){
+                    HStack{
+                        VStack{
+                            ForEach(ingredients.sorted(by: ==), id: \.key.id) { ingredient, qtty in
+                                HStack{
+                                    Text(ingredient.name + " : ")
+                                    Text("\(qtty)")
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                else{
+                    HStack{
+                        VStack{
+                            HStack(){
+                                Text("équipement de dressage : ")
+                                    .bold()
+                                Text(recipe.dressingEquipment)
+                            }
+                            HStack{
+                                Text("équipement spécifique")
+                                    .bold()
+                                Text(recipe.specificEquipment)
+                            }
+
+                        }
+                        
+                    }
+                }
+                
+                
                 Divider()
                 HStack{
                     Text("Préparation")
@@ -93,25 +131,45 @@ struct RecipeDetailledView: View {
                 }
                 Divider()
                 
-                StepRow(numEtape: 1)
-                    .padding(.bottom)
-                StepRow(numEtape: 2)
-                    .padding(.bottom)
-                StepRow(numEtape: 3)
-                    .padding(.bottom)
-                StepRow(numEtape: 4)
-                    .padding(.bottom)
+                ForEach(steps){
+                    step in
+                    StepRow(numEtape: 1,step: step)
+                        .padding(.bottom)
+                }
+
        
             }
-            .navigationTitle("Dahl de lentille corail")
+            .navigationTitle(recipe.title)
             
             .background(.white)
             .cornerRadius(10)
         }
+        .onAppear{
+            self.recipeImgStr = ImageHelper.randomPic()
+        }
+        .task{
+            let result = await StepDAO.getStepOfRecipe(recipeId: self.recipe.id!)
+            let resIngredients = await IngredientDAO.getTotalIngredients(recipeId: self.recipe.id!)
         
+            switch(result){
+                
+            case .success(let resSteps):
+                self.steps = resSteps
+            
+            case .failure(let error):
+                print("error while retrieving steps")
+            }
+            
+            switch(resIngredients){
+            case .success(let resIngrDict):
+                self.ingredients = resIngrDict
+            case .failure(let error):
+                print("error while retrieving ingredients total")
+            }
+        }
     }
 }
-
+/*
 struct RecipeDetailledView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
@@ -120,3 +178,4 @@ struct RecipeDetailledView_Previews: PreviewProvider {
         
     }
 }
+*/

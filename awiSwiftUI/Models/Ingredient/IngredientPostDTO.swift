@@ -12,6 +12,7 @@ struct IngredientPostDTO : Decodable, Encodable{
     var id : Int?
     var name : String
     var unitaryPrice : Int
+    var quantity : Int?
     var nbInStock : Int
     var allergen : Int?
     var category : Int

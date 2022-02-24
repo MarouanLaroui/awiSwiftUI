@@ -14,6 +14,7 @@ enum HTTPError : Error{
     case emptyDTOs
     case badRequest
     case badRecoveryOfData
+    case unauthorized
     case error(HTTPURLResponse)
     
     var description : String {
@@ -27,6 +28,8 @@ enum HTTPError : Error{
             return "Bad request"
         case .badRecoveryOfData:
             return "bad recovery of dataÒ"
+        case .unauthorized:
+            return "unauthorized request"
         }
     }
 }
