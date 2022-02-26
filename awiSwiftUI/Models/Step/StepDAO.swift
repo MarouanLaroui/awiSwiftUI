@@ -23,7 +23,8 @@ struct StepDAO{
             id: stepDTO.id,
             title: stepDTO.title,
             description: stepDTO.description,
-            time: stepDTO.time
+            time: stepDTO.time,
+            ingredients : [:]
         )
     }
         
@@ -45,4 +46,5 @@ struct StepDAO{
             return .failure(error)
         }
     }
+    
 }

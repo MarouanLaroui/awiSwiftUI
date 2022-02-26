@@ -109,6 +109,7 @@ struct RecipeDetailledView: View {
                                 Text("équipement de dressage : ")
                                     .bold()
                                 Text(recipe.dressingEquipment)
+
                             }
                             HStack{
                                 Text("équipement spécifique")
@@ -157,14 +158,14 @@ struct RecipeDetailledView: View {
                 self.steps = resSteps
             
             case .failure(let error):
-                print("error while retrieving steps")
+                print("error while retrieving steps" + error.localizedDescription)
             }
             
             switch(resIngredients){
             case .success(let resIngrDict):
                 self.ingredients = resIngrDict
             case .failure(let error):
-                print("error while retrieving ingredients total")
+                print("error while retrieving ingredients total" + error.localizedDescription)
             }
         }
     }

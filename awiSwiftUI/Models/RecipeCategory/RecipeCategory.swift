@@ -27,9 +27,6 @@ class RecipeCategory : Identifiable, Hashable, Equatable{
         self.id = id
         self.name = name
     }
-    
-    
-    
 }
 /*
 class RecipeCategoryDTO : Decodable{

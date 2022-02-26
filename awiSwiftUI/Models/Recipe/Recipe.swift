@@ -9,13 +9,44 @@ import Foundation
 
 class Recipe : Stepable, ObservableObject, Identifiable{
     
+    var delegate : RecipeDelegate?
     var id : Int?
-    var title : String
-    var nbOfServing : Int
-    var personInCharge : String
-    var specificEquipment : String
-    var dressingEquipment : String
-    var recipeCategory : RecipeCategory
+    
+    var title : String{
+        didSet{
+            self.delegate?.RecipeChange(title: self.title)
+        }
+    }
+    
+    var nbOfServing : Int{
+        didSet{
+            self.delegate?.RecipeChange(nbOfServing: self.nbOfServing)
+        }
+    }
+    
+    var personInCharge : String{
+        didSet{
+            self.delegate?.RecipeChange(personInCharge: self.personInCharge)
+        }
+    }
+    
+    var specificEquipment : String{
+        didSet{
+            self.delegate?.RecipeChange(specificEquipment: self.specificEquipment)
+        }
+    }
+    
+    var dressingEquipment : String{
+        didSet{
+            self.delegate?.RecipeChange(dressingEquipment: self.dressingEquipment)
+        }
+    }
+    
+    var recipeCategory : RecipeCategory{
+        didSet{
+            self.delegate?.RecipeChange(recipeCategory: self.recipeCategory)
+        }
+    }
     var author : User
     
     internal init(id: Int? = nil, title: String, nbOfServing: Int, personInCharge: String, specificEquipment: String, dressingEquipment: String, recipeCategory : RecipeCategory, author : User) {
@@ -47,5 +78,6 @@ protocol RecipeDelegate{
     func RecipeChange(personInCharge : String)
     func RecipeChange(specificEquipment : String)
     func RecipeChange(dressingEquipment : String)
+    func RecipeChange(recipeCategory : RecipeCategory)
     
 }

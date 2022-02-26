@@ -23,7 +23,8 @@ class Ingredient : Identifiable, ObservableObject, Hashable{
     var delegate : IngredientDelegate?
     
     var id : Int?
-    @Published var name : String{
+    
+    var name : String{
         didSet{
             print("didSet Ingredient")
             self.delegate?.ingredientChange(name: name)

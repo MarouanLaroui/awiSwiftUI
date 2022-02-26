@@ -62,10 +62,11 @@ struct LoginView: View {
                         switch(result){
                             
                         case .success(let user):
+                            //Store user 
                             self.isLoggedIn = true
                             
                         case .failure(let error):
-                            self.loginFailedMessage = "Erreur de connection"
+                            self.loginFailedMessage = "Erreur de connection" + error.localizedDescription
                         
                         }
                     }
