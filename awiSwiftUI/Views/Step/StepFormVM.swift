@@ -23,6 +23,7 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
     @Published var title : String
     @Published var description : String
     @Published var time : Int
+    @Published var ingredients : [Ingredient : Int]
     
     init(model : Step){
         
@@ -30,6 +31,7 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
         self.title = model.title
         self.description = model.description
         self.time = model.time
+        self.ingredients = model.ingredients
         
         self.model = model
         self.model.delegate = self

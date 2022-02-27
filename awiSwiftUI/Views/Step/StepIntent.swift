@@ -22,13 +22,24 @@ enum StepIntentState{
     
 }
 
+enum IntentStepListState{
+    case upToDate
+    case listUpdated
+    case appendList(step: Step)
+    case deleteElement(stepIndex: Int)
+}
 
 struct StepIntent{
     
     @State private var state = PassthroughSubject<StepIntentState,Never>()
+    @State private var listState = PassthroughSubject<IntentStepListState,Never>()
     
     func addObserver(viewModel : StepFormVM){
         self.state.subscribe(viewModel)
+    }
+    
+    func addObserverList(viewModel : StepListVM){
+        self.listState.subscribe(viewModel)
     }
 
     func intentToChange(title : String){

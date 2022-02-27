@@ -9,11 +9,52 @@ import SwiftUI
 
 struct StepForm: View {
     
-    @ObservedObject var StepVM : StepFormVM
-    var body: some View {
-        VStack{
-            
+    @ObservedObject var stepVM : StepFormVM = StepFormVM(model: Step(title: "", description: "", time: 1, ingredients: [:]))
+    var gridItems = [GridItem(.adaptive(minimum : 150))]
+    var intent : StepIntent
+    
+    init(intent : StepIntent, stepFormVM : StepFormVM? = nil){
+        if let stepFormVM = stepFormVM {
+            self.stepVM = stepFormVM
         }
+        self.intent = intent
+        self.intent.addObserver(viewModel: stepVM)
+    }
+    
+    var body: some View {
+        ScrollView{
+            VStack(alignment : .leading){
+                LazyVGrid(columns: gridItems, alignment : .leading){
+                    Group{
+                        Text("Title")
+                        TextField("enter a title", text: $stepVM.title)
+                        Text("Description :")
+                        TextField("enter a description", text: $stepVM.description)
+                        Text("Time :")
+                        TextField("", value: $stepVM.time, formatter: Formatters.int)
+                    }
+                }
+                
+                Spacer()
+                
+                Text("Ingredients")
+                    .font(.largeTitle)
+                    .bold()
+                List{
+                    //ForEach(Array(stepVM.ingredients.keys.enumerated())){
+                      //  ingredient in
+                        HStack{
+                            Text("Patates")
+                            Text("300gr")
+                        }
+                        .padding(.horizontal)
+                    //}
+                }
+            }
+            .padding()
+            .navigationTitle("Step Informations")
+        }
+        
     }
 }
 /*

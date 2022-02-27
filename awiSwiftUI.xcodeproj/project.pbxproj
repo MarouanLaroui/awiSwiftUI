@@ -24,6 +24,8 @@
 		AC60AEC027CA31A100AD4876 /* StepToIngredientDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEBF27CA31A100AD4876 /* StepToIngredientDAO.swift */; };
 		AC60AEC327CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC227CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift */; };
 		AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */; };
+		AC60AEC727CA472D00AD4876 /* StepList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC627CA472C00AD4876 /* StepList.swift */; };
+		AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AECA27CA48EC00AD4876 /* StepListVM.swift */; };
 		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
@@ -133,6 +135,8 @@
 		AC60AEBF27CA31A100AD4876 /* StepToIngredientDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepToIngredientDAO.swift; sourceTree = "<group>"; };
 		AC60AEC227CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIsComposedOfGeneralStepDTO.swift; sourceTree = "<group>"; };
 		AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIsComposedOfGeneralStepDAO.swift; sourceTree = "<group>"; };
+		AC60AEC627CA472C00AD4876 /* StepList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepList.swift; sourceTree = "<group>"; };
+		AC60AECA27CA48EC00AD4876 /* StepListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepListVM.swift; sourceTree = "<group>"; };
 		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
 		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +262,8 @@
 				AC25CAD327C95A56001258F0 /* StepForm.swift */,
 				AC25CAD527C95A8C001258F0 /* StepIntent.swift */,
 				AC25CAD727C95B54001258F0 /* StepFormVM.swift */,
+				AC60AEC627CA472C00AD4876 /* StepList.swift */,
+				AC60AECA27CA48EC00AD4876 /* StepListVM.swift */,
 			);
 			path = Step;
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 				ACBBE52F27C10369002B59C8 /* CreateAccountForm.swift in Sources */,
 				ACBBE55E27C28947002B59C8 /* RecipeDAO.swift in Sources */,
 				ACBBE4FC27C10159002B59C8 /* UserDTO.swift in Sources */,
+				AC60AEC727CA472D00AD4876 /* StepList.swift in Sources */,
 				ACBBE4FF27C10173002B59C8 /* Step.swift in Sources */,
 				6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */,
 				ACBBE4EB27C100B6002B59C8 /* IngredientCategoryDAO.swift in Sources */,
@@ -782,6 +789,7 @@
 				AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */,
 				AC60AEBB27CA2B4900AD4876 /* IngredientSelection.swift in Sources */,
 				ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */,
+				AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */,
 				ACBBE51527C1026B002B59C8 /* Recipes.swift in Sources */,
 				AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */,
 				ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */,

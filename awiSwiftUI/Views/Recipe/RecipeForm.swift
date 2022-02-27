@@ -17,6 +17,12 @@ struct RecipeForm: View {
     var body: some View {
         
         VStack{
+            Picker("Catégorie : ", selection: $recipeFormVM.recipeCategory) {
+                ForEach(recipeCategories) { category in
+                    Text(category.name)
+                }
+            }
+            
             LazyVGrid(columns: gridItems, alignment : .leading){
                 Group{
                     Text("Title")
@@ -33,11 +39,7 @@ struct RecipeForm: View {
                 
                 Text("Recipe category :")
                 /*DROPDOWN*/
-                Picker("Catégorie : " + recipeFormVM.recipeCategory.name, selection: $recipeFormVM.recipeCategory) {
-                    ForEach(recipeCategories) { category in
-                        Text(category.name)
-                    }
-                }
+                
                 
             }
             .navigationTitle("Create Recipe")
@@ -49,12 +51,14 @@ struct RecipeForm: View {
                 }
             }
 
+            NavigationLink(destination: StepList()){
+                Text("Add steps")
+                    .padding()
+                    .background(Color.salmon)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+            }
             
-            Text("Add steps")
-                .padding()
-                .background(Color.salmon)
-                .foregroundColor(.white)
-                .cornerRadius(15)
         }
         .task {
             let res = await RecipeCategoryDAO.getRecipeCategories()
@@ -63,8 +67,9 @@ struct RecipeForm: View {
                 
             case .success(let categories):
                 print("success retrieving categories")
+                self.recipeFormVM.RecipeChange(recipeCategory: categories[0])
                 self.recipeCategories = categories
-                print(self.recipeCategories[0])
+
             case .failure(_):
                 print("recipeCategory query failure")
             }
