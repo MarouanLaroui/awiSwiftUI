@@ -16,5 +16,6 @@ struct UserDTO : Encodable, Decodable{
     var phone : String
     var birthdate : String
     var isAdmin : Bool
+    var access_token : String?
     
 }

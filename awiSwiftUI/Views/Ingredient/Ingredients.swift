@@ -10,7 +10,9 @@ import SwiftUI
 struct Ingredients: View {
     
     @ObservedObject var ingredientsVM : IngredientListVM = IngredientListVM(ingredients: [])
+    var intent : Intent
     @State private var selectedIngredientIndex : Int = 0
+    @State private var selectedIngredient : Ingredient? = nil
     @State var ingredientCategories : [IngredientCategory] = []
     @State var searchedIngredientName = ""
     @State var isFormDisplayed = false
@@ -19,14 +21,16 @@ struct Ingredients: View {
     @State var isDataLoading : Bool = false
     
     init(){
-        print("init")
+        self.intent = Intent()
+        self.intent.addListObserver(viewModel: ingredientsVM)
     }
+    
     var searchResult : [Ingredient]{
         if(searchedIngredientName.isEmpty){
             return ingredientsVM.ingredients;
         }
         return ingredientsVM.ingredients.filter({$0.name.contains(searchedIngredientName)})
-    }
+    }  
     
     var body: some View {
         VStack{
@@ -41,18 +45,20 @@ struct Ingredients: View {
                     }
                     
                 }
- 
                 
             }
             
             //Button(action: {isFormDisplayed.toggle()}) {Text("+")}
-            
-            ForEach(ingredientsVM.ingredients.indices){
-                ingredientIndex in
-                IngredientRow(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[ingredientIndex]))
+            //List(ingredientsVM.ingredients.indices){
+              //  ingredientIndex in
+            List(ingredientsVM.ingredients){
+                ingredient in
+                IngredientRow(ingredientVM: IngredientFormVM(model: ingredient))
                     .swipeActions {
                         Button {
-                            self.selectedIngredientIndex = ingredientIndex
+                            //self.selectedIngredientIndex = ingredientIndex
+                            
+                            selectedIngredient = ingredient
                             isFormDisplayed = true
                         }
                     label: {
@@ -61,9 +67,16 @@ struct Ingredients: View {
                 
                         Button {
                             self.isAlertShowed = true
-                        } label: {
+                            Task{
+                                await self.intent.intentToDeleteIngredient(ingredientId: ingredient.id!)
+                            }
+            
+                        }
+                        label: {
                             Image(systemName: "trash")
                         }
+                        .background(Color.red)
+                        /*
                         .alert("Delete ?", isPresented: $isAlertShowed) {
                             Button(role: .cancel) {
                             } label: {
@@ -77,6 +90,7 @@ struct Ingredients: View {
                                 
                             }
                         }
+                         */
                     }
             }
              
@@ -95,14 +109,9 @@ struct Ingredients: View {
 //                        print("after post")
 
 //                        isDataLoading = true
-                    print("--------Ingredient Init ----------")
-                    //async
-                    let reqIngredients = await IngredientDAO.getIngredients()
-                    print("reqIngredients")
-                    //async
-                    let reqCategories = await IngredientCategoryDAO.getIngredientCategories()
-                    print("reqCategories")
 
+                    let reqIngredients = await IngredientDAO.getIngredients()
+                    let reqCategories = await IngredientCategoryDAO.getIngredientCategories()
                     
                     switch( reqIngredients){
                         
@@ -132,7 +141,7 @@ struct Ingredients: View {
                     Spacer()
                     Button("+"){
                         isFormDisplayed.toggle()
-                        selectedIngredientIndex = 0
+                        selectedIngredient = nil
                     }
                     .frame(width: 25, height: 25)
                     .font(.title)
@@ -146,11 +155,12 @@ struct Ingredients: View {
         )
         
         .sheet(isPresented: $isFormDisplayed){
-            if let selectedIngredientIndex = selectedIngredientIndex {
-                IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
+            if let selectedIngredient = selectedIngredient {
+                IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), intent : self.intent, isFormDisplayed: $isFormDisplayed)
+                //IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
             }
             else{
-                IngredientForm(ingredientVM : nil, ingredientsVM: ingredientsVM)
+                IngredientForm(ingredientVM : nil, intent: self.intent, isFormDisplayed: $isFormDisplayed)
             }
             
         }

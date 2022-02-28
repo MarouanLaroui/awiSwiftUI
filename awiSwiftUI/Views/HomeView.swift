@@ -30,9 +30,16 @@ struct HomeView: View {
         }
         /*
         .task{
-            await IngredientDAO.postIngredientTest()
+            let res = await IngredientDAO.PostDTOtoIngredient(dto: IngredientPostDTO(name: "test", unitaryPrice: 2, nbInStock: 3, allergen: 2, category: 1, unity: 1) )
+            switch(res){
+            case .success(let ingre):
+                print(ingre.category.category_name)
+            case .failure(_):
+                print("")
+            }
+            print("--------------------------------------------")
         }
-         */
+        */
         .padding()
         .toolbar {
             HStack{

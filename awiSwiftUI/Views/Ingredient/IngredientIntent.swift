@@ -7,11 +7,13 @@
 
 import Foundation
 import Combine
-
+import SwiftUI
 
 enum IntentListState{
     case upToDate
     case listUpdated
+    case appendList(ingredient : Ingredient)
+    case deleteElement(ingredientId : Int)
 }
 
 enum IntentState{
@@ -22,23 +24,21 @@ enum IntentState{
     case ingredientCategoryChanging(ingredientCategory : IngredientCategory)
     case allergenCategoryChanging(allergenCategory : AllergenCategory?)
     case unityChanging(unity : Unity)
+    case validateChange
 }
 
 
 struct Intent{
     
-    private var state = PassthroughSubject<IntentState,Never>()
+    @State private var state = PassthroughSubject<IntentState,Never>()
     private var listState = PassthroughSubject<IntentListState,Never>()
     
     
-    
     func addListObserver(viewModel : IngredientListVM){
-        print("------ addListObserver IngredientIntent-------")
         self.listState.subscribe(viewModel)
     }
     
     func addObserver(viewModel : IngredientFormVM){
-        print("------ Observer IngredientIntent-------")
         self.state.subscribe(viewModel)
     }
     
@@ -49,32 +49,75 @@ struct Intent{
     // 2) avertit les subsscriber que l'état a changé
     func intentToChange(name : String){
         self.state.send(.ingredientNameChanging(name : name))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(unitaryPrice : Double){
         self.state.send(.unitaryPriceChanging(unitaryPrice: unitaryPrice))
-        self.listState.send(.listUpdated)
+        
     }
     
     func intentToChange(nbInStock : Double){
         self.state.send(.nbInStockChanging(nbInStock: nbInStock))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(ingredientCategory : IngredientCategory){
         self.state.send(.ingredientCategoryChanging(ingredientCategory: ingredientCategory))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(allergenCategory : AllergenCategory?){
         self.state.send(.allergenCategoryChanging(allergenCategory: allergenCategory))
-        self.listState.send(.listUpdated)
     }
     
     func intentToChange(unity : Unity){
         self.state.send(.unityChanging(unity: unity))
-        self.listState.send(.listUpdated)
+    }
+    
+    
+    
+    func intentToCreateIngredient(ingredient : Ingredient, isUpdate : Bool) async {
+        
+        let response = await IngredientDAO.postIngredient(ingredient: ingredient)
+        
+        switch(response){
+            
+        case .success(let postedIngredient):
+            
+            self.state.send(.validateChange)
+            if(!isUpdate){
+                self.listState.send(.appendList(ingredient: postedIngredient))
+            }
+            else{
+                self.listState.send(.listUpdated)
+            }
+            
+        case .failure(let error):
+            print("ERROR : " + error.localizedDescription)
+            return
+        }
+
+    }
+    
+    func intentToDeleteIngredient(ingredientId : Int) async {
+        
+        let response = await JSONHelper.httpDelete(url: Utils.apiURL + "ingredient/" +  String(ingredientId))
+        
+        switch(response){
+            
+        case .success(let nbAffectedRows):
+            
+            if(nbAffectedRows>0){
+                self.listState.send(.deleteElement(ingredientId: ingredientId))
+            }
+            //Gérer cas fail ?
+            else{
+                self.listState.send(.listUpdated)
+            }
+            
+        case .failure(let error):
+            print("ERROR : " + error.localizedDescription)
+            return
+        }
+
     }
 
 }

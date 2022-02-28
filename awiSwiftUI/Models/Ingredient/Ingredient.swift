@@ -7,12 +7,24 @@
 
 import Foundation
 
-class Ingredient : Identifiable, ObservableObject{
+class Ingredient : Identifiable, ObservableObject, Hashable{
+    
+    
+    static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
+    
     
     var delegate : IngredientDelegate?
     
     var id : Int?
-    @Published var name : String{
+    
+    var name : String{
         didSet{
             print("didSet Ingredient")
             self.delegate?.ingredientChange(name: name)

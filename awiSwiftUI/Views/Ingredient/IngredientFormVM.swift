@@ -12,6 +12,7 @@ import Combine
 class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
     private var model : Ingredient;
+    private (set) var copy : Ingredient;
     
     @Published var id : Int?
     @Published var name : String
@@ -32,15 +33,22 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.unity = model.unity
         
         self.model = model
+        self.copy = Ingredient(
+            id: model.id,
+            name: model.name,
+            unitaryPrice: model.unitaryPrice,
+            nbInStock: model.nbInStock,
+            allergen: model.allergen,
+            ingredientCategory: model.category,
+            unity: model.unity)
         self.model.delegate = self
-        
-        print("in IngredientFORMVM model :" + model.name)
     }
     
     // MARK: -
     // MARK: Ingredient delegate
     
     func ingredientChange(name: String) {
+
         self.name = name
     }
     
@@ -84,27 +92,33 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
             
         case .ready:
             break
-            
-
 
         case .ingredientNameChanging(let name):
-            self.model.name = name
+            self.copy.name = name
             
         case .unitaryPriceChanging(let unitaryPrice):
-            self.model.unitaryPrice = unitaryPrice
+            self.copy.unitaryPrice = unitaryPrice
             
         case .nbInStockChanging(let nbInStock):
-            self.model.nbInStock = nbInStock
+            self.copy.nbInStock = nbInStock
             
        
         case .allergenCategoryChanging(let allergenCategory):
-            self.model.allergen = allergenCategory
+            self.copy.allergen = allergenCategory
             
         case .ingredientCategoryChanging(let ingredientCategory):
-            self.model.category = ingredientCategory
+            self.copy.category = ingredientCategory
             
         case .unityChanging(let unity):
-            self.model.unity = unity
+            self.copy.unity = unity
+            
+        case .validateChange:
+            self.model.name = copy.name
+            self.model.unitaryPrice = copy.unitaryPrice
+            self.model.nbInStock = copy.nbInStock
+            self.model.allergen = copy.allergen
+            self.model.category = copy.category
+            self.model.unity = copy.unity
         }
         return .none
     }
@@ -112,6 +126,19 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     func receive(completion: Subscribers.Completion<Never>) {
         return
     }
+    
+    func rollback(){
+        print("--------rollback-----")
+        print(copy.name)
+        self.model.id = copy.id
+        self.model.name = copy.name
+        self.model.unitaryPrice = copy.unitaryPrice
+        self.model.nbInStock = copy.nbInStock
+        self.model.allergen = copy.allergen
+        self.model.category = copy.category
+        self.model.unity = copy.unity
+    }
+    
     
 }
 

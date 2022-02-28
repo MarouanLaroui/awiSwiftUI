@@ -13,6 +13,7 @@ struct IngredientGetDTO : Encodable, Decodable{
     var name : String
     var unitaryPrice : Double
     var nbInStock : Double
+    var quantity : Int?
     var allergen : AllergenCategoryDTO?
     var category : IngredientCategoryDTO
     var unity : UnityDTO

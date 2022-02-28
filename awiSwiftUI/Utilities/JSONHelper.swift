@@ -25,24 +25,42 @@ struct JSONHelper{
         return .failure(HTTPError.badURL)
     }
     
-    /*
-    static func httpGet<T:Decodable>(url : String) async -> T?{
-        if let url = URL(string: "oorufuofvhojrh") {
-            do{
-                let (data, _) = try await URLSession.shared.data(from: url)
-                if let dtos : T = JSONHelper.decode(data: data) {
-                    return dtos
-                }
-            }
-            catch{
+    static func httpDelete(url : String) async -> Result<Int,Error>{
+        
+        guard let url = URL(string: url)
+        else {return .failure(HTTPError.badURL)}
+        
+        do{
+            var request = URLRequest(url: url)
+            print(url)
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "DELETE"
+ 
+            let (data, response) = try await URLSession.shared.data(for: request)
+            let httpresponse = response as! HTTPURLResponse
+            if httpresponse.statusCode == 200 {
                 
+                guard let decoded : DeleteDTO = JSONHelper.decode(data: data)
+                else {
+                    print("Bad recovery of data")
+                    return .failure(HTTPError.badRecoveryOfData)
+                    
+                }
+                print("SUCCESS------------------------")
+                return .success(decoded.affected)
+            }
+            else{
+                //ERROR TO CHANGE
+                print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
+                return .failure(HTTPError.badURL)
             }
         }
-        
-        return nil
+        catch(_){
+            return .failure(HTTPError.badRequest)
+        }
     }
-     */
-    
+
     
     static func encodeInFile<T:Codable>(data : T,fileName : String, fileExtension : String){
         

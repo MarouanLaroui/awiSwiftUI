@@ -9,8 +9,15 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var email : String = "";
+    @State private var mail : String = "";
     @State private var password : String = "";
+    @State private var loginFailedMessage : String?
+    //@State private var error : Error?
+    @Binding var isLoggedIn : Bool
+    
+    func login(){
+        
+    }
     
     var body: some View {
         NavigationView{
@@ -26,7 +33,7 @@ struct LoginView: View {
                     .frame(width: 100, height: 100, alignment: .center)
                     .padding(.bottom,30)
             
-                TextField("email",text :$email)
+                TextField("email",text :$mail)
                     .padding()
                     .cornerRadius(5.0)
                     .overlay(
@@ -49,7 +56,20 @@ struct LoginView: View {
                     .padding(.bottom,10)
                 
                 Button("Se connecter"){
-                    
+                    Task{
+                        let result = await UserDAO.login(mail: self.mail, password: self.password)
+                        
+                        switch(result){
+                            
+                        case .success(let user):
+                            //Store user 
+                            self.isLoggedIn = true
+                            
+                        case .failure(let error):
+                            self.loginFailedMessage = "Erreur de connection" + error.localizedDescription
+                        
+                        }
+                    }
                 }
                 .padding(10)
                 .background(Color.salmon)
@@ -59,26 +79,30 @@ struct LoginView: View {
                 Spacer()
             }
             .padding()
-            /*
-            Form{
-                TextField("email",text :$email)
-                TextField("password",text :$password)
-            }
-            .navigationTitle("LOGIN")
-            HStack{
-                Button("LOGIN"){}
-            }
-             */
         }
+        /*
+        .alert(item: $error){ error in
+            let message = "Erreur de connexion :"
+            switch(error){
+            case .HTTPError.unauthorized :
+                message = message + " Identifiants invalides"
+            }
+            Alert(
+                title: Text(item),
+                dismissButton: .cancel()
+            )
+        }
+         */
         
 
     }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            LoginView()
+            
         }
         
     }

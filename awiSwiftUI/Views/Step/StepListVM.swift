@@ -10,16 +10,16 @@ import Foundation
 import SwiftUI
 import Combine
 
-class RecipeListVM :  ObservableObject, Subscriber {
+class StepListVM :  ObservableObject, Subscriber {
     
-    @Published var recipes : [Recipe];
+    @Published var steps : [Step];
     
-    init(recipes : [Recipe]){
-        self.recipes = recipes
+    init(steps : [Step]){
+        self.steps = steps
     }
     
     
-    typealias Input = IntentListState
+    typealias Input = IntentStepListState
     
     typealias Failure = Never
     
@@ -31,21 +31,23 @@ class RecipeListVM :  ObservableObject, Subscriber {
         subscription.request(.unlimited)
     }
     
-    func receive(_ input: IntentListState) -> Subscribers.Demand {
+    func receive(_ input: IntentStepListState) -> Subscribers.Demand {
         switch(input){
             
         case .upToDate:
             break
             
         case .listUpdated:
-            print("Listeupdated")
             self.objectWillChange.send()
-        case .appendList(ingredient: let ingredient):
-            break
-        case .deleteElement(ingredientId: let ingredientId):
-            break
+            
+        case .appendList(step: let step):
+            self.steps.append(step)
+            
+        case .deleteElement(stepIndex: let stepIndex):
+            self.steps.remove(at: stepIndex)
         }
         return .none
         
     }
+    
 }

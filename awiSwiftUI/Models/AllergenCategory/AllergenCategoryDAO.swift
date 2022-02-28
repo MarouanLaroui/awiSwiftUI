@@ -105,18 +105,14 @@ struct AllergenCategoryDAO{
                 print("GoRest: pb encodage")
                 return nil
             }
-            let sencoded = String(data: encoded, encoding: .utf8)!
-            print(sencoded)
-            let datatest = "{\"unity\":2,\"unitaryPrice\":10,\"allergen\":10,\"name\":\"MARCHEPTN\",\"nbInStock\":3,\"category\":2}".data(using: .utf8)!
-            let sencoded2 = String(data: datatest, encoding: .utf8)!
-            print(sencoded2)
-            let (data, response) = try await URLSession.shared.upload(for: request, from: datatest)
+
+            let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
             let sdata = String(data: data, encoding: .utf8)!
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
                 print("GoRest Result: \(sdata)")
-                guard let decoded : AllergenCategoryDTO = await JSONHelper.decode(data: data) else {
+                guard let decoded : AllergenCategoryDTO = JSONHelper.decode(data: data) else {
                     print("GoRest: mauvaise récupération de données")
                     return nil
                 }

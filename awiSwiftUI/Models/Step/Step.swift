@@ -7,23 +7,50 @@
 
 import Foundation
 
-class Step : Stepable{
+class Step : Stepable, ObservableObject, Identifiable{
     
-    var id: Int?
-    var title: String
-    var description : String
-    var time : Int
+    var delegate : StepDelegate?
     
-    internal init(id: Int? = nil, title: String, description: String, time: Int) {
+    var id: Int?{
+        didSet{
+            self.delegate?.stepChange(id: self.id)
+        }
+    }
+    var title: String{
+        didSet{
+            self.delegate?.stepChange(title: self.title)
+        }
+    }
+    var description : String{
+        didSet{
+            self.delegate?.stepChange(description: self.description)
+        }
+    }
+    var time : Int{
+        didSet{
+            self.delegate?.stepChange(time: self.time)
+        }
+    }
+    
+    var ingredients : [Ingredient : Int]
+    
+    internal init(id: Int? = nil, title: String, description: String, time: Int, ingredients : [Ingredient : Int]) {
         self.id = id
         self.title = title
         self.description = description
         self.time = time
+        self.ingredients = ingredients
     }
+    
 }
 
-import Foundation
 
+protocol StepDelegate{
+    func stepChange(id : Int?)
+    func stepChange(title : String)
+    func stepChange(description : String)
+    func stepChange(time : Int)
+}
 protocol Stepable{
     
     var id : Int? {get set}

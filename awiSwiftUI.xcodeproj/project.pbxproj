@@ -10,6 +10,22 @@
 		6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
+		AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD327C95A56001258F0 /* StepForm.swift */; };
+		AC25CAD627C95A8C001258F0 /* StepIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD527C95A8C001258F0 /* StepIntent.swift */; };
+		AC25CAD827C95B54001258F0 /* StepFormVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD727C95B54001258F0 /* StepFormVM.swift */; };
+		AC42458027C90BB700927F39 /* RecipeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42457F27C90BB700927F39 /* RecipeForm.swift */; };
+		AC42458227C9189B00927F39 /* RecipeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42458127C9189B00927F39 /* RecipeVM.swift */; };
+		AC42458427C91A5900927F39 /* RecipeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42458327C91A5900927F39 /* RecipeIntent.swift */; };
+		AC4FC02927C6C175002A8F19 /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */; };
+		AC4FC02B27C78190002A8F19 /* StepDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FC02A27C78190002A8F19 /* StepDTO.swift */; };
+		AC4FC02D27C786CC002A8F19 /* StepDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FC02C27C786CC002A8F19 /* StepDAO.swift */; };
+		AC60AEBB27CA2B4900AD4876 /* IngredientSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEBA27CA2B4900AD4876 /* IngredientSelection.swift */; };
+		AC60AEBE27CA30E600AD4876 /* StepToIngredientDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEBD27CA30E600AD4876 /* StepToIngredientDTO.swift */; };
+		AC60AEC027CA31A100AD4876 /* StepToIngredientDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEBF27CA31A100AD4876 /* StepToIngredientDAO.swift */; };
+		AC60AEC327CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC227CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift */; };
+		AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */; };
+		AC60AEC727CA472D00AD4876 /* StepList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC627CA472C00AD4876 /* StepList.swift */; };
+		AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AECA27CA48EC00AD4876 /* StepListVM.swift */; };
 		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
@@ -79,6 +95,8 @@
 		ACBBE56627C2AF74002B59C8 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56527C2AF74002B59C8 /* Image.swift */; };
 		ACE6A90727C507CC00D82E05 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90627C507CC00D82E05 /* Token.swift */; };
 		ACE6A90927C5080900D82E05 /* UserLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */; };
+		ACE6A91327C6189800D82E05 /* DeleteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A91227C6189800D82E05 /* DeleteDTO.swift */; };
+		ACE6A91527C61D6600D82E05 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +121,22 @@
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
 		6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenIngredientsList.swift; sourceTree = "<group>"; };
+		AC25CAD327C95A56001258F0 /* StepForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepForm.swift; sourceTree = "<group>"; };
+		AC25CAD527C95A8C001258F0 /* StepIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIntent.swift; sourceTree = "<group>"; };
+		AC25CAD727C95B54001258F0 /* StepFormVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFormVM.swift; sourceTree = "<group>"; };
+		AC42457F27C90BB700927F39 /* RecipeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeForm.swift; sourceTree = "<group>"; };
+		AC42458127C9189B00927F39 /* RecipeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeVM.swift; sourceTree = "<group>"; };
+		AC42458327C91A5900927F39 /* RecipeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIntent.swift; sourceTree = "<group>"; };
+		AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
+		AC4FC02A27C78190002A8F19 /* StepDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDTO.swift; sourceTree = "<group>"; };
+		AC4FC02C27C786CC002A8F19 /* StepDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepDAO.swift; sourceTree = "<group>"; };
+		AC60AEBA27CA2B4900AD4876 /* IngredientSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSelection.swift; sourceTree = "<group>"; };
+		AC60AEBD27CA30E600AD4876 /* StepToIngredientDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepToIngredientDTO.swift; sourceTree = "<group>"; };
+		AC60AEBF27CA31A100AD4876 /* StepToIngredientDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepToIngredientDAO.swift; sourceTree = "<group>"; };
+		AC60AEC227CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIsComposedOfGeneralStepDTO.swift; sourceTree = "<group>"; };
+		AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIsComposedOfGeneralStepDAO.swift; sourceTree = "<group>"; };
+		AC60AEC627CA472C00AD4876 /* StepList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepList.swift; sourceTree = "<group>"; };
+		AC60AECA27CA48EC00AD4876 /* StepListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepListVM.swift; sourceTree = "<group>"; };
 		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
 		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +210,8 @@
 		ACBBE56527C2AF74002B59C8 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		ACE6A90627C507CC00D82E05 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginDTO.swift; sourceTree = "<group>"; };
+		ACE6A91227C6189800D82E05 /* DeleteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDTO.swift; sourceTree = "<group>"; };
+		ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +256,36 @@
 			path = AllergenCategory;
 			sourceTree = "<group>";
 		};
+		AC25CAD227C959B9001258F0 /* Step */ = {
+			isa = PBXGroup;
+			children = (
+				AC25CAD327C95A56001258F0 /* StepForm.swift */,
+				AC25CAD527C95A8C001258F0 /* StepIntent.swift */,
+				AC25CAD727C95B54001258F0 /* StepFormVM.swift */,
+				AC60AEC627CA472C00AD4876 /* StepList.swift */,
+				AC60AECA27CA48EC00AD4876 /* StepListVM.swift */,
+			);
+			path = Step;
+			sourceTree = "<group>";
+		};
+		AC60AEBC27CA2E8700AD4876 /* StepToIngredient */ = {
+			isa = PBXGroup;
+			children = (
+				AC60AEBD27CA30E600AD4876 /* StepToIngredientDTO.swift */,
+				AC60AEBF27CA31A100AD4876 /* StepToIngredientDAO.swift */,
+			);
+			path = StepToIngredient;
+			sourceTree = "<group>";
+		};
+		AC60AEC127CA34DB00AD4876 /* RecipeIsComposedOfGeneralStep */ = {
+			isa = PBXGroup;
+			children = (
+				AC60AEC227CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift */,
+				AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */,
+			);
+			path = RecipeIsComposedOfGeneralStep;
+			sourceTree = "<group>";
+		};
 		ACBBE4A027C0FFC3002B59C8 = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +320,7 @@
 				ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */,
 				ACBBE4B027C0FFC4002B59C8 /* Assets.xcassets */,
 				ACBBE4B227C0FFC4002B59C8 /* Preview Content */,
+				ACE6A91227C6189800D82E05 /* DeleteDTO.swift */,
 			);
 			path = awiSwiftUI;
 			sourceTree = "<group>";
@@ -293,6 +360,8 @@
 				ACBBE4DF27C10051002B59C8 /* Color.swift */,
 				ACBBE54A27C12978002B59C8 /* HTTPError.swift */,
 				ACBBE56527C2AF74002B59C8 /* Image.swift */,
+				ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */,
+				AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -300,6 +369,8 @@
 		ACBBE4E127C10058002B59C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AC60AEC127CA34DB00AD4876 /* RecipeIsComposedOfGeneralStep */,
+				AC60AEBC27CA2E8700AD4876 /* StepToIngredient */,
 				ACE6A90527C507BF00D82E05 /* Token */,
 				ACBBE50727C101CA002B59C8 /* Ingredient */,
 				ACBBE50027C1018C002B59C8 /* AllergenCategory */,
@@ -368,6 +439,8 @@
 			isa = PBXGroup;
 			children = (
 				ACBBE4FE27C10173002B59C8 /* Step.swift */,
+				AC4FC02A27C78190002A8F19 /* StepDTO.swift */,
+				AC4FC02C27C786CC002A8F19 /* StepDAO.swift */,
 			);
 			path = Step;
 			sourceTree = "<group>";
@@ -396,6 +469,8 @@
 		ACBBE51227C10254002B59C8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC25CAD227C959B9001258F0 /* Step */,
+				ACE6A91827C63A0F00D82E05 /* Login */,
 				6FE0BDFC27C4D01E00021B7A /* LabelManagement */,
 				6FF0FFDC27C12626000AA621 /* AllergenCategory */,
 				ACBBE53427C10394002B59C8 /* Ingredient */,
@@ -403,7 +478,6 @@
 				ACBBE52427C102F6002B59C8 /* IngredientCategory */,
 				ACBBE51327C1025D002B59C8 /* Recipe */,
 				ACBBE52027C102D6002B59C8 /* Carousel.swift */,
-				ACBBE52227C102E5002B59C8 /* LoginView.swift */,
 				ACBBE52827C1032B002B59C8 /* HomeView.swift */,
 				ACBBE52A27C1033A002B59C8 /* TextUnderIcon.swift */,
 				ACBBE53027C10376002B59C8 /* HomeCoverSlider.swift */,
@@ -424,6 +498,9 @@
 				ACBBE55627C240F0002B59C8 /* RecipeDetailledView.swift */,
 				ACBBE55827C26D88002B59C8 /* StepRow.swift */,
 				ACBBE55F27C28D29002B59C8 /* RecipeListVM.swift */,
+				AC42457F27C90BB700927F39 /* RecipeForm.swift */,
+				AC42458127C9189B00927F39 /* RecipeVM.swift */,
+				AC42458327C91A5900927F39 /* RecipeIntent.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -454,6 +531,7 @@
 				ACBBE54E27C1425C002B59C8 /* IngredientIntent.swift */,
 				ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */,
 				ACBBE55427C14943002B59C8 /* IngredientListVM.swift */,
+				AC60AEBA27CA2B4900AD4876 /* IngredientSelection.swift */,
 			);
 			path = Ingredient;
 			sourceTree = "<group>";
@@ -516,6 +594,14 @@
 				6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		ACE6A91827C63A0F00D82E05 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ACBBE52227C102E5002B59C8 /* LoginView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,16 +739,20 @@
 				ACBBE55727C240F0002B59C8 /* RecipeDetailledView.swift in Sources */,
 				ACBBE4ED27C100DC002B59C8 /* IngredientCategoryDTO.swift in Sources */,
 				ACBBE50227C1019B002B59C8 /* AllergenCategory.swift in Sources */,
+				AC25CAD827C95B54001258F0 /* StepFormVM.swift in Sources */,
 				ACBBE53127C10376002B59C8 /* HomeCoverSlider.swift in Sources */,
 				ACBBE54927C10466002B59C8 /* IngredientFormViewModel.swift in Sources */,
 				ACBBE50627C101BE002B59C8 /* AllergenCategoryDAO.swift in Sources */,
 				ACBBE50B27C101E7002B59C8 /* IngredientDAO.swift in Sources */,
 				ACBBE4DC27C10029002B59C8 /* JSONError.swift in Sources */,
+				AC25CAD627C95A8C001258F0 /* StepIntent.swift in Sources */,
 				ACBBE50927C101D9002B59C8 /* Ingredient.swift in Sources */,
 				ACBBE53A27C103BF002B59C8 /* Ingredients.swift in Sources */,
 				ACE6A90727C507CC00D82E05 /* Token.swift in Sources */,
+				AC4FC02927C6C175002A8F19 /* KeyChainHelper.swift in Sources */,
 				ACBBE4D827C0FFDC002B59C8 /* Formatters.swift in Sources */,
 				ACBBE4EF27C100EC002B59C8 /* IngredientCategory.swift in Sources */,
+				AC42458427C91A5900927F39 /* RecipeIntent.swift in Sources */,
 				ACBBE54F27C1425C002B59C8 /* IngredientIntent.swift in Sources */,
 				ACBBE52927C1032B002B59C8 /* HomeView.swift in Sources */,
 				ACBBE51F27C102C0002B59C8 /* RecipeGrid.swift in Sources */,
@@ -673,29 +763,41 @@
 				ACBBE52F27C10369002B59C8 /* CreateAccountForm.swift in Sources */,
 				ACBBE55E27C28947002B59C8 /* RecipeDAO.swift in Sources */,
 				ACBBE4FC27C10159002B59C8 /* UserDTO.swift in Sources */,
+				AC60AEC727CA472D00AD4876 /* StepList.swift in Sources */,
 				ACBBE4FF27C10173002B59C8 /* Step.swift in Sources */,
 				6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */,
 				ACBBE4EB27C100B6002B59C8 /* IngredientCategoryDAO.swift in Sources */,
 				ACBBE56627C2AF74002B59C8 /* Image.swift in Sources */,
+				AC4FC02D27C786CC002A8F19 /* StepDAO.swift in Sources */,
 				ACBBE51B27C1029D002B59C8 /* RecipeRow.swift in Sources */,
+				AC42458027C90BB700927F39 /* RecipeForm.swift in Sources */,
 				ACBBE51727C1027B002B59C8 /* RecipeCard.swift in Sources */,
 				ACBBE50427C101AF002B59C8 /* AllergenCategoryDTO.swift in Sources */,
 				ACBBE53327C10384002B59C8 /* Badge.swift in Sources */,
 				ACBBE52127C102D6002B59C8 /* Carousel.swift in Sources */,
 				6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */,
 				ACBBE51D27C102B0002B59C8 /* HorizontalScrollRecipe.swift in Sources */,
+				ACE6A91527C61D6600D82E05 /* ArrayExtension.swift in Sources */,
 				ACBBE4FA27C10148002B59C8 /* User.swift in Sources */,
 				ACBBE4DE27C10042002B59C8 /* JSONHelper.swift in Sources */,
 				ACBBE56227C29317002B59C8 /* RecipeCategoryDTO.swift in Sources */,
 				ACBBE53627C103A0002B59C8 /* IngredientRow.swift in Sources */,
+				AC4FC02B27C78190002A8F19 /* StepDTO.swift in Sources */,
 				ACBBE54427C1043B002B59C8 /* AllergenCategoryFormViewModel.swift in Sources */,
+				AC60AEC027CA31A100AD4876 /* StepToIngredientDAO.swift in Sources */,
 				ACE6A90927C5080900D82E05 /* UserLoginDTO.swift in Sources */,
+				AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */,
+				AC60AEBB27CA2B4900AD4876 /* IngredientSelection.swift in Sources */,
 				ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */,
+				AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */,
 				ACBBE51527C1026B002B59C8 /* Recipes.swift in Sources */,
+				AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */,
 				ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */,
 				ACBBE4E627C10086002B59C8 /* UnityDTO.swift in Sources */,
+				AC42458227C9189B00927F39 /* RecipeVM.swift in Sources */,
 				ACBBE53E27C103FF002B59C8 /* UnityFormViewModel.swift in Sources */,
 				ACBBE52627C10308002B59C8 /* IngredientCategoryForm.swift in Sources */,
+				AC60AEBE27CA30E600AD4876 /* StepToIngredientDTO.swift in Sources */,
 				ACBBE51127C1021E002B59C8 /* IngredientGetDTO.swift in Sources */,
 				ACBBE4F227C1010B002B59C8 /* Recipe.swift in Sources */,
 				6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */,
@@ -709,11 +811,13 @@
 				ACBBE53827C103B1002B59C8 /* IngredientForm.swift in Sources */,
 				ACBBE54127C1041C002B59C8 /* IngredientCategoryFormViewModel.swift in Sources */,
 				ACBBE55C27C288D3002B59C8 /* RecipeDTO.swift in Sources */,
+				AC60AEC327CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift in Sources */,
 				ACBBE4F527C10122002B59C8 /* RecipeCategory.swift in Sources */,
 				ACBBE4E427C1007C002B59C8 /* UnityDAO.swift in Sources */,
 				ACBBE55927C26D88002B59C8 /* StepRow.swift in Sources */,
 				ACBBE4DA27C10017002B59C8 /* Utils.swift in Sources */,
 				ACBBE4E827C10093002B59C8 /* Unity.swift in Sources */,
+				ACE6A91327C6189800D82E05 /* DeleteDTO.swift in Sources */,
 				ACBBE55527C14943002B59C8 /* IngredientListVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

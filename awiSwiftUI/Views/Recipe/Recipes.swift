@@ -11,7 +11,6 @@ struct Recipes: View {
     
     @ObservedObject var recipesVM : RecipeListVM = RecipeListVM(recipes: [])
     @State var recipeCategories : [RecipeCategory] = []
-    @State var isFormDisplayed = false
     @State var selectedCategory : RecipeCategory? = nil
     @State var searchedRecipeName = ""
     
@@ -40,7 +39,7 @@ struct Recipes: View {
             ScrollView {
                 LazyVGrid(columns: gridItems,spacing: 0){
                     ForEach(recipesVM.recipes){ recipe in
-                        NavigationLink(destination: RecipeDetailledView()){
+                        NavigationLink(destination: RecipeDetailledView(recipe : recipe)){
                             RecipeCard(recipe: recipe)
                                 .frame(width: 170, height: 250)
                         }
@@ -55,15 +54,16 @@ struct Recipes: View {
                         Spacer()
                         HStack{
                             Spacer()
-                            Button("+"){isFormDisplayed.toggle()}
-                            .frame(width: 25, height: 25)
-                            .font(.title)
-                            .padding()
-                            .background(Color.salmon)
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
                             
-                            
+                            NavigationLink(destination: RecipeForm(recipeFormVM: RecipeVM(model: Recipe.recipes[0]), recipeCategories: [])) {
+                                Text("+")
+                                .frame(width: 25, height: 25)
+                                .font(.title)
+                                .padding()
+                                .background(Color.salmon)
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
+                            }
                         }
                     }
                         .padding()
