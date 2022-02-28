@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipeDetailledView: View {
     
     @State private var showIngredient = true
+    @State private var showCosts = false
     @State var ingredients : [Ingredient:Int] = [:]
     @State private var steps : [Step] = []
     @State var recipe : Recipe
@@ -35,7 +36,6 @@ struct RecipeDetailledView: View {
                         Divider()
                         HStack{
                             Spacer()
-                            
                          
                             Label("10 min", systemImage: "timer")
                                 .padding(.horizontal,10)
@@ -50,6 +50,42 @@ struct RecipeDetailledView: View {
                         .padding(.horizontal,40)
                         Divider()
                     }
+                    
+                }
+                
+                //Buttons
+                HStack{
+                    
+                    //Coûts
+                    Button(action: {
+                        //self.showCosts = true
+                    }) {
+                        HStack {
+                            Image(systemName: "list.bullet")
+                            Text("Coûts")
+                                .fontWeight(.semibold)
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.salmon)
+                        .cornerRadius(40)
+                    }
+                    
+                    //Etiquette
+                    NavigationLink(destination: LabelManagement(recipe: recipe, ingredients: ingredients)){
+                        HStack {
+                            Image(systemName: "tag")
+                            Text("Etiquette")
+                                .fontWeight(.semibold)
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.salmon)
+                        .cornerRadius(40)
+                    }
+                    .navigationBarTitle("\(recipe.title)")
+                
+                    
                     
                 }
                 
