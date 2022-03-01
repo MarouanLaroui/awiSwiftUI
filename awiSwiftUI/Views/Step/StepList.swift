@@ -11,28 +11,47 @@ struct StepList: View {
     
     @ObservedObject var stepListVM : StepListVM = StepListVM(steps: [])
     var intent : StepIntent
+    var recipeIntent : RecipeIntent
     
-    init(){
+    init(recipeIntent : RecipeIntent){
+        self.recipeIntent = recipeIntent
         self.intent = StepIntent()
         self.intent.addObserverList(viewModel: self.stepListVM)
     }
     var body: some View {
-            List {
-                ForEach(stepListVM.steps) { step in
-                    Text(step.title)
+        
+            VStack {
+                ForEach(stepListVM.steps, id: \.self) { step in
+                    NavigationLink(destination : StepForm(intent: self.intent, stepFormVM: StepFormVM(model: step))){
+                        Text(step.title)
+                    }
+                    
                 }
+                Spacer()
+                Button("Publish recipe"){
+                    Task{
+                        
+                    }
+                }
+                    .padding()
+                    .background(Color.salmon)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .padding(.bottom)
+                    
             }
             .navigationTitle("Steps")
             .navigationBarItems(trailing: NavigationLink(destination: StepForm(intent: self.intent)){
                 Image(systemName: "plus")
             })
             
-            Spacer()
+        
         }
 }
-
+/*
 struct StepList_Previews: PreviewProvider {
     static var previews: some View {
         StepList()
     }
 }
+*/

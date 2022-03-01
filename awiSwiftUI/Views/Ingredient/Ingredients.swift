@@ -21,6 +21,7 @@ struct Ingredients: View {
     @State var isDataLoading : Bool = false
     
     init(){
+        print("--------init ingredients-------")
         self.intent = Intent()
         self.intent.addListObserver(viewModel: ingredientsVM)
     }
@@ -104,6 +105,8 @@ struct Ingredients: View {
         .onAppear{
             Task{
                 if(self.ingredientsVM.ingredients.count == 0 && self.ingredientCategories.count == 0){
+                    
+                    print("request un on appeare")
 //                        print("before post")
 //                        await IngredientDAO.postIngredientTest()
 //                        print("after post")

@@ -38,6 +38,7 @@ class IngredientListVM :  ObservableObject, Subscriber {
             break
             
         case .listUpdated:
+            print("----- object will change -----")
             self.objectWillChange.send()
             
         case .appendList(ingredient: let ingredient):
