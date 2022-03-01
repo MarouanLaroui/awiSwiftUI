@@ -9,6 +9,11 @@ import SwiftUI
 
 struct RecipeDetailledView: View {
     
+    var threeColumns: [GridItem] =
+             Array(repeating: .init(.flexible()), count: 3)
+    var twoColumns: [GridItem] =
+             Array(repeating: .init(.flexible()), count: 2)
+    
     @State private var showIngredient = true
     @State private var showCosts = false
     @State var ingredients : [Ingredient:Int] = [:]
@@ -21,6 +26,108 @@ struct RecipeDetailledView: View {
     }
     private func bgColor(isSelected : Bool)->Color{
         return isSelected ? Color.white : Color.lightgrey
+    }
+    
+    
+    var cost: some View {
+        VStack{
+            Text("Statistiques de vente")
+                .font(.largeTitle)
+                .bold()
+            
+            
+            LazyVGrid(columns: twoColumns){
+                //totalCost
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Coût total de la recette")
+                        .opacity(0.7)
+                }
+                .padding(15)
+                
+                //costPerPortion = this.totalCost / this.nbOfServing
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Coût par portion")
+                        .opacity(0.7)
+                }
+                .padding(15)
+                
+                
+            }
+            
+            HStack{
+                Text("Coefficient")
+                //coefficient
+            }
+            
+            LazyVGrid(columns: twoColumns){
+                //totalSellingPrice = this.totalCost * this.coefficient
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Prix de vente total")
+                        .opacity(0.7)
+                }
+                .padding(15)
+                
+                //sellingPriceByPortion = this.totalSellingPrice / this.nbOfServing
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Prix de vente par unité")
+                        .opacity(0.7)
+                }
+                .padding(15)
+               
+            }
+        
+            HStack{
+                //totalBenefice = this.totalSellingPrice - this.totalCost;
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Bénéfice total de la recette")
+                        .opacity(0.7)
+                }
+                .padding(15)
+            }
+            
+            LazyVGrid(columns: twoColumns){
+                //beneficeByPortion = this.totalBenefice / this.nbOfServing;
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Bénéfice par portion")
+                        .opacity(0.7)
+                }
+                .padding(15)
+                
+                //rentabilityThreshold = Math.ceil(this.totalCost / this.sellingPriceByPortion)
+                VStack{
+                    Text("\(self.recipe.nbOfServing)€")
+                        .font(.title2)
+                        .foregroundColor(Color.salmon)
+                    Text("Seuil de rentabilité de la recette")
+                        .opacity(0.7)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(15)
+                
+            }
+            
+        }
+        .padding(.bottom, 50)
+        .padding(.top, 50)
+        
     }
     
     var body: some View {
@@ -56,10 +163,11 @@ struct RecipeDetailledView: View {
                 //Buttons
                 HStack{
                     
-                    //Coûts
+                    // ----------- Coûts -----------
                     Button(action: {
-                        //self.showCosts = true
-                    }) {
+                        self.showCosts.toggle()
+                    })
+                    {
                         HStack {
                             Image(systemName: "list.bullet")
                             Text("Coûts")
@@ -70,8 +178,20 @@ struct RecipeDetailledView: View {
                         .background(Color.salmon)
                         .cornerRadius(40)
                     }
+                    .sheet(isPresented: $showCosts){
+                        //Table des coûts
+                        cost
+                        Spacer()
+                        Button("Press to dismiss") {
+                            showCosts.toggle()
+                        }
+                        .foregroundColor(Color.salmon)
+                        .padding()
+                        
+                        
+                    }
                     
-                    //Etiquette
+                    //----------- Etiquette -----------
                     NavigationLink(destination: LabelManagement(recipe: recipe, ingredients: ingredients)){
                         HStack {
                             Image(systemName: "tag")
@@ -84,8 +204,6 @@ struct RecipeDetailledView: View {
                         .cornerRadius(40)
                     }
                     .navigationBarTitle("\(recipe.title)")
-                
-                    
                     
                 }
                 
