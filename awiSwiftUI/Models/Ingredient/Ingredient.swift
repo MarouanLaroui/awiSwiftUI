@@ -7,7 +7,12 @@
 
 import Foundation
 
-class Ingredient : Identifiable, ObservableObject, Hashable{
+class Ingredient : Identifiable, ObservableObject, Hashable, Comparable{
+    
+    static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {
+        return lhs.id > rhs.id
+    }
+    
     
     
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {

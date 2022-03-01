@@ -40,15 +40,22 @@ struct StepForm: View {
                 Text("Ingredients")
                     .font(.largeTitle)
                     .bold()
+                
+                HStack{
+                    Spacer()
+                    NavigationLink(destination: SelectIngredientForStep()){
+                        Image(systemName: "plus")
+                    }
+                }
                 List{
-                    //ForEach(Array(stepVM.ingredients.keys.enumerated())){
-                      //  ingredient in
+                    ForEach(stepVM.ingredients.keys.sorted(), id : \.self){
+                        ingredient in
                         HStack{
-                            Text("Patates")
-                            Text("300gr")
+                            Text(ingredient.name)
+                            Text("\(stepVM.ingredients[ingredient]!)")
                         }
                         .padding(.horizontal)
-                    //}
+                    }
                 }
             }
             .padding()

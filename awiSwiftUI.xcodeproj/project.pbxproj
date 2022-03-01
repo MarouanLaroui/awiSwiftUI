@@ -10,6 +10,7 @@
 		6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
+		AC0477EF27CE05FA005CFD0E /* SelectIngredientForStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0477EE27CE05FA005CFD0E /* SelectIngredientForStep.swift */; };
 		AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD327C95A56001258F0 /* StepForm.swift */; };
 		AC25CAD627C95A8C001258F0 /* StepIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD527C95A8C001258F0 /* StepIntent.swift */; };
 		AC25CAD827C95B54001258F0 /* StepFormVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD727C95B54001258F0 /* StepFormVM.swift */; };
@@ -121,6 +122,7 @@
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
 		6FF0FFE127C130BC000AA621 /* AllergenIngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenIngredientsList.swift; sourceTree = "<group>"; };
+		AC0477EE27CE05FA005CFD0E /* SelectIngredientForStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIngredientForStep.swift; sourceTree = "<group>"; };
 		AC25CAD327C95A56001258F0 /* StepForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepForm.swift; sourceTree = "<group>"; };
 		AC25CAD527C95A8C001258F0 /* StepIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIntent.swift; sourceTree = "<group>"; };
 		AC25CAD727C95B54001258F0 /* StepFormVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFormVM.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 				ACBBE55227C14916002B59C8 /* IngredientFormVM.swift */,
 				ACBBE55427C14943002B59C8 /* IngredientListVM.swift */,
 				AC60AEBA27CA2B4900AD4876 /* IngredientSelection.swift */,
+				AC0477EE27CE05FA005CFD0E /* SelectIngredientForStep.swift */,
 			);
 			path = Ingredient;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */,
 				AC60AEBB27CA2B4900AD4876 /* IngredientSelection.swift in Sources */,
 				ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */,
+				AC0477EF27CE05FA005CFD0E /* SelectIngredientForStep.swift in Sources */,
 				AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */,
 				ACBBE51527C1026B002B59C8 /* Recipes.swift in Sources */,
 				AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */,
