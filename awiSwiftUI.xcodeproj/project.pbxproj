@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F2EFC8227CD113D00BCC38C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFC8127CD113D00BCC38C /* View.swift */; };
 		6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
@@ -118,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F2EFC8127CD113D00BCC38C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelManagement.swift; sourceTree = "<group>"; };
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				ACBBE56527C2AF74002B59C8 /* Image.swift */,
 				ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */,
 				AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */,
+				6F2EFC8127CD113D00BCC38C /* View.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				ACBBE52B27C1033A002B59C8 /* TextUnderIcon.swift in Sources */,
 				ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */,
 				ACBBE4F827C1013F002B59C8 /* UserDAO.swift in Sources */,
+				6F2EFC8227CD113D00BCC38C /* View.swift in Sources */,
 				ACBBE54727C10458002B59C8 /* IngredientListViewModel.swift in Sources */,
 				ACBBE53827C103B1002B59C8 /* IngredientForm.swift in Sources */,
 				ACBBE54127C1041C002B59C8 /* IngredientCategoryFormViewModel.swift in Sources */,
@@ -986,6 +990,7 @@
 				DEVELOPMENT_TEAM = 9RN288KRX3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1016,6 +1021,7 @@
 				DEVELOPMENT_TEAM = 9RN288KRX3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

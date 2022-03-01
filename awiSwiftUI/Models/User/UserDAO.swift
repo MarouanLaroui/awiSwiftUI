@@ -53,11 +53,11 @@ struct UserDAO{
         }
     }
     
-    static func postUser(userDTO: UserDTO) async -> Result<User, Error> {
+    static func postUser(user: User) async -> Result<User, Error> {
         //User fictif pour les tests
         //let user = User.users[0]
         
-        //let userDTO = UserDAO.userToDTO(user: user)
+        let userDTO = UserDAO.userToDTO(user: user)
         
         //Construction de l'url
         guard let url = URL(string: Utils.apiURL + "user") else {

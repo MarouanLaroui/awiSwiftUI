@@ -60,14 +60,14 @@ struct ContentView: View {
                 
                 
                 
-                NavigationView{
+                /*NavigationView{
                     LabelManagement()
                         .navigationTitle("Etiquettes")
                 }
                 .tabItem{
                     Image(systemName: "tag.fill")
                     Text("Etiquettes")
-                }
+                }*/
             }
         }
         //LoginView()
