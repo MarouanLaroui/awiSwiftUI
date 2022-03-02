@@ -16,6 +16,8 @@ struct RecipeDetailledView: View {
     
     @State private var showIngredient = true
     @State private var showCosts = false
+    @State private var durationTime = 0
+    
     @State var ingredients : [Ingredient:Int] = [:]
     @State private var steps : [Step] = []
     @State var recipe : Recipe
@@ -26,108 +28,6 @@ struct RecipeDetailledView: View {
     }
     private func bgColor(isSelected : Bool)->Color{
         return isSelected ? Color.white : Color.lightgrey
-    }
-    
-    
-    var cost: some View {
-        VStack{
-            Text("Statistiques de vente")
-                .font(.largeTitle)
-                .bold()
-            
-            
-            LazyVGrid(columns: twoColumns){
-                //totalCost
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Coût total de la recette")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                //costPerPortion = this.totalCost / this.nbOfServing
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Coût par portion")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                
-            }
-            
-            HStack{
-                Text("Coefficient")
-                //coefficient
-            }
-            
-            LazyVGrid(columns: twoColumns){
-                //totalSellingPrice = this.totalCost * this.coefficient
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Prix de vente total")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                //sellingPriceByPortion = this.totalSellingPrice / this.nbOfServing
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Prix de vente par unité")
-                        .opacity(0.7)
-                }
-                .padding(15)
-               
-            }
-        
-            HStack{
-                //totalBenefice = this.totalSellingPrice - this.totalCost;
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Bénéfice total de la recette")
-                        .opacity(0.7)
-                }
-                .padding(15)
-            }
-            
-            LazyVGrid(columns: twoColumns){
-                //beneficeByPortion = this.totalBenefice / this.nbOfServing;
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Bénéfice par portion")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                //rentabilityThreshold = Math.ceil(this.totalCost / this.sellingPriceByPortion)
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Seuil de rentabilité de la recette")
-                        .opacity(0.7)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(15)
-                
-            }
-            
-        }
-        .padding(.bottom, 50)
-        .padding(.top, 50)
-        
     }
     
     var body: some View {
@@ -144,7 +44,7 @@ struct RecipeDetailledView: View {
                         HStack{
                             Spacer()
                          
-                            Label("10 min", systemImage: "timer")
+                            Label("\(durationTime) min", systemImage: "timer")
                                 .padding(.horizontal,10)
                             
                             Label("1 euro", systemImage: "eurosign.circle")
@@ -180,7 +80,8 @@ struct RecipeDetailledView: View {
                     }
                     .sheet(isPresented: $showCosts){
                         //Table des coûts
-                        cost
+                        CostView(recipe: recipe, durationTime: durationTime)
+                        
                         Spacer()
                         Button("Press to dismiss") {
                             showCosts.toggle()
@@ -190,6 +91,7 @@ struct RecipeDetailledView: View {
                         
                         
                     }
+                    
                     
                     //----------- Etiquette -----------
                     NavigationLink(destination: LabelManagement(recipe: recipe, ingredients: ingredients)){
@@ -302,35 +204,49 @@ struct RecipeDetailledView: View {
         .onAppear{
             self.recipeImgStr = ImageHelper.randomPic()
         }
+        .task {
+            
+        
+            
+        }
         .task{
             let result = await StepDAO.getStepOfRecipe(recipeId: self.recipe.id!)
             let resIngredients = await IngredientDAO.getTotalIngredients(recipeId: self.recipe.id!)
+            let resultDuration = await RecipeDAO.getRecipeDuration(id: self.recipe.id!)
         
+            //Etapes
             switch(result){
-                
             case .success(let resSteps):
                 self.steps = resSteps
-            
             case .failure(let error):
                 print("error while retrieving steps" + error.localizedDescription)
             }
             
+            //Ingrédients
             switch(resIngredients){
             case .success(let resIngrDict):
                 self.ingredients = resIngrDict
             case .failure(let error):
                 print("error while retrieving ingredients total" + error.localizedDescription)
             }
+            
+            //Temps de préparation
+            switch(resultDuration){
+            case .success(let durationTime):
+                self.durationTime = durationTime
+            case .failure(let error):
+                print("error while retrieving duration time" + error.localizedDescription)
+            }
         }
     }
 }
-/*
+
 struct RecipeDetailledView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            RecipeDetailledView()
+            RecipeDetailledView(recipe: Recipe.recipes[1])
         }
         
     }
 }
-*/
+
