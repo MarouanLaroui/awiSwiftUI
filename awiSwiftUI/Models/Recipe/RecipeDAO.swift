@@ -80,7 +80,6 @@ struct RecipeDAO{
     }
     
     static func getRecipeDuration(id : Int) async -> Result<Int, Error>{
-        print("---Dans getRecipeDuration-----")
         let getRecipeDurationReq : Result<Int, Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/"+String(id)+"/time")
         
         switch(getRecipeDurationReq){
@@ -93,7 +92,6 @@ struct RecipeDAO{
     }
     
     static func getRecipeCost(id : Int) async -> Result<Int, Error>{
-        print("---Dans getRecipeCost-----")
         let getRecipeDurationReq : Result<Int, Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/"+String(id)+"/cost")
         
         switch(getRecipeDurationReq){
@@ -104,6 +102,7 @@ struct RecipeDAO{
         
         }
     }
+    
     
     
     //TODO: fonction de post d'une recette 

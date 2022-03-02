@@ -43,6 +43,28 @@ struct CostView : View {
     @State var rentabilityThreshold : Double = 0
     
 
+    func calculateCosts(){
+        self.seasoningTotal = (self.seasoningPercentage*ingredientCost/100)
+        self.subtotal = self.seasoningTotal + self.ingredientCost
+        self.fluidCost = (self.fluidCostPerHour * self.durationTime)
+        self.employeCost = (self.employeCostPerHour * (self.durationTime)/60)
+        self.totalCost = self.subtotal + self.fluidCost + self.employeCost
+        
+        self.totalSellingPrice = Double(self.totalCost + self.coefficient)
+        self.sellingPriceByPortion = Double(self.totalSellingPrice) / Double(self.recipe.nbOfServing)
+        self.rentabilityThreshold = ceil(Double(self.totalCost) / self.sellingPriceByPortion)
+        self.totalBenefice = self.totalSellingPrice - Double(self.totalCost)
+        self.beneficeByPortion = self.totalBenefice / Double(self.recipe.nbOfServing)
+        self.costPerPortion = Double(self.totalCost) / Double(self.recipe.nbOfServing)
+        
+        self.sellingPriceByPortion = round(self.sellingPriceByPortion * 100)/100
+        self.rentabilityThreshold = round(self.rentabilityThreshold * 100)/100
+        self.totalBenefice = round(self.totalBenefice * 100)/100
+        self.beneficeByPortion = round(self.beneficeByPortion * 100)/100
+        self.costPerPortion = round(self.costPerPortion * 100)/100
+    }
+    
+    
     var body: some View{
         ScrollView{
             
@@ -165,7 +187,7 @@ struct CostView : View {
                     
                     //Coût par portion = costPerPortion
                     VStack{
-                        Text("\(costPerPortion)€")
+                        Text("\(costPerPortion, specifier: "%.2f")€")
                             .font(.title2)
                             .foregroundColor(Color.salmon)
                         Text("Coût par portion")
@@ -191,7 +213,7 @@ struct CostView : View {
                     
                     //Prix de vente total = totalSellingPrice
                     VStack{
-                        Text("\(totalSellingPrice)€")
+                        Text("\(totalSellingPrice, specifier: "%.2f")€")
                             .font(.title2)
                             .foregroundColor(Color.salmon)
                         Text("Prix de vente total")
@@ -202,7 +224,7 @@ struct CostView : View {
                     
                     //Prix de vente par unité = sellingPriceByPortion
                     VStack{
-                        Text("\(sellingPriceByPortion)€")
+                        Text("\(sellingPriceByPortion, specifier: "%.2f")€")
                             .font(.title2)
                             .foregroundColor(Color.salmon)
                         Text("Prix de vente par unité")
@@ -213,7 +235,7 @@ struct CostView : View {
                     
                     //Bénéfice total de la recette = totalbenefice
                     VStack{
-                        Text("\(totalBenefice)€")
+                        Text("\(totalBenefice, specifier: "%.2f")€")
                             .font(.title2)
                             .foregroundColor(Color.salmon)
                         Text("Bénéfice total de la recette")
@@ -229,7 +251,7 @@ struct CostView : View {
             LazyVGrid(columns: twoColumns){
                 //beneficeByPortion = this.totalBenefice / this.nbOfServing;
                 VStack{
-                    Text("\(beneficeByPortion)€")
+                    Text("\(beneficeByPortion, specifier: "%.2f")€")
                         .font(.title2)
                         .foregroundColor(Color.salmon)
                     Text("Bénéfice par portion")
@@ -239,7 +261,7 @@ struct CostView : View {
                 
                 //rentabilityThreshold = Math.ceil(this.totalCost / this.sellingPriceByPortion)
                 VStack{
-                    Text("\(rentabilityThreshold)€")
+                    Text("\(rentabilityThreshold, specifier: "%.2f")€")
                         .font(.title2)
                         .foregroundColor(Color.salmon)
                     Text("Seuil de rentabilité de la recette")
@@ -253,30 +275,24 @@ struct CostView : View {
         }
         .padding(.bottom, 50)
         .padding(.top, 50)
+        .task{
+            let resultCost = await RecipeDAO.getRecipeCost(id: self.recipe.id!)
+        
+            //Etapes
+            switch(resultCost){
+            case .success(let resIngredientCost):
+                self.ingredientCost = resIngredientCost
+            case .failure(let error):
+                print("error while retrieving ingredientCost" + error.localizedDescription)
+            }
+        }
         
         // -- CALCUL DES COÛTS --
+        .onAppear{
+            calculateCosts()
+        }
         .onSubmit {
-            self.seasoningTotal = (self.seasoningPercentage*ingredientCost/100)
-            self.subtotal = self.seasoningTotal + self.ingredientCost
-            self.fluidCost = (self.fluidCostPerHour * self.durationTime)
-            self.employeCost = (self.employeCostPerHour * durationTime)
-            self.totalCost = self.subtotal + self.fluidCost + self.employeCost
-            
-            let total = Double(self.totalCost + self.coefficient)
-            self.sellingPriceByPortion = Double(self.totalSellingPrice) / Double(self.recipe.nbOfServing)
-            self.rentabilityThreshold = ceil(Double(self.totalCost) / self.sellingPriceByPortion)
-            self.totalBenefice = self.totalSellingPrice - Double(self.totalCost)
-            self.beneficeByPortion = self.totalBenefice / Double(self.recipe.nbOfServing)
-            self.costPerPortion = Double(self.totalCost) / Double(self.recipe.nbOfServing)
-            
-            
-            self.totalSellingPrice = ceil(total * 10)/10.0
-            print(totalSellingPrice)
-            self.sellingPriceByPortion = round(self.sellingPriceByPortion * 100)/100
-            self.rentabilityThreshold = round(self.rentabilityThreshold * 100)/100
-            self.totalBenefice = round(self.totalBenefice * 100)/100
-            self.beneficeByPortion = round(self.beneficeByPortion * 100)/100
-            self.costPerPortion = round(self.costPerPortion * 100)/100
+            calculateCosts()
         }
         
             
