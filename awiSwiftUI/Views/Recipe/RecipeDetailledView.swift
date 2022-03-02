@@ -49,7 +49,7 @@ struct RecipeDetailledView: View {
                             
                             Label("1 euro", systemImage: "eurosign.circle")
                             
-                            Label("10 min", systemImage: "timer")
+                            Label("\(recipe.nbOfServing) p", systemImage: "fork.knife.circle")
                                 .padding(.horizontal,10)
 
                             Spacer()
@@ -83,7 +83,7 @@ struct RecipeDetailledView: View {
                         CostView(recipe: recipe, durationTime: durationTime)
                         
                         Spacer()
-                        Button("Press to dismiss") {
+                        Button("Fermer") {
                             showCosts.toggle()
                         }
                         .foregroundColor(Color.salmon)

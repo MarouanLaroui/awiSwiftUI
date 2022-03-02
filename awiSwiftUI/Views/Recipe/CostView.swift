@@ -285,6 +285,7 @@ struct CostView : View {
             case .failure(let error):
                 print("error while retrieving ingredientCost" + error.localizedDescription)
             }
+            
         }
         
         // -- CALCUL DES COÛTS --

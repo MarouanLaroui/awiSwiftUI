@@ -42,7 +42,7 @@ struct RecipeCard: View {
                   
                         TextUnderIconView(systemImageStr: "eurosign.circle", text: "1 euro")
                  
-                        TextUnderIconView(systemImageStr: "timer", text: "10mn")
+                        TextUnderIconView(systemImageStr: "fork.knife.circle", text: "\(recipe.nbOfServing) p")
                     
                     }
                     .padding(.bottom)
