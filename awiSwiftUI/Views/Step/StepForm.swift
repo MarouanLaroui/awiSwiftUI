@@ -14,7 +14,9 @@ struct StepForm: View {
     var intent : StepIntent
     
     init(intent : StepIntent, stepFormVM : StepFormVM? = nil){
+
         if let stepFormVM = stepFormVM {
+            print("not null stepFormVM")
             self.stepVM = stepFormVM
         }
         self.intent = intent
@@ -28,10 +30,23 @@ struct StepForm: View {
                     Group{
                         Text("Title")
                         TextField("enter a title", text: $stepVM.title)
+                            .onSubmit {
+                                self.intent.intentToChange(title: self.stepVM.title)
+                            }
+                        
+                        
                         Text("Description :")
                         TextField("enter a description", text: $stepVM.description)
+                            .onSubmit {
+                                self.intent.intentToChange(description: self.stepVM.description)
+                            }
+                        
+                        
                         Text("Time :")
                         TextField("", value: $stepVM.time, formatter: Formatters.int)
+                            .onSubmit {
+                                self.intent.intentToChange(time: self.stepVM.time)
+                            }
                     }
                 }
                 
@@ -43,31 +58,57 @@ struct StepForm: View {
                 
                 HStack{
                     Spacer()
-                    NavigationLink(destination: SelectIngredientForStep()){
+                    NavigationLink(destination: SelectIngredientForStep(intent : self.intent)){
                         Image(systemName: "plus")
                     }
                 }
-                List{
-                    ForEach(stepVM.ingredients.keys.sorted(), id : \.self){
-                        ingredient in
-                        HStack{
-                            Text(ingredient.name)
-                            Text("\(stepVM.ingredients[ingredient]!)")
-                        }
-                        .padding(.horizontal)
+                
+                
+                ForEach(Array(self.stepVM.ingredients.keys), id: \.self) { ingredient in
+                    HStack{
+                        Text(ingredient.name)
+                        Spacer()
+                        TextField("",value: $stepVM.ingredients[ingredient],formatter : Formatters.int)
+//                        Text("\(stepVM.ingredients[ingredient]!)")
                     }
+                    Divider()
                 }
+                
+                //                    ForEach(stepVM.ingredients.keys.sorted(), id : \.self){
+                //
+                //                        ingredient in
+                //                        HStack{
+                //                            Text("ok")
+                //                            Text(ingredient.name)
+                //                            Text("\(stepVM.ingredients[ingredient]!)")
+                //                        }
+                //                        .padding(.horizontal)
+                //                    }
+                //                    ForEach(self.stepVM.ingredients.sorted(by: >), id: \.key) { key, value in
+                //                        HStack{
+                //                            Text("ok")
+                //                        }
+                //                    }
+                
             }
             .padding()
             .navigationTitle("Step Informations")
+            
+            Button("Save step"){
+                self.intent.intentToChange(stepToAdd: self.stepVM.model)
+            }
+                .padding()
+                .background(Color.salmon)
+                .foregroundColor(.white)
+                .cornerRadius(15)
         }
         
     }
 }
 /*
-struct StepForm_Previews: PreviewProvider {
-    static var previews: some View {
-        StepForm()
-    }
-}
-*/
+ struct StepForm_Previews: PreviewProvider {
+ static var previews: some View {
+ StepForm()
+ }
+ }
+ */

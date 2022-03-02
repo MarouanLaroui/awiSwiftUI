@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelectIngredientForStep: View {
     
+    var intent : StepIntent
     @State var ingredients : [Ingredient] = []
     @State var searchedIngredientName : String = ""
     var searchedIngredient : [Ingredient]{
@@ -25,6 +26,9 @@ struct SelectIngredientForStep: View {
             List(searchedIngredient){
                 ingredient in
                 Text(ingredient.name)
+                    .onTapGesture {
+                        self.intent.intentToChange(ingredientToAdd: ingredient)
+                    }
             }
         }
         .searchable(text: $searchedIngredientName,placement: .navigationBarDrawer(displayMode: .always))
@@ -44,9 +48,10 @@ struct SelectIngredientForStep: View {
         }
     }
 }
-
+/*
 struct SelectIngredientForStep_Previews: PreviewProvider {
     static var previews: some View {
-        SelectIngredientForStep()
+        SelectIngredientForStep(in)
     }
 }
+*/

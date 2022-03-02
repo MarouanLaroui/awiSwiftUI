@@ -15,6 +15,8 @@ enum StepIntentState{
     case titleChanging(title : String)
     case descriptionChanging(description : String)
     case timeChanging(time : Int)
+    case addIngredient(ingredient : Ingredient)
+    case deleteIngredient(ingredient : Ingredient)
     
     case createStep(recipeId : Int)
     case createStepToRecipe(recipeId : Int)
@@ -54,7 +56,18 @@ struct StepIntent{
     func intentToChange(time : Int){
         self.state.send(.timeChanging(time: time))
     }
-        
+    
+    func intentToChange(ingredientToAdd : Ingredient){
+        self.state.send(.addIngredient(ingredient: ingredientToAdd))
+    }
+    
+    func intentToChange(ingredientToDelete : Ingredient){
+        self.state.send(.deleteIngredient(ingredient: ingredientToDelete))
+    }
+    
+    func intentToChange(stepToAdd : Step){
+        self.listState.send(.appendList(step: stepToAdd))
+    }
 
 }
 

@@ -10,14 +10,13 @@ import SwiftUI
 import Combine
 
 class StepFormVM : ObservableObject, StepDelegate, Subscriber{
-
     
     typealias Input = StepIntentState
     
     typealias Failure = Never
     
     
-    private var model : Step;
+    var model : Step;
     
     @Published var id : Int?
     @Published var title : String
@@ -62,6 +61,12 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
         case .createStepToIngredient:
             //todo
             break
+        case .addIngredient(ingredient: let ingredient):
+            self.model.ingredients[ingredient] = 1
+            self.objectWillChange.send()
+            
+        case .deleteIngredient(ingredient: let ingredient):
+            self.ingredients.removeValue(forKey: ingredient)
         }
         return .none
     }
@@ -84,6 +89,9 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
     
     func stepChange(time: Int) {
         self.time = time
+    }
+    func stepChange(ingredients: [Ingredient : Int]) {
+        self.ingredients = ingredients
     }
     
     
