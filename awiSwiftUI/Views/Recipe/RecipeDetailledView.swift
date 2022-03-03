@@ -16,6 +16,8 @@ struct RecipeDetailledView: View {
     
     @State private var showIngredient = true
     @State private var showCosts = false
+    @State private var durationTime = 0
+    
     @State var ingredients : [Ingredient:Int] = [:]
     @State private var steps : [Step] = []
     @State var recipe : Recipe
@@ -150,12 +152,12 @@ struct RecipeDetailledView: View {
                         HStack{
                             Spacer()
                          
-                            Label("10 min", systemImage: "timer")
+                            Label("\(durationTime) min", systemImage: "timer")
                                 .padding(.horizontal,10)
                             
                             Label("1 euro", systemImage: "eurosign.circle")
                             
-                            Label("10 min", systemImage: "timer")
+                            Label("\(recipe.nbOfServing) p", systemImage: "fork.knife.circle")
                                 .padding(.horizontal,10)
 
                             Spacer()
@@ -185,10 +187,11 @@ struct RecipeDetailledView: View {
                         .cornerRadius(40)
                     }
                     .sheet(isPresented: $showCosts){
-                        //Table des coûts
-                        cost
+                        //----------- Coûts -----------
+                        CostView(recipe: recipe, durationTime: durationTime)
+                        
                         Spacer()
-                        Button("Press to dismiss") {
+                        Button("Fermer") {
                             showCosts.toggle()
                         }
                         .foregroundColor(Color.salmon)
@@ -196,6 +199,7 @@ struct RecipeDetailledView: View {
                         
                         
                     }
+                    
                     
                     //----------- Etiquette -----------
                     NavigationLink(destination: LabelManagement(recipe: recipe, ingredients: ingredients)){
@@ -310,35 +314,44 @@ struct RecipeDetailledView: View {
         .onAppear{
             self.recipeImgStr = ImageHelper.randomPic()
         }
-        .task{
+        .task{            
             let result = await StepDAO.getStepOfRecipe(recipeId: self.recipe.id!)
             let resIngredients = await IngredientDAO.getTotalIngredients(recipeId: self.recipe.id!)
+            let resultDuration = await RecipeDAO.getRecipeDuration(id: self.recipe.id!)
         
+            //Etapes
             switch(result){
-                
             case .success(let resSteps):
                 self.steps = resSteps
-            
             case .failure(let error):
                 print("error while retrieving steps" + error.localizedDescription)
             }
             
+            //Ingrédients
             switch(resIngredients){
             case .success(let resIngrDict):
                 self.ingredients = resIngrDict
             case .failure(let error):
                 print("error while retrieving ingredients total" + error.localizedDescription)
             }
+            
+            //Temps de préparation
+            switch(resultDuration){
+            case .success(let durationTime):
+                self.durationTime = durationTime
+            case .failure(let error):
+                print("error while retrieving duration time" + error.localizedDescription)
+            }
         }
     }
 }
-/*
+
 struct RecipeDetailledView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            RecipeDetailledView()
+            RecipeDetailledView(recipe: Recipe.recipes[1])
         }
         
     }
 }
-*/
+

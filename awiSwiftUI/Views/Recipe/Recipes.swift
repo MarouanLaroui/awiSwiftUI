@@ -103,6 +103,16 @@ struct Recipes: View {
             //}
         }
 
+        .toolbar {
+            HStack{
+                NavigationLink(destination: UserAccountView()){
+                    HStack {
+                        Image(systemName: "person")
+                    }
+                }
+            }
+            
+        }
     }
 }
 

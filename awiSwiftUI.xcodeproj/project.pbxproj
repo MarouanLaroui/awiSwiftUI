@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6F2EFC8227CD113D00BCC38C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFC8127CD113D00BCC38C /* View.swift */; };
 		6F2EFC8427CE723F00BCC38C /* LabelManagementVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFC8327CE723F00BCC38C /* LabelManagementVM.swift */; };
+		6F2EFC8627CF7CA300BCC38C /* CostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFC8527CF7CA300BCC38C /* CostView.swift */; };
+		6F2EFC8B27D0D0FC00BCC38C /* UserAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2EFC8A27D0D0FC00BCC38C /* UserAccountView.swift */; };
 		6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */; };
 		6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDD27C12651000AA621 /* Allergens.swift */; };
 		6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */; };
@@ -122,6 +124,8 @@
 /* Begin PBXFileReference section */
 		6F2EFC8127CD113D00BCC38C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		6F2EFC8327CE723F00BCC38C /* LabelManagementVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelManagementVM.swift; sourceTree = "<group>"; };
+		6F2EFC8527CF7CA300BCC38C /* CostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostView.swift; sourceTree = "<group>"; };
+		6F2EFC8A27D0D0FC00BCC38C /* UserAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountView.swift; sourceTree = "<group>"; };
 		6FE0BDFD27C4D02B00021B7A /* LabelManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelManagement.swift; sourceTree = "<group>"; };
 		6FF0FFDD27C12651000AA621 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		6FF0FFDF27C12E62000AA621 /* AllergenRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenRow.swift; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 				AC42457F27C90BB700927F39 /* RecipeForm.swift */,
 				AC42458127C9189B00927F39 /* RecipeVM.swift */,
 				AC42458327C91A5900927F39 /* RecipeIntent.swift */,
+				6F2EFC8527CF7CA300BCC38C /* CostView.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 			children = (
 				ACBBE52C27C10357002B59C8 /* CreateUserForm.swift */,
 				ACBBE52E27C10369002B59C8 /* CreateAccountForm.swift */,
+				6F2EFC8A27D0D0FC00BCC38C /* UserAccountView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -757,6 +763,7 @@
 				AC25CAD627C95A8C001258F0 /* StepIntent.swift in Sources */,
 				ACBBE50927C101D9002B59C8 /* Ingredient.swift in Sources */,
 				ACBBE53A27C103BF002B59C8 /* Ingredients.swift in Sources */,
+				6F2EFC8627CF7CA300BCC38C /* CostView.swift in Sources */,
 				ACE6A90727C507CC00D82E05 /* Token.swift in Sources */,
 				AC4FC02927C6C175002A8F19 /* KeyChainHelper.swift in Sources */,
 				ACBBE4D827C0FFDC002B59C8 /* Formatters.swift in Sources */,
@@ -821,6 +828,7 @@
 				6F2EFC8227CD113D00BCC38C /* View.swift in Sources */,
 				ACBBE54727C10458002B59C8 /* IngredientListViewModel.swift in Sources */,
 				ACBBE53827C103B1002B59C8 /* IngredientForm.swift in Sources */,
+				6F2EFC8B27D0D0FC00BCC38C /* UserAccountView.swift in Sources */,
 				ACBBE54127C1041C002B59C8 /* IngredientCategoryFormViewModel.swift in Sources */,
 				ACBBE55C27C288D3002B59C8 /* RecipeDTO.swift in Sources */,
 				AC60AEC327CA350100AD4876 /* RecipeIsComposedOfGeneralStepDTO.swift in Sources */,

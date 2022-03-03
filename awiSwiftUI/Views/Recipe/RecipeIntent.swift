@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import SwiftUI
 
-
 enum RecipeIntentState{
     
     case ready
@@ -83,4 +82,3 @@ struct RecipeIntent{
     }
 
 }
-

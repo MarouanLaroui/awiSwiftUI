@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipeCard: View {
     
     @StateObject var recipe : Recipe
+    @State private var durationTime = 0
     
     var body: some View {
         VStack{
@@ -37,11 +38,11 @@ struct RecipeCard: View {
                     }
                     .padding(.bottom,2)
                     HStack{
-                        TextUnderIconView(systemImageStr: "timer", text: "10mn")
+                        TextUnderIconView(systemImageStr: "timer", text: "\(durationTime)mn")
                   
                         TextUnderIconView(systemImageStr: "eurosign.circle", text: "1 euro")
                  
-                        TextUnderIconView(systemImageStr: "timer", text: "10mn")
+                        TextUnderIconView(systemImageStr: "fork.knife.circle", text: "\(recipe.nbOfServing) p")
                     
                     }
                     .padding(.bottom)
@@ -51,7 +52,21 @@ struct RecipeCard: View {
         
         .background(.white)
         .cornerRadius(10)
+        
+        .task {
+            let result = await RecipeDAO.getRecipeDuration(id: self.recipe.id!)
+        
+            switch(result){
+                
+            case .success(let durationTime):
+                self.durationTime = durationTime
+            
+            case .failure(let error):
+                print("error while retrieving duration time" + error.localizedDescription)
+            }
+        }
     }
+    
 }
 
 struct RecipeCard_Previews: PreviewProvider {

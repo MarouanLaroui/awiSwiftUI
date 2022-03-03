@@ -31,10 +31,15 @@ struct Allergens: View{
             .searchable(text: $searchedAllergenName, placement: .navigationBarDrawer(displayMode: .always))
         }
         //Icône de compte
-        .toolbar{
+        .toolbar {
             HStack{
-                Image(systemName: "person")
+                NavigationLink(destination: UserAccountView()){
+                    HStack {
+                        Image(systemName: "person")
+                    }
+                }
             }
+            
         }
         //récupération des allergènes en BD
         .task {
