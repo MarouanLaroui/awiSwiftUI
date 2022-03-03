@@ -65,8 +65,28 @@ class StepIntent{
         self.state.send(.deleteIngredient(ingredient: ingredientToDelete))
     }
     
-    func intentToChange(stepToAdd : Step){
-        self.listState.send(.appendList(step: stepToAdd))
+    func intentToChange(stepToAdd : Step, recipeId : Int) async{
+        
+        let res : Result<Step,Error>
+        if let stepId = stepToAdd.id {
+            print("deletion of stepToingredient")
+            await StepToIngredientDAO.deleteStepToIngredientOfStep(stepId: stepId)
+            res = await StepDAO.updateStepOfRecipe(recipeId: recipeId, step: stepToAdd, stepNbOfOrder: 2)
+        }
+        else{
+            res = await StepDAO.createStepOfRecipe(recipeId: recipeId, step: stepToAdd, stepNbOfOrder: 2)
+        }
+        
+        
+        
+        switch(res){
+        case .success(let step):
+            //if(stepToAdd.id == nil)self.listState.send(.appendList(step: stepToAdd))
+            print("success")
+        case .failure(let error):
+            print("error")
+            print(error.localizedDescription)
+        }
     }
     
     func intentToCreateSteps(recipeId : Int, steps : [Step]) async -> Result<[Step],Error>{

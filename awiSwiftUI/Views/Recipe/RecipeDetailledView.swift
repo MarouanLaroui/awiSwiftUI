@@ -28,6 +28,12 @@ struct RecipeDetailledView: View {
         return isSelected ? Color.white : Color.lightgrey
     }
     
+    private var editButton: some View {
+        return NavigationLink(destination : StepList(recipe: self.recipe, intent: StepIntent())){
+            Text("Edit")
+            //Image(systemName: "plus")
+        }
+    }
     
     var cost: some View {
         VStack{
@@ -204,6 +210,7 @@ struct RecipeDetailledView: View {
                         .cornerRadius(40)
                     }
                     .navigationBarTitle("\(recipe.title)")
+                    .navigationBarItems(trailing: editButton)
                     
                 }
                 
@@ -251,6 +258,7 @@ struct RecipeDetailledView: View {
                                     Text(ingredient.name + " : ")
                                     Text("\(qtty)")
                                 }
+                                Divider()
                             }
                         }
                         

@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 
 struct StepToIngredientDAO{
+    
+    static func deleteStepToIngredientOfStep(stepId : Int)async {
+        await JSONHelper.httpDelete(url: Utils.apiURL + "ingredient-to-step/" + String(stepId) + "/step")
+    }
+    
+    
     static func createStepToIngredient(ingredientId : Int, stepId : Int, quantity : Int) async -> Result<StepToIngredientDTO,Error>{
         
         let stepToIngredientDTO = StepToIngredientDTO(ingredientId: ingredientId, stepId: stepId, quantity: quantity)
@@ -26,7 +32,6 @@ struct StepToIngredientDAO{
             guard let encoded = await JSONHelper.encode(data: stepToIngredientDTO)
             else {
                 return .failure(JSONError.JsonEncodingFailed)
-                print("error in stepToIngredientDAO")
             }
             
             let sencoded = String(data: encoded, encoding: .utf8)!

@@ -16,9 +16,11 @@ struct JSONHelper{
                 if let dtos : T = JSONHelper.decode(data: data){
                     return .success(dtos)
                 }
+                print("decode error")
                 return.failure(HTTPError.emptyResult)
             }
             catch(let error){
+                print("catched error")
                 return .failure(error)
             }
         }

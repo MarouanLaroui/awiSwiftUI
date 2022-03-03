@@ -11,13 +11,14 @@ struct StepForm: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var stepVM : StepFormVM = StepFormVM(model: Step(title: "", description: "", time: 1, ingredients: [:]))
-    
+    @ObservedObject var recipe : Recipe
     var gridItems = [GridItem(.adaptive(minimum : 150))]
     var listIntent : StepIntent
     var intent = StepIntent()
     
-    init(intent : StepIntent, stepFormVM : StepFormVM? = nil){
+    init(intent : StepIntent, stepFormVM : StepFormVM? = nil, recipe : Recipe){
 
+        self.recipe = recipe
         if (stepFormVM != nil) {self.stepVM = stepFormVM!}
         
         self.listIntent = intent
@@ -95,11 +96,12 @@ struct StepForm: View {
             }
             .padding()
             .navigationTitle("Step Informations")
-        
+            
             Button("Save step"){
-                self.listIntent.intentToChange(stepToAdd: self.stepVM.model)
-                self.presentationMode.wrappedValue.dismiss()
-                
+                Task{
+                    await self.listIntent.intentToChange(stepToAdd: self.stepVM.model, recipeId: self.recipe.id!)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
                 .padding()
                 .background(Color.salmon)

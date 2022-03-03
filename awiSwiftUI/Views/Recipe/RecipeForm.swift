@@ -73,7 +73,22 @@ struct RecipeForm: View {
             }
             
             
-
+            Button("Create recipe"){
+                Task{
+                    let res = await self.intent.intentToCreateRecipe(recipe: self.recipeFormVM.model)
+                
+                    switch(res){
+                        
+                    case .success(let postedRecipe):
+                        print("success create recipe in view")
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                    case .failure(_):
+                        print("failure in steplist view")
+                    }
+                }
+            }
+            /*
             NavigationLink(destination: StepList(recipeIntent: self.intent, recipeModel: self.recipeFormVM.model, previousPagePresentationMode: presentationMode)){
                 Text("Add steps")
                     .padding()
@@ -81,6 +96,7 @@ struct RecipeForm: View {
                     .foregroundColor(.white)
                     .cornerRadius(15)
             }
+             */
             Spacer()
         }
         .task {

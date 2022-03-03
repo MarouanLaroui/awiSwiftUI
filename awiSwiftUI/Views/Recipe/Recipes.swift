@@ -13,13 +13,7 @@ struct Recipes: View {
     @State var recipeCategories : [RecipeCategory] = []
     @State var selectedCategory : RecipeCategory? = nil
     @State var searchedRecipeName = ""
-    @State var isRecipeCreationShowed : Bool = false{
-        didSet{
-            if(!isRecipeCreationShowed && selectedRecipe != nil){
-                showRecipeModificationSheet = true
-            }
-        }
-    }
+    @State var isRecipeCreationShowed : Bool = false
     @State var selectedRecipe : Recipe?
     @State var showRecipeModificationSheet : Bool = false
     
@@ -81,7 +75,7 @@ struct Recipes: View {
                 .searchable(text: $searchedRecipeName,placement: .navigationBarDrawer(displayMode: .always))
         }
         .task{
-            if(self.recipesVM.recipes.count == 0){
+            //if(self.recipesVM.recipes.count == 0){
                 print("--------__RECIPE TASK __----------")
                 async let reqRecipes =  RecipeDAO.getRecipes()
                 async let reqRecipeCategories =  RecipeCategoryDAO.getRecipeCategories()
@@ -106,11 +100,9 @@ struct Recipes: View {
     
                 }
     
-            }
+            //}
         }
-        .sheet(isPresented: $showRecipeModificationSheet){
-            
-        }
+
     }
 }
 
