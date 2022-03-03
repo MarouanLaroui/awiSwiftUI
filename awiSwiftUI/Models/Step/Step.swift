@@ -44,6 +44,7 @@ class Step : Stepable, ObservableObject, Identifiable, Hashable{
     
     var ingredients : [Ingredient : Int]{
         didSet{
+            print("didSet ingredients Step model")
             self.delegate?.stepChange(ingredients: self.ingredients)
         }
     }

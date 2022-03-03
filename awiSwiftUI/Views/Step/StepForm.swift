@@ -72,6 +72,9 @@ struct StepForm: View {
                         Text(ingredient.name)
                         Spacer()
                         TextField("",value: $stepVM.ingredients[ingredient],formatter : Formatters.int)
+                            .onSubmit {
+                                self.intent.intentToChange(ingredient: ingredient, quantity: stepVM.ingredients[ingredient]!)
+                            }
 //                        Text("\(stepVM.ingredients[ingredient]!)")
                     }
                     Divider()
@@ -98,6 +101,8 @@ struct StepForm: View {
             .navigationTitle("Step Informations")
             
             Button("Save step"){
+                print("Save Step button")
+                print(self.stepVM.model.ingredients)
                 Task{
                     await self.listIntent.intentToChange(stepToAdd: self.stepVM.model, recipeId: self.recipe.id!)
                     self.presentationMode.wrappedValue.dismiss()

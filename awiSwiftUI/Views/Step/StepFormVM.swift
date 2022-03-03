@@ -68,6 +68,10 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
             
         case .deleteIngredient(ingredient: let ingredient):
             self.ingredients.removeValue(forKey: ingredient)
+            
+        case .quantityOfIngredientChanging(ingredient: let ingredient, quantity: let quantity):
+            print("StepFormVM quantityOfIngredientChanging")
+            self.model.ingredients[ingredient] = quantity
         }
         return .none
     }

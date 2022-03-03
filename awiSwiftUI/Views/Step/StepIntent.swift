@@ -17,7 +17,7 @@ enum StepIntentState{
     case timeChanging(time : Int)
     case addIngredient(ingredient : Ingredient)
     case deleteIngredient(ingredient : Ingredient)
-    
+    case quantityOfIngredientChanging(ingredient : Ingredient, quantity : Int)
     case createStep(recipeId : Int)
     case createStepToRecipe(recipeId : Int)
     case createStepToIngredient
@@ -65,12 +65,25 @@ class StepIntent{
         self.state.send(.deleteIngredient(ingredient: ingredientToDelete))
     }
     
+    func intentToChange(ingredient : Ingredient, quantity : Int){
+        self.state.send(.quantityOfIngredientChanging(ingredient: ingredient, quantity: quantity))
+    }
+    
     func intentToChange(stepToAdd : Step, recipeId : Int) async{
+        
         
         let res : Result<Step,Error>
         if let stepId = stepToAdd.id {
             print("deletion of stepToingredient")
-            await StepToIngredientDAO.deleteStepToIngredientOfStep(stepId: stepId)
+            let deletionResult = await StepToIngredientDAO.deleteStepToIngredientOfStep(stepId: stepId)
+            switch(deletionResult){
+                
+            case .success(let nbOfRows):
+                print(nbOfRows)
+            case .failure(_):
+                print("deletion error in stepintent")
+            }
+
             res = await StepDAO.updateStepOfRecipe(recipeId: recipeId, step: stepToAdd, stepNbOfOrder: 2)
         }
         else{

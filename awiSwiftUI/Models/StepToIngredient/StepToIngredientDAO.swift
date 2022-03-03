@@ -10,7 +10,7 @@ import UIKit
 
 struct StepToIngredientDAO{
     
-    static func deleteStepToIngredientOfStep(stepId : Int)async {
+    static func deleteStepToIngredientOfStep(stepId : Int)async -> Result<Int,Error> {
         await JSONHelper.httpDelete(url: Utils.apiURL + "ingredient-to-step/" + String(stepId) + "/step")
     }
     

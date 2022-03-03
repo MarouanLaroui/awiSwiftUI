@@ -184,6 +184,8 @@ struct StepDAO{
                 case .success(_):
                     /*Ingredient To Step */
                     for (ingredient, quantity) in step.ingredients {
+                        print("ingredient To step creation")
+                        print(quantity)
                         await StepToIngredientDAO.createStepToIngredient(ingredientId: ingredient.id!, stepId: decoded.id!, quantity: quantity)
                     }
                     return .success(step)

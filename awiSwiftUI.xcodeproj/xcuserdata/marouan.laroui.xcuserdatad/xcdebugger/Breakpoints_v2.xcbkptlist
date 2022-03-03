@@ -686,8 +686,8 @@
             filePath = "awiSwiftUI/Models/Step/StepDAO.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "createStepOfRecipe(recipeId:step:stepNbOfOrder:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -702,8 +702,8 @@
             filePath = "awiSwiftUI/Models/Step/StepDAO.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "createStepOfRecipe(recipeId:step:stepNbOfOrder:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -718,8 +718,8 @@
             filePath = "awiSwiftUI/Models/Step/StepDAO.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "createStepOfRecipe(recipeId:step:stepNbOfOrder:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,9 +734,41 @@
             filePath = "awiSwiftUI/Models/Step/StepDAO.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "createStepOfRecipe(recipeId:step:stepNbOfOrder:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "71C48A1D-454A-44F5-83D2-7352643815DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Step/StepFormVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "receive(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E601183E-DA37-4EEC-B435-228E585765B9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "awiSwiftUI/Views/Step/StepIntent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "intentToChange(stepToAdd:recipeId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
