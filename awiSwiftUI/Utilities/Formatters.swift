@@ -21,4 +21,10 @@ class Formatters{
         formatter.numberStyle = .none
         return formatter
     }()
+    
+    static let date: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter
+    }()
 }

@@ -62,9 +62,9 @@ struct Ingredients: View {
                             selectedIngredient = ingredient
                             isFormDisplayed = true
                         }
-                    label: {
-                        Image(systemName: "square.and.pencil")
-                    }
+                        label: {
+                            Image(systemName: "square.and.pencil")
+                        }
                 
                         Button {
                             self.isAlertShowed = true
@@ -154,7 +154,7 @@ struct Ingredients: View {
                     .clipShape(Circle())
                 }
             }
-                .padding()
+            .padding()
         )
         
         .sheet(isPresented: $isFormDisplayed){
@@ -169,9 +169,13 @@ struct Ingredients: View {
         }
         .toolbar {
             HStack{
-                Image(systemName: "person")
+                NavigationLink(destination: UserAccountView()){
+                    HStack {
+                        Image(systemName: "person")
+                    }
+                }
             }
-         
+            
         }
     }
 }

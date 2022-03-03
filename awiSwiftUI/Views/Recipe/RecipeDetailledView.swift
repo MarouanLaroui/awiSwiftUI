@@ -79,7 +79,7 @@ struct RecipeDetailledView: View {
                         .cornerRadius(40)
                     }
                     .sheet(isPresented: $showCosts){
-                        //Table des coûts
+                        //----------- Coûts -----------
                         CostView(recipe: recipe, durationTime: durationTime)
                         
                         Spacer()
