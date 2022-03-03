@@ -57,18 +57,8 @@ struct ContentView: View {
                     Image(systemName: "text.book.closed")
                     Text("Recettes")
                 }
-                
-                
-                
-                /*NavigationView{
-                    LabelManagement()
-                        .navigationTitle("Etiquettes")
-                }
-                .tabItem{
-                    Image(systemName: "tag.fill")
-                    Text("Etiquettes")
-                }*/
             }
+            .accentColor(.salmon)
         }
         //LoginView()
         //Badge(backgroundColor: Color.red, fontColor: Color.white, text: "Allergen")

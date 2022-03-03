@@ -42,8 +42,8 @@ struct CostView : View {
     @State var beneficeByPortion : Double = 0
     @State var rentabilityThreshold : Double = 0
     
-
-    func calculateCosts(){
+    
+    func calculateCosts() {
         self.seasoningTotal = (self.seasoningPercentage*ingredientCost/100)
         self.subtotal = self.seasoningTotal + self.ingredientCost
         self.fluidCost = (self.fluidCostPerHour * self.durationTime)
@@ -278,7 +278,7 @@ struct CostView : View {
         .task{
             let resultCost = await RecipeDAO.getRecipeCost(id: self.recipe.id!)
         
-            //Etapes
+            //Coût
             switch(resultCost){
             case .success(let resIngredientCost):
                 self.ingredientCost = resIngredientCost

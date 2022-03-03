@@ -204,12 +204,7 @@ struct RecipeDetailledView: View {
         .onAppear{
             self.recipeImgStr = ImageHelper.randomPic()
         }
-        .task {
-            
-        
-            
-        }
-        .task{
+        .task{            
             let result = await StepDAO.getStepOfRecipe(recipeId: self.recipe.id!)
             let resIngredients = await IngredientDAO.getTotalIngredients(recipeId: self.recipe.id!)
             let resultDuration = await RecipeDAO.getRecipeDuration(id: self.recipe.id!)
