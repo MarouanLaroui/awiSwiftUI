@@ -9,17 +9,18 @@ import SwiftUI
 
 struct StepForm: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var stepVM : StepFormVM = StepFormVM(model: Step(title: "", description: "", time: 1, ingredients: [:]))
+    
     var gridItems = [GridItem(.adaptive(minimum : 150))]
-    var intent : StepIntent
+    var listIntent : StepIntent
+    var intent = StepIntent()
     
     init(intent : StepIntent, stepFormVM : StepFormVM? = nil){
 
-        if let stepFormVM = stepFormVM {
-            print("not null stepFormVM")
-            self.stepVM = stepFormVM
-        }
-        self.intent = intent
+        if (stepFormVM != nil) {self.stepVM = stepFormVM!}
+        
+        self.listIntent = intent
         self.intent.addObserver(viewModel: stepVM)
     }
     
@@ -29,21 +30,21 @@ struct StepForm: View {
                 LazyVGrid(columns: gridItems, alignment : .leading){
                     Group{
                         Text("Title")
-                        TextField("enter a title", text: $stepVM.title)
+                        TextField("Enter a title", text: $stepVM.title)
                             .onSubmit {
                                 self.intent.intentToChange(title: self.stepVM.title)
                             }
                         
                         
                         Text("Description :")
-                        TextField("enter a description", text: $stepVM.description)
+                        TextField("Enter a description", text: $stepVM.description)
                             .onSubmit {
                                 self.intent.intentToChange(description: self.stepVM.description)
                             }
                         
                         
                         Text("Time :")
-                        TextField("", value: $stepVM.time, formatter: Formatters.int)
+                        TextField("Enter a duration", value: $stepVM.time, formatter: Formatters.int)
                             .onSubmit {
                                 self.intent.intentToChange(time: self.stepVM.time)
                             }
@@ -61,6 +62,7 @@ struct StepForm: View {
                     NavigationLink(destination: SelectIngredientForStep(intent : self.intent)){
                         Image(systemName: "plus")
                     }
+                     
                 }
                 
                 
@@ -93,9 +95,11 @@ struct StepForm: View {
             }
             .padding()
             .navigationTitle("Step Informations")
-            
+        
             Button("Save step"){
-                self.intent.intentToChange(stepToAdd: self.stepVM.model)
+                self.listIntent.intentToChange(stepToAdd: self.stepVM.model)
+                self.presentationMode.wrappedValue.dismiss()
+                
             }
                 .padding()
                 .background(Color.salmon)

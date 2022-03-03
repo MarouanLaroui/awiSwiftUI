@@ -23,8 +23,10 @@ struct StepToIngredientDAO{
             request.httpMethod = "POST"
             //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
             
-            guard let encoded = await JSONHelper.encode(data: stepToIngredientDTO) else {
+            guard let encoded = await JSONHelper.encode(data: stepToIngredientDTO)
+            else {
                 return .failure(JSONError.JsonEncodingFailed)
+                print("error in stepToIngredientDAO")
             }
             
             let sencoded = String(data: encoded, encoding: .utf8)!
@@ -49,6 +51,7 @@ struct StepToIngredientDAO{
             }
         }
         catch(_){
+            print("failure in StepTOIngredientDAO")
             return .failure(HTTPError.badRequest)
         }
         

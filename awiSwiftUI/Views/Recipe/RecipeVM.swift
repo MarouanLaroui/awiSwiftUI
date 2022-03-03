@@ -16,7 +16,7 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
     typealias Failure = Never
     
     
-    private var model : Recipe;
+    var model : Recipe;
     
     @Published var id : Int?
     @Published var title : String

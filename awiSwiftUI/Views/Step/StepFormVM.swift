@@ -47,6 +47,7 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
             //todo
             break
         case .titleChanging(title: let title):
+            print("title changin in StepFormVM")
             self.model.title = title
         case .descriptionChanging(description: let description):
             self.model.description = description

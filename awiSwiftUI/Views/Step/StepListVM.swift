@@ -41,7 +41,15 @@ class StepListVM :  ObservableObject, Subscriber {
             self.objectWillChange.send()
             
         case .appendList(step: let step):
+            print("In StepListVM before")
+            self.steps.forEach({
+                print($0.title)
+            })
             self.steps.append(step)
+            print("after insertion")
+            self.steps.forEach({
+                print($0.title)
+            })
             
         case .deleteElement(stepIndex: let stepIndex):
             self.steps.remove(at: stepIndex)

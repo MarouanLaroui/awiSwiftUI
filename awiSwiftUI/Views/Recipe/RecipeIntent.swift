@@ -28,7 +28,7 @@ enum RecipeIntentState{
 struct RecipeIntent{
     
     @State private var state = PassthroughSubject<RecipeIntentState,Never>()
-    
+
     
     func addObserver(viewModel : RecipeVM){
         self.state.subscribe(viewModel)
@@ -64,27 +64,21 @@ struct RecipeIntent{
     }
     
     
-    func intentToCreateRecipe(recipe : Recipe, isUpdate : Bool) async {
-        /*
-        let response = await RecipeDAO.
+    func intentToCreateRecipe(recipe : Recipe) async -> Result<Recipe,Error> {
+        print("intentToCreateRecipe")
+        let response = await RecipeDAO.createRecipe(recipe: recipe)
         
         switch(response){
+    
+        case .success(let postedRecipe):
+            print("success post recipe")
+            return .success(postedRecipe)
             
-        case .success(let postedIngredient):
-            
-            self.state.send(.validateChange)
-            if(!isUpdate){
-                self.listState.send(.appendList(ingredient: postedIngredient))
-            }
-            else{
-                self.listState.send(.listUpdated)
-            }
             
         case .failure(let error):
             print("ERROR : " + error.localizedDescription)
-            return
+            return .failure(error)
         }
-         */
 
     }
 

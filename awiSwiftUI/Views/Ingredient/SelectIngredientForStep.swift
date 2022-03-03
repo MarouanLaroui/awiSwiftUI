@@ -10,8 +10,10 @@ import SwiftUI
 struct SelectIngredientForStep: View {
     
     var intent : StepIntent
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var ingredients : [Ingredient] = []
     @State var searchedIngredientName : String = ""
+    
     var searchedIngredient : [Ingredient]{
         if(searchedIngredientName.isEmpty){
             return self.ingredients
@@ -28,6 +30,7 @@ struct SelectIngredientForStep: View {
                 Text(ingredient.name)
                     .onTapGesture {
                         self.intent.intentToChange(ingredientToAdd: ingredient)
+                        self.presentationMode.wrappedValue.dismiss()
                     }
             }
         }

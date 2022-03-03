@@ -31,7 +31,7 @@ enum IntentStepListState{
     case deleteElement(stepIndex: Int)
 }
 
-struct StepIntent{
+class StepIntent{
     
     @State private var state = PassthroughSubject<StepIntentState,Never>()
     @State private var listState = PassthroughSubject<IntentStepListState,Never>()
@@ -68,6 +68,20 @@ struct StepIntent{
     func intentToChange(stepToAdd : Step){
         self.listState.send(.appendList(step: stepToAdd))
     }
+    
+    func intentToCreateSteps(recipeId : Int, steps : [Step]) async -> Result<[Step],Error>{
+        print("intent to create steps in stepIntent")
+        var nbOfOrder = 1
+        
+        for step in steps {
+            let res = await StepDAO.createStepOfRecipe(recipeId: recipeId, step: step, stepNbOfOrder: nbOfOrder)
+            nbOfOrder = nbOfOrder + 1
+        }
+        
+        return .success([])
+
+    }
+
 
 }
 

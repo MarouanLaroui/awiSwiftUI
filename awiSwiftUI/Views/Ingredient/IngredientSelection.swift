@@ -11,6 +11,7 @@ struct IngredientSelection: View {
     
     @State var ingredients : [Ingredient] = []
     @State var searchedIngredientName = ""
+    
     var searchResult : [Ingredient]{
         if(searchedIngredientName.isEmpty){
             return self.ingredients;

@@ -79,5 +79,43 @@ struct RecipeDAO{
         }
     }
     
+    static func createRecipe(recipe : Recipe) async -> Result<Recipe,Error>{
+        
+        let recipeDTO = RecipeDAO.RecipeToDTO(recipe: recipe)
+        guard let url = URL(string: "https://awi-api.herokuapp.com/recipe")
+        else {return .failure(HTTPError.badURL)}
+        
+        do{
+            var request = URLRequest(url: url)
+    
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "POST"
+            //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
+            
+            guard let encoded = await JSONHelper.encode(data: recipeDTO)
+            else {return .failure(JSONError.JsonEncodingFailed)}
+            
+            let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
+            let httpresponse = response as! HTTPURLResponse
+            if httpresponse.statusCode == 201{
+                
+                guard let decoded : RecipeDTO = JSONHelper.decode(data: data)
+                else {return .failure(HTTPError.badRecoveryOfData)}
+            
+                let retrievedRecipe =  RecipeDAO.DTOtoRecipe(dto: decoded)
+                return .success(retrievedRecipe)
+                
+            }
+            else{
+                //ERROR TO CHANGE
+                print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
+                return .failure(HTTPError.badURL)
+            }
+        }
+        catch(_){
+            return .failure(HTTPError.badRequest)
+        }
+    }
     //TODO: fonction de post d'une recette 
 }

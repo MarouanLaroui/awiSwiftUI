@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeForm: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var recipeFormVM : RecipeVM
     @State var recipeCategories : [RecipeCategory] = []
     var intent : RecipeIntent = RecipeIntent()
@@ -27,31 +28,31 @@ struct RecipeForm: View {
             LazyVGrid(columns: gridItems, alignment : .leading){
                 Group{
                     Text("Title")
-                    TextField("", text: $recipeFormVM.title)
+                    TextField("Title", text: $recipeFormVM.title)
                         .onSubmit {
                             self.intent.intentToChange(title: self.recipeFormVM.title)
                         }
                     
                     Text("Person in charge :")
-                    TextField("", text: $recipeFormVM.personInCharge)
+                    TextField("Person in charge", text: $recipeFormVM.personInCharge)
                         .onSubmit {
                             self.intent.intentToChange(personInCharge: self.recipeFormVM.personInCharge)
                         }
                     
                     
                     Text("Number of serving :")
-                    TextField("", value: $recipeFormVM.nbOfServing, formatter: Formatters.int)
+                    TextField("Number of serving", value: $recipeFormVM.nbOfServing, formatter: Formatters.int)
                         .onSubmit {
                             self.intent.intentToChange(nbOfServing: self.recipeFormVM.nbOfServing)
                         }
                     
                     Text("Dressing equipment :")
-                    TextField("", text: $recipeFormVM.dressingEquipment)
+                    TextField("Dressing equipment", text: $recipeFormVM.dressingEquipment)
                         .onSubmit {
                             self.intent.intentToChange(dressingEquipment: self.recipeFormVM.dressingEquipment)
                         }
                     Text("Specific equipment :")
-                    TextField("", text: $recipeFormVM.specificEquipment)
+                    TextField("Specific equipment", text: $recipeFormVM.specificEquipment)
                         .onSubmit {
                             self.intent.intentToChange(specificEquipment: self.recipeFormVM.specificEquipment)
                         }
@@ -70,15 +71,17 @@ struct RecipeForm: View {
                     Text(category.name)
                 }
             }
+            
+            
 
-            NavigationLink(destination: StepList(recipeIntent: self.intent)){
+            NavigationLink(destination: StepList(recipeIntent: self.intent, recipeModel: self.recipeFormVM.model, previousPagePresentationMode: presentationMode)){
                 Text("Add steps")
                     .padding()
                     .background(Color.salmon)
                     .foregroundColor(.white)
                     .cornerRadius(15)
             }
-            
+            Spacer()
         }
         .task {
             let res = await RecipeCategoryDAO.getRecipeCategories()

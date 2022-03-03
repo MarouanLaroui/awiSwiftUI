@@ -48,6 +48,8 @@ struct StepDAO{
     }
     //pas de sens changer la fonction
     static func createStepOfRecipe(recipeId : Int, step : Step, stepNbOfOrder : Int) async -> Result<Step,Error>{
+        
+        print("create step of recipe in stepDAO")
         let stepDTO = StepDAO.stepToDTO(step: step)
         guard let url = URL(string: "https://awi-api.herokuapp.com/step")
         else {return .failure(HTTPError.badURL)}
@@ -89,7 +91,9 @@ struct StepDAO{
                         await StepToIngredientDAO.createStepToIngredient(ingredientId: ingredient.id!, stepId: decoded.id!, quantity: quantity)
                     }
                     return .success(step)
+                    
                 case .failure(let error):
+                    print("failure StepDAO")
                     return .failure(error)
                 }
             }
@@ -100,6 +104,7 @@ struct StepDAO{
             }
         }
         catch(_){
+            print("failure stepDAO2")
             return .failure(HTTPError.badRequest)
         }
     }

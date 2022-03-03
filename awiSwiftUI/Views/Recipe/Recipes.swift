@@ -13,6 +13,15 @@ struct Recipes: View {
     @State var recipeCategories : [RecipeCategory] = []
     @State var selectedCategory : RecipeCategory? = nil
     @State var searchedRecipeName = ""
+    @State var isRecipeCreationShowed : Bool = false{
+        didSet{
+            if(!isRecipeCreationShowed && selectedRecipe != nil){
+                showRecipeModificationSheet = true
+            }
+        }
+    }
+    @State var selectedRecipe : Recipe?
+    @State var showRecipeModificationSheet : Bool = false
     
     var gridItems = [GridItem(.adaptive(minimum : 150))]
     
@@ -63,6 +72,7 @@ struct Recipes: View {
                                 .background(Color.salmon)
                                 .foregroundColor(.white)
                                 .clipShape(Circle())
+                             
                             }
                         }
                     }
@@ -98,8 +108,10 @@ struct Recipes: View {
     
             }
         }
+        .sheet(isPresented: $showRecipeModificationSheet){
+            
+        }
     }
-    
 }
 
 struct Recipes_Previews: PreviewProvider {
