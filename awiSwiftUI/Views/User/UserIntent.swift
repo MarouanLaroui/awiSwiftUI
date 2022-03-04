@@ -88,6 +88,28 @@ struct UserIntent{
         }
         
     }
+    
+    func intentToDeleteUser(user : User) async {
+        
+        let response = await JSONHelper.httpDelete(url: Utils.apiURL + "user/" +  String(user.id!))
+        
+        switch(response){
+            
+        case .success(let nbAffectedRows):
+            
+            if(nbAffectedRows>0){
+                self.listState.send(.deleteElement(userId : user.id!))
+            }
+            //Gérer cas fail ?
+            else{
+                self.listState.send(.listUpdated)
+            }
+            
+        case .failure(let error):
+            print("ERROR : " + error.localizedDescription)
+            return
+        }
+    }
 
 }
 

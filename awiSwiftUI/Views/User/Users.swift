@@ -12,7 +12,11 @@ struct Users: View {
     @ObservedObject var userListVM  = UserListVM(users: [])
     @State var selectedUser : User? = nil
     @State var isSheetShown : Bool = false
+    var intent = UserIntent()
     
+    init(){
+        self.intent.addListObserver(viewModel: userListVM)
+    }
     var body: some View {
         VStack{
             List(userListVM.users){
@@ -30,7 +34,7 @@ struct Users: View {
                         
                         Button {
                             Task{
-                                
+                                await self.intent.intentToDeleteUser(user: user)
                             }
                         }
                     label: {
