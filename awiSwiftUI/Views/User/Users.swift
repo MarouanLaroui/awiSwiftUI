@@ -12,9 +12,10 @@ struct Users: View {
     @ObservedObject var userListVM  = UserListVM(users: [])
     @State var selectedUser : User? = nil
     @State var isSheetShown : Bool = false
-    var intent = UserIntent()
+    var intent : UserIntent
     
     init(){
+        self.intent = UserIntent()
         self.intent.addListObserver(viewModel: userListVM)
     }
     var body: some View {
@@ -22,7 +23,7 @@ struct Users: View {
             List(userListVM.users){
                 user in
                 
-                UserRow(user: user)
+                UserRow(userVM: UserVM(model: user))
                     .swipeActions {
                         Button {
                             self.selectedUser = user
@@ -64,24 +65,30 @@ struct Users: View {
                     .padding()
             )
             .task {
-                let getUserResult = await UserDAO.getUsers()
                 
-                switch(getUserResult){
+                if(self.userListVM.users.count == 0){
                     
-                case .success(let users):
-                    self.userListVM.users = users
-                case .failure(_):
-                    print("failure while retrieving users")
+                    let getUserResult = await UserDAO.getUsers()
+                    
+                    switch(getUserResult){
+                        
+                    case .success(let users):
+                        self.userListVM.users = users
+                    case .failure(_):
+                        print("failure while retrieving users")
+                    }
+                    
                 }
+                
             }
             .sheet(isPresented: $isSheetShown, onDismiss: {
                 self.selectedUser = nil
             }){
                 if let selectedUser = selectedUser {
-                    CreateAccountForm(userVM: UserVM(model: selectedUser), isSheetShown: $isSheetShown)
+                    CreateAccountForm(userVM: UserVM(model: selectedUser), isSheetShown: $isSheetShown, intent : self.intent)
                 }
                 else{
-                    CreateAccountForm(isSheetShown: $isSheetShown)
+                    CreateAccountForm(isSheetShown: $isSheetShown, intent : self.intent)
                 }
             }
         }

@@ -73,15 +73,22 @@ struct UserIntent{
     }
     
     func intentToPostUser(user : User) async{
-        print("intentToPostUser : ")
-        print(user.name)
-        
+
         let postUserResult = await UserDAO.postUser(user: user)
     
         switch(postUserResult){
             
-        case .success(let user):
-            print("success posting user")
+        case .success(let resUser):
+            /*If update*/
+            if let userId = user.id{
+                self.state.send(.validateChange)
+                self.listState.send(.listUpdated)
+            }
+            /*If creation*/
+            else{
+                self.listState.send(.appendList(user: resUser))
+            }
+            
             break
         case .failure(_):
             break

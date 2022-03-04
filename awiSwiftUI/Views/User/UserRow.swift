@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserRow: View {
-    @State var user : User = User.users[0]
+    @ObservedObject var userVM : UserVM
     var body: some View {
         HStack(){
             VStack(alignment: .leading){
@@ -17,11 +17,11 @@ struct UserRow: View {
             }
             VStack(alignment: .leading){
                 HStack{
-                    Text(user.name)
-                    Text(user.last_name)
+                    Text(userVM.name)
+                    Text(userVM.last_name)
                     
                 }
-                Text(user.mail)
+                Text(userVM.mail)
                     .font(.caption)
             }
             Spacer()
@@ -33,6 +33,6 @@ struct UserRow: View {
 
 struct UserRow_Previews: PreviewProvider {
     static var previews: some View {
-        UserRow()
+        UserRow(userVM: UserVM(model: User.users[0]))
     }
 }

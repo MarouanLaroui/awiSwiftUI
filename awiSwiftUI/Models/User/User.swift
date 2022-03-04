@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User : Identifiable{
+class User : Identifiable, ObservableObject{
 
     var delegate : UserDelegate?
     var id : Int?{

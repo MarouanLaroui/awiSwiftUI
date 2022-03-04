@@ -10,11 +10,12 @@ import SwiftUI
 struct CreateAccountForm: View {
     
     @ObservedObject var userVM : UserVM
-    var intent = UserIntent()
+    var intent : UserIntent
     @State private var birthDate : Date = Date()
     @Binding var isSheetShown : Bool
     
-    init(userVM : UserVM? = nil, isSheetShown : Binding<Bool>){
+    init(userVM : UserVM? = nil, isSheetShown : Binding<Bool>, intent : UserIntent){
+        self.intent = intent
         if let userVM = userVM {
             self.userVM = userVM
         }
