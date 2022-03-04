@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 struct UserAccountView: View {
-    
-    @State var isFormDisplayed = false
+
     let dateFormatter = DateFormatter()
     
     @State var connectedUser : User  = User(id: 1, name: "", last_name: "", mail: "", phone: "", isAdmin: true, birthdate: "")
@@ -73,32 +72,6 @@ struct UserAccountView: View {
             case .failure(let error):
                 print("error while retrieving connected user" + error.localizedDescription)
             }
-        }
-        
-        //Create new account
-        .overlay(
-            VStack{
-                Spacer()
-                HStack{
-                    Spacer()
-                    Button("+"){
-                        isFormDisplayed.toggle()
-                        print("click button \(isFormDisplayed)")
-                    }
-                    .frame(width: 25, height: 25)
-                    .font(.title)
-                    .padding()
-                    .background(Color.salmon)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
-                }
-            }
-                .padding()
-                
-        )
-        
-        .sheet(isPresented: $isFormDisplayed){
-            CreateAccountForm()
         }
     }
 }

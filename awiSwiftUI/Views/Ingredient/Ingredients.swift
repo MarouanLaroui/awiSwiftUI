@@ -48,17 +48,12 @@ struct Ingredients: View {
                 }
                 
             }
-            
-            //Button(action: {isFormDisplayed.toggle()}) {Text("+")}
-            //List(ingredientsVM.ingredients.indices){
-              //  ingredientIndex in
+
             List(ingredientsVM.ingredients){
                 ingredient in
                 IngredientRow(ingredientVM: IngredientFormVM(model: ingredient))
                     .swipeActions {
                         Button {
-                            //self.selectedIngredientIndex = ingredientIndex
-                            
                             selectedIngredient = ingredient
                             isFormDisplayed = true
                         }
@@ -105,13 +100,6 @@ struct Ingredients: View {
         .onAppear{
             Task{
                 if(self.ingredientsVM.ingredients.count == 0 && self.ingredientCategories.count == 0){
-                    
-                    print("request un on appeare")
-//                        print("before post")
-//                        await IngredientDAO.postIngredientTest()
-//                        print("after post")
-
-//                        isDataLoading = true
 
                     let reqIngredients = await IngredientDAO.getIngredients()
                     let reqCategories = await IngredientCategoryDAO.getIngredientCategories()
@@ -160,7 +148,6 @@ struct Ingredients: View {
         .sheet(isPresented: $isFormDisplayed){
             if let selectedIngredient = selectedIngredient {
                 IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), intent : self.intent, isFormDisplayed: $isFormDisplayed)
-                //IngredientForm(ingredientVM: IngredientFormVM(model: ingredientsVM.ingredients[selectedIngredientIndex]), ingredientsVM: ingredientsVM)
             }
             else{
                 IngredientForm(ingredientVM : nil, intent: self.intent, isFormDisplayed: $isFormDisplayed)

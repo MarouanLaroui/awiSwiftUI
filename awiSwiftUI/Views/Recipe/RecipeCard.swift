@@ -31,10 +31,6 @@ struct RecipeCard: View {
                         
                         Badge(backgroundColor: .red, fontColor: .white, text: "allergenic")
                             .minimumScaleFactor(0.01)
-                        /*
-                        Badge(backgroundColor: .green, fontColor: .white, text: "cheap")
-                        Badge(backgroundColor: .yellow, fontColor: .white, text: "fast")
-                         */
                     }
                     .padding(.bottom,2)
                     HStack{
