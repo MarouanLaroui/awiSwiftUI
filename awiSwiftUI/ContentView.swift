@@ -57,6 +57,16 @@ struct ContentView: View {
                     Image(systemName: "text.book.closed")
                     Text("Recettes")
                 }
+                
+                
+                NavigationView{
+                    Users()
+                        .navigationTitle("Utilisateurs")
+                }
+                .tabItem{
+                    Image(systemName: "person.circle")
+                    Text("Utilisateurs")
+                }
             }
             .accentColor(.salmon)
         }

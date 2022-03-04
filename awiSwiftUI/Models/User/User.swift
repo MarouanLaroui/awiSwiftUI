@@ -7,15 +7,45 @@
 
 import Foundation
 
-class User{
+class User : Identifiable{
 
-    var id : Int?
-    var name : String
-    var last_name : String
-    var mail : String
-    var phone : String
-    var birthdate : String
-    var isAdmin : Bool
+    var delegate : UserDelegate?
+    var id : Int?{
+        didSet{
+            self.delegate?.userChange(id: self.id)
+        }
+    }
+
+    var name : String{
+        didSet{
+            self.delegate?.userChange(name: self.name)
+        }
+    }
+    var last_name : String{
+        didSet{
+            self.delegate?.userChange(last_name: self.last_name)
+        }
+    }
+    var mail : String{
+        didSet{
+            self.delegate?.userChange(mail: self.mail)
+        }
+    }
+    var phone : String{
+        didSet{
+            self.delegate?.userChange(phone: self.phone)
+        }
+    }
+    var birthdate : String{
+        didSet{
+            self.delegate?.userChange(birthdate: self.birthdate)
+        }
+    }
+    var isAdmin : Bool{
+        didSet{
+            self.delegate?.userChange(isAdmin: self.isAdmin)
+        }
+    }
     
     //var access_token : String?
    
@@ -42,11 +72,12 @@ extension User{
 
 protocol UserDelegate{
     
-    func userChange(id : Int)
-    func userChange(firstName : String)
-    func userChange(lastName : Int)
-    func userChange(email : Int)
-    func userChange(isAdmin : Int)
-    func userChange(birthDate : Int)
+    func userChange(id : Int?)
+    func userChange(name : String)
+    func userChange(last_name : String)
+    func userChange(mail : String)
+    func userChange(phone : String)
+    func userChange(isAdmin : Bool)
+    func userChange(birthdate : String)
     
 }

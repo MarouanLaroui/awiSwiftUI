@@ -31,6 +31,11 @@
 		AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */; };
 		AC60AEC727CA472D00AD4876 /* StepList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AEC627CA472C00AD4876 /* StepList.swift */; };
 		AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60AECA27CA48EC00AD4876 /* StepListVM.swift */; };
+		AC6F155727D20B4F000A61F4 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155627D20B4F000A61F4 /* UserRow.swift */; };
+		AC6F155927D20D82000A61F4 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155827D20D82000A61F4 /* Users.swift */; };
+		AC6F155B27D20DC9000A61F4 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155A27D20DC9000A61F4 /* UserVM.swift */; };
+		AC6F155D27D20FBC000A61F4 /* UserIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155C27D20FBC000A61F4 /* UserIntent.swift */; };
+		AC6F155F27D210C0000A61F4 /* UserListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155E27D210C0000A61F4 /* UserListVM.swift */; };
 		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
@@ -147,6 +152,11 @@
 		AC60AEC427CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIsComposedOfGeneralStepDAO.swift; sourceTree = "<group>"; };
 		AC60AEC627CA472C00AD4876 /* StepList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepList.swift; sourceTree = "<group>"; };
 		AC60AECA27CA48EC00AD4876 /* StepListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepListVM.swift; sourceTree = "<group>"; };
+		AC6F155627D20B4F000A61F4 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
+		AC6F155827D20D82000A61F4 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		AC6F155A27D20DC9000A61F4 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
+		AC6F155C27D20FBC000A61F4 /* UserIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIntent.swift; sourceTree = "<group>"; };
+		AC6F155E27D210C0000A61F4 /* UserListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVM.swift; sourceTree = "<group>"; };
 		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
 		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -529,9 +539,14 @@
 		ACBBE52727C10319002B59C8 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				AC6F155827D20D82000A61F4 /* Users.swift */,
+				AC6F155627D20B4F000A61F4 /* UserRow.swift */,
 				ACBBE52C27C10357002B59C8 /* CreateUserForm.swift */,
 				ACBBE52E27C10369002B59C8 /* CreateAccountForm.swift */,
 				6F2EFC8A27D0D0FC00BCC38C /* UserAccountView.swift */,
+				AC6F155A27D20DC9000A61F4 /* UserVM.swift */,
+				AC6F155C27D20FBC000A61F4 /* UserIntent.swift */,
+				AC6F155E27D210C0000A61F4 /* UserListVM.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -774,6 +789,7 @@
 				ACBBE51F27C102C0002B59C8 /* RecipeGrid.swift in Sources */,
 				ACBBE56027C28D29002B59C8 /* RecipeListVM.swift in Sources */,
 				ACBBE52327C102E5002B59C8 /* LoginView.swift in Sources */,
+				AC6F155D27D20FBC000A61F4 /* UserIntent.swift in Sources */,
 				ACBBE4E027C10051002B59C8 /* Color.swift in Sources */,
 				ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */,
 				ACBBE52F27C10369002B59C8 /* CreateAccountForm.swift in Sources */,
@@ -783,6 +799,7 @@
 				ACBBE4FF27C10173002B59C8 /* Step.swift in Sources */,
 				6FE0BDFE27C4D02B00021B7A /* LabelManagement.swift in Sources */,
 				ACBBE4EB27C100B6002B59C8 /* IngredientCategoryDAO.swift in Sources */,
+				AC6F155727D20B4F000A61F4 /* UserRow.swift in Sources */,
 				ACBBE56627C2AF74002B59C8 /* Image.swift in Sources */,
 				AC4FC02D27C786CC002A8F19 /* StepDAO.swift in Sources */,
 				ACBBE51B27C1029D002B59C8 /* RecipeRow.swift in Sources */,
@@ -797,6 +814,7 @@
 				ACBBE4FA27C10148002B59C8 /* User.swift in Sources */,
 				ACBBE4DE27C10042002B59C8 /* JSONHelper.swift in Sources */,
 				ACBBE56227C29317002B59C8 /* RecipeCategoryDTO.swift in Sources */,
+				AC6F155927D20D82000A61F4 /* Users.swift in Sources */,
 				ACBBE53627C103A0002B59C8 /* IngredientRow.swift in Sources */,
 				AC4FC02B27C78190002A8F19 /* StepDTO.swift in Sources */,
 				ACBBE54427C1043B002B59C8 /* AllergenCategoryFormViewModel.swift in Sources */,
@@ -812,6 +830,7 @@
 				AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */,
 				ACBBE55327C14916002B59C8 /* IngredientFormVM.swift in Sources */,
 				ACBBE4E627C10086002B59C8 /* UnityDTO.swift in Sources */,
+				AC6F155F27D210C0000A61F4 /* UserListVM.swift in Sources */,
 				AC42458227C9189B00927F39 /* RecipeVM.swift in Sources */,
 				ACBBE53E27C103FF002B59C8 /* UnityFormViewModel.swift in Sources */,
 				ACBBE52627C10308002B59C8 /* IngredientCategoryForm.swift in Sources */,
@@ -821,6 +840,7 @@
 				6FF0FFDE27C12651000AA621 /* Allergens.swift in Sources */,
 				ACBBE50F27C1020E002B59C8 /* IngredientPostDTO.swift in Sources */,
 				ACBBE54B27C12978002B59C8 /* HTTPError.swift in Sources */,
+				AC6F155B27D20DC9000A61F4 /* UserVM.swift in Sources */,
 				ACBBE52D27C10357002B59C8 /* CreateUserForm.swift in Sources */,
 				ACBBE52B27C1033A002B59C8 /* TextUnderIcon.swift in Sources */,
 				ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */,
