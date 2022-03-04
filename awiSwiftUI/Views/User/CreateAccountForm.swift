@@ -9,13 +9,20 @@ import SwiftUI
 
 struct CreateAccountForm: View {
     
-    
-    @State private var firstName : String = ""
-    @State private var lastName : String = ""
-    @State private var email : String = ""
-    @State private var phone : String = ""
-    @State private var isAdmin : Bool = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var userVM : UserVM
+    var intent = UserIntent()
     @State private var birthDate : Date = Date()
+    
+    init(userVM : UserVM? = nil){
+        if let userVM = userVM {
+            self.userVM = userVM
+        }
+        else{
+            self.userVM = UserVM(model: User(name: "", last_name: "", mail: "", phone: "", isAdmin: false, birthdate: ""))
+        }
+        self.intent.addObserver(viewModel: self.userVM)
+    }
     
     var body: some View {
         VStack{
@@ -23,17 +30,47 @@ struct CreateAccountForm: View {
             Form{
 
                 Section("informations"){
-                    TextField("firstname",text: $firstName)
-                    TextField("lastname",text: $lastName)
-                    TextField("phone number", text : $phone)
-                    DatePicker("birthdate",selection: $birthDate,displayedComponents: [.date])
+                    TextField("firstname",text: $userVM.name)
+                        .onSubmit {
+                            print("OnSubmit firstname")
+                            self.intent.intentToChange(name: self.userVM.name)
+                        }
+                    TextField("lastname",text: $userVM.last_name)
+                        .onSubmit {
+                            self.intent.intentToChange(last_name: self.userVM.last_name)
+                        }
+                    TextField("phone number", text : $userVM.phone)
+                        .onSubmit {
+                            self.intent.intentToChange(phone: self.userVM.phone)
+                        }
+                    DatePicker("birthdate",selection: $userVM.birthdate,displayedComponents: [.date])
+                        .onSubmit {
+                            self.intent.intentToChange(birthdate: Date.toString(date: self.userVM.birthdate))
+                        }
                     
                 }
                 
                 Section("credentials"){
-                    Toggle("is Admin",isOn: $isAdmin)
-                    TextField("email",text: $email)
+                    Toggle("is Admin",isOn: $userVM.isAdmin)
+                        .onSubmit {
+                            self.intent.intentToChange(isAdmin: self.userVM.isAdmin)
+                        }
+                    TextField("email adress",text: $userVM.mail)
+                        .onSubmit {
+                            self.intent.intentToChange(mail: self.userVM.mail)
+                        }
                     
+                }
+                HStack{
+                    Spacer()
+                    Button("Create"){
+                        Task{
+                            await self.intent.intentToPostUser(user: self.userVM.model)
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        
+                    }
+                    Spacer()
                 }
                 
             }
@@ -48,7 +85,7 @@ struct CreateAccountForm: View {
 struct CreateAccountForm_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            CreateAccountForm()
+            CreateAccountForm(userVM: UserVM(model: User.users[0]))
         }
     }
 }

@@ -12,7 +12,7 @@ import Combine
 class UserVM : UserDelegate, ObservableObject, Subscriber{
     
     
-    private var model : User
+    var model : User
     
     @Published var id : Int?
     @Published var name : String
@@ -42,6 +42,7 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
     }
     
     func userChange(name: String) {
+        print("VM change name")
         self.name = name
     }
     
@@ -92,6 +93,9 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
         case .birthdateChanging(birthdate: let birthdate):
             self.model.birthdate = birthdate
         case .validateChange:
+            break
+        case .userCreation(user: let user):
+            
             break
         }
         return .none

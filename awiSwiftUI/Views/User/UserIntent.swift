@@ -24,6 +24,7 @@ enum IntentUserState{
     case phoneChanging(phone : String)
     case isAdminChanging(isAdmin : Bool)
     case birthdateChanging(birthdate : String)
+    case userCreation(user : User)
     case validateChange
 }
 
@@ -47,13 +48,6 @@ struct UserIntent{
     }
     
     // 2) avertit les subsscriber que l'état a changé
-    var id : Int?
-    var name : String
-    var last_name : String
-    var mail : String
-    var phone : String
-    var birthdate : String
-    var isAdmin : Bool
     
     func intentToChange(name : String){
         self.state.send(.nameChanging(name: name))
@@ -76,6 +70,23 @@ struct UserIntent{
     }
     func intentToChange(isAdmin : Bool){
         self.state.send(.isAdminChanging(isAdmin: isAdmin))
+    }
+    
+    func intentToPostUser(user : User) async{
+        print("intentToPostUser : ")
+        print(user.name)
+        
+        let postUserResult = await UserDAO.postUser(user: user)
+    
+        switch(postUserResult){
+            
+        case .success(let user):
+            print("success posting user")
+            break
+        case .failure(_):
+            break
+        }
+        
     }
 
 }

@@ -36,6 +36,7 @@
 		AC6F155B27D20DC9000A61F4 /* UserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155A27D20DC9000A61F4 /* UserVM.swift */; };
 		AC6F155D27D20FBC000A61F4 /* UserIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155C27D20FBC000A61F4 /* UserIntent.swift */; };
 		AC6F155F27D210C0000A61F4 /* UserListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155E27D210C0000A61F4 /* UserListVM.swift */; };
+		AC6F156127D22F2D000A61F4 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F156027D22F2D000A61F4 /* DateExtension.swift */; };
 		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
@@ -157,6 +158,7 @@
 		AC6F155A27D20DC9000A61F4 /* UserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVM.swift; sourceTree = "<group>"; };
 		AC6F155C27D20FBC000A61F4 /* UserIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIntent.swift; sourceTree = "<group>"; };
 		AC6F155E27D210C0000A61F4 /* UserListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVM.swift; sourceTree = "<group>"; };
+		AC6F156027D22F2D000A61F4 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
 		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,6 +386,7 @@
 				ACE6A91427C61D6600D82E05 /* ArrayExtension.swift */,
 				AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */,
 				6F2EFC8127CD113D00BCC38C /* View.swift */,
+				AC6F156027D22F2D000A61F4 /* DateExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */,
 				ACBBE4F827C1013F002B59C8 /* UserDAO.swift in Sources */,
 				6F2EFC8227CD113D00BCC38C /* View.swift in Sources */,
+				AC6F156127D22F2D000A61F4 /* DateExtension.swift in Sources */,
 				ACBBE54727C10458002B59C8 /* IngredientListViewModel.swift in Sources */,
 				ACBBE53827C103B1002B59C8 /* IngredientForm.swift in Sources */,
 				6F2EFC8B27D0D0FC00BCC38C /* UserAccountView.swift in Sources */,

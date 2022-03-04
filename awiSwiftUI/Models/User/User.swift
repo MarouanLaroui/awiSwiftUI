@@ -18,6 +18,8 @@ class User : Identifiable{
 
     var name : String{
         didSet{
+            print("didSet User")
+            print(self.name)
             self.delegate?.userChange(name: self.name)
         }
     }
