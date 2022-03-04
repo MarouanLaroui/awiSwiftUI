@@ -25,6 +25,7 @@ struct Carousel: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         }
+        .padding(.bottom)
 
     }
 }

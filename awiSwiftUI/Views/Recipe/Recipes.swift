@@ -38,6 +38,8 @@ struct Recipes: View {
                         Text(category.name)
                     }
                 }
+
+                
             }
             ScrollView {
                 LazyVGrid(columns: gridItems,spacing: 0){
@@ -76,14 +78,12 @@ struct Recipes: View {
         }
         .task{
             //if(self.recipesVM.recipes.count == 0){
-                print("--------__RECIPE TASK __----------")
                 async let reqRecipes =  RecipeDAO.getRecipes()
                 async let reqRecipeCategories =  RecipeCategoryDAO.getRecipeCategories()
                 
                 switch(await reqRecipes){
                     
                 case .success(let resRecipes):
-                    print("succcess recipe")
                     self.recipesVM.recipes = resRecipes
                 case .failure(let error):
                     print(error)
@@ -93,7 +93,6 @@ struct Recipes: View {
                 switch(await reqRecipeCategories){
                     
                 case .success(let resRecipeCategories):
-                    print("success recipeCategories")
                     self.recipeCategories = resRecipeCategories
                 case .failure(let error):
                     print(error)

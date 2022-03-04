@@ -30,22 +30,22 @@ struct StepForm: View {
             VStack(alignment : .leading){
                 LazyVGrid(columns: gridItems, alignment : .leading){
                     Group{
-                        Text("Title")
-                        TextField("Enter a title", text: $stepVM.title)
+                        Text("Titre : ")
+                        TextField("Renseignez un titre", text: $stepVM.title)
                             .onSubmit {
                                 self.intent.intentToChange(title: self.stepVM.title)
                             }
                         
                         
                         Text("Description :")
-                        TextField("Enter a description", text: $stepVM.description)
+                        TextField("Renseignez une description", text: $stepVM.description)
                             .onSubmit {
                                 self.intent.intentToChange(description: self.stepVM.description)
                             }
                         
                         
-                        Text("Time :")
-                        TextField("Enter a duration", value: $stepVM.time, formatter: Formatters.int)
+                        Text("Durée :")
+                        TextField("Renseignez une durée", value: $stepVM.time, formatter: Formatters.int)
                             .onSubmit {
                                 self.intent.intentToChange(time: self.stepVM.time)
                             }
@@ -98,10 +98,9 @@ struct StepForm: View {
                 
             }
             .padding()
-            .navigationTitle("Step Informations")
+            .navigationTitle("Informations sur l'étape")
             
-            Button("Save step"){
-                print("Save Step button")
+            Button("Enregistrer l'étape"){
                 print(self.stepVM.model.ingredients)
                 Task{
                     await self.listIntent.intentToChange(stepToAdd: self.stepVM.model, recipeId: self.recipe.id!)

@@ -14,6 +14,7 @@ struct RecipeDetailledView: View {
     var twoColumns: [GridItem] =
              Array(repeating: .init(.flexible()), count: 2)
     
+    var numEtape = 0
     @State private var showIngredient = true
     @State private var showCosts = false
     @State private var durationTime = 0
@@ -32,7 +33,7 @@ struct RecipeDetailledView: View {
     
     private var editButton: some View {
         return NavigationLink(destination : StepList(recipe: self.recipe, intent: StepIntent())){
-            Text("Edit")
+            Text("Modifier")
             //Image(systemName: "plus")
         }
     }
@@ -272,15 +273,30 @@ struct RecipeDetailledView: View {
                     HStack{
                         VStack{
                             HStack(){
-                                Text("équipement de dressage : ")
-                                    .bold()
-                                Text(recipe.dressingEquipment)
+                                if(recipe.dressingEquipment != ""){
+                                    Text("Dressage : ")
+                                        .bold()
+                                    Text(recipe.dressingEquipment)
+                                }
+                                else{
+                                    Text("Aucun équipement de dressage nécessaire")
+                                        .italic()
+                                        .opacity(0.75)
+                                }
 
                             }
                             HStack{
-                                Text("équipement spécifique")
-                                    .bold()
-                                Text(recipe.specificEquipment)
+                                if(recipe.specificEquipment != ""){
+                                    Text("Spécifique : ")
+                                        .bold()
+                                    Text(recipe.specificEquipment)
+                                }
+                                else{
+                                    Text("Aucun équipement spécifique nécessaire")
+                                        .italic()
+                                        .opacity(0.75)
+                                }
+                                
                             }
 
                         }
@@ -298,11 +314,16 @@ struct RecipeDetailledView: View {
                 }
                 Divider()
                 
-                ForEach(steps){
-                    step in
-                    StepRow(numEtape: 1,step: step)
+                ForEach(Array(zip(steps.indices, steps)), id: \.1) { index, element in
+                    StepRow(numEtape: index+1,step: element)
                         .padding(.bottom)
                 }
+                
+                /*
+                ForEach(steps){step in
+                    StepRow(numEtape: 1,step: step)
+                        .padding(.bottom)
+                }*/
 
        
             }
