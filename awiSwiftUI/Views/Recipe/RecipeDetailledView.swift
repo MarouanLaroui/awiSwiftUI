@@ -256,18 +256,17 @@ struct RecipeDetailledView: View {
                 .padding(.horizontal)
                 
                 if(showIngredient){
-                    HStack{
-                        VStack{
-                            ForEach(ingredients.sorted(by: ==), id: \.key.id) { ingredient, qtty in
-                                HStack{
-                                    Text(ingredient.name + " : ")
-                                    Text("\(qtty)")
-                                }
-                                Divider()
+                    VStack{
+                        ForEach(ingredients.sorted(by: ==), id: \.key.id) { ingredient, qtty in
+                            HStack{
+                                Text(ingredient.name + " - ")
+                                    .fontWeight(.bold)
+                                Text("\(qtty)" + ingredient.unity.unityName)
                             }
                         }
+                    }.padding(.horizontal)
                         
-                    }
+                    
                 }
                 else{
                     HStack{
@@ -314,16 +313,19 @@ struct RecipeDetailledView: View {
                 }
                 Divider()
                 
-                ForEach(Array(zip(steps.indices, steps)), id: \.1) { index, element in
-                    StepRow(numEtape: index+1,step: element)
-                        .padding(.bottom)
-                }
+                VStack(alignment: .leading){
+                    
+                    ForEach(Array(zip(steps.indices, steps)), id: \.1) { index, element in
+                        StepRow(numEtape: index+1, step: element)
+                            .padding(.bottom)
+                    }
                 
                 /*
                 ForEach(steps){step in
                     StepRow(numEtape: 1,step: step)
                         .padding(.bottom)
                 }*/
+                }
 
        
             }
