@@ -26,9 +26,11 @@ struct IngredientRow: View {
                 }
             }
             .padding()
+            Spacer()
             if(ingredientVM.allergen != nil){
                 Badge(backgroundColor: Color.red, fontColor: .white, text: "Allergène")
                     .minimumScaleFactor(0.01)
+                    .padding(.horizontal)
             }
     
         }

@@ -27,6 +27,8 @@ struct UserAccountView: View {
                 Section("informations"){
                     TextField("prénom",text: $connectedUser.name)
                     TextField("nom",text: $connectedUser.last_name)
+                    TextField("phone number", text : $connectedUser.phone)
+                    DatePicker("birthdate",selection: $birthDate,displayedComponents: [.date])
                     /*
                     DatePicker(selection: $connectedUser.birthdate, in: ...Date(),displayedComponents: .date) {
                                 Text("birthdate:")
@@ -38,10 +40,21 @@ struct UserAccountView: View {
                 }
                 
                 Section("credentials"){
-                    Toggle("Admin ?",isOn: $connectedUser.isAdmin)
+                    
                     TextField("email",text: $connectedUser.mail)
+                    NavigationLink(destination : CreateUserForm()){
+                        Text("Mot de passe")
+                    }
                     
                 }
+                
+                HStack{
+                    Spacer()
+                    Button("Déconnexion"){}
+                    .foregroundColor(.red)
+                    Spacer()
+                }
+                
                 
             }
             
