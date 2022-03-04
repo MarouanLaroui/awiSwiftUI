@@ -56,6 +56,7 @@ struct LoginView: View {
                     .padding(.bottom,10)
                 
                 Button("Se connecter"){
+       
                     Task{
                         let result = await UserDAO.login(mail: self.mail, password: self.password)
                         
@@ -66,8 +67,12 @@ struct LoginView: View {
                             self.isLoggedIn = true
                             
                         case .failure(let error):
-                            self.loginFailedMessage = "Erreur de connection" + error.localizedDescription
-                        
+                            switch(error){
+                            case HTTPError.unauthorized :
+                                self.loginFailedMessage = "Mauvais identifiants de connexion"
+                            default :
+                                self.loginFailedMessage = "Erreur de connection" + error.localizedDescription
+                            }
                         }
                     }
                 }
@@ -76,27 +81,13 @@ struct LoginView: View {
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 
+                Text(loginFailedMessage ?? "")
+                    .foregroundColor(.red)
                 Spacer()
             }
             .padding()
         }
-        /*
-        .alert(item: $error){ error in
-            let message = "Erreur de connexion :"
-            switch(error){
-            case .HTTPError.unauthorized :
-                message = message + " Identifiants invalides"
-            }
-            Alert(
-                title: Text(item),
-                dismissButton: .cancel()
-            )
-        }
-         */
-        
-
     }
-    
 }
 
 struct LoginView_Previews: PreviewProvider {

@@ -8,6 +8,7 @@
 import Foundation
 
 enum HTTPError : Error{
+    
     case badURL
     case emptyResult
     case emptyDTO

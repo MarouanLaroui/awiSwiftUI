@@ -37,6 +37,9 @@
 		AC6F155D27D20FBC000A61F4 /* UserIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155C27D20FBC000A61F4 /* UserIntent.swift */; };
 		AC6F155F27D210C0000A61F4 /* UserListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F155E27D210C0000A61F4 /* UserListVM.swift */; };
 		AC6F156127D22F2D000A61F4 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F156027D22F2D000A61F4 /* DateExtension.swift */; };
+		AC6F156327D2836B000A61F4 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F156227D2836B000A61F4 /* Validators.swift */; };
+		AC6F156527D28493000A61F4 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F156427D28493000A61F4 /* StringExtension.swift */; };
+		AC6F156727D28584000A61F4 /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6F156627D28584000A61F4 /* NSRegularExpression.swift */; };
 		ACA4C10927C4282A005CBF28 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4C10827C4282A005CBF28 /* Empty.xib */; };
 		ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AC27C0FFC3002B59C8 /* awiSwiftUIApp.swift */; };
 		ACBBE4AF27C0FFC3002B59C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE4AE27C0FFC3002B59C8 /* ContentView.swift */; };
@@ -159,6 +162,9 @@
 		AC6F155C27D20FBC000A61F4 /* UserIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIntent.swift; sourceTree = "<group>"; };
 		AC6F155E27D210C0000A61F4 /* UserListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVM.swift; sourceTree = "<group>"; };
 		AC6F156027D22F2D000A61F4 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		AC6F156227D2836B000A61F4 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		AC6F156427D28493000A61F4 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		AC6F156627D28584000A61F4 /* NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
 		ACA4C10827C4282A005CBF28 /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
 		ACA4C10A27C4284A005CBF28 /* Empty.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Empty.md; sourceTree = "<group>"; };
 		ACBBE4A927C0FFC3002B59C8 /* awiSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awiSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +393,9 @@
 				AC4FC02827C6C175002A8F19 /* KeyChainHelper.swift */,
 				6F2EFC8127CD113D00BCC38C /* View.swift */,
 				AC6F156027D22F2D000A61F4 /* DateExtension.swift */,
+				AC6F156227D2836B000A61F4 /* Validators.swift */,
+				AC6F156427D28493000A61F4 /* StringExtension.swift */,
+				AC6F156627D28584000A61F4 /* NSRegularExpression.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -810,6 +819,7 @@
 				ACBBE51727C1027B002B59C8 /* RecipeCard.swift in Sources */,
 				ACBBE50427C101AF002B59C8 /* AllergenCategoryDTO.swift in Sources */,
 				ACBBE53327C10384002B59C8 /* Badge.swift in Sources */,
+				AC6F156527D28493000A61F4 /* StringExtension.swift in Sources */,
 				ACBBE52127C102D6002B59C8 /* Carousel.swift in Sources */,
 				6FF0FFE027C12E62000AA621 /* AllergenRow.swift in Sources */,
 				ACBBE51D27C102B0002B59C8 /* HorizontalScrollRecipe.swift in Sources */,
@@ -826,6 +836,7 @@
 				AC60AEC527CA354F00AD4876 /* RecipeIsComposedOfGeneralStepDAO.swift in Sources */,
 				AC60AEBB27CA2B4900AD4876 /* IngredientSelection.swift in Sources */,
 				ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */,
+				AC6F156727D28584000A61F4 /* NSRegularExpression.swift in Sources */,
 				AC0477EF27CE05FA005CFD0E /* SelectIngredientForStep.swift in Sources */,
 				6F2EFC8427CE723F00BCC38C /* LabelManagementVM.swift in Sources */,
 				AC60AECB27CA48EC00AD4876 /* StepListVM.swift in Sources */,
@@ -836,6 +847,7 @@
 				AC6F155F27D210C0000A61F4 /* UserListVM.swift in Sources */,
 				AC42458227C9189B00927F39 /* RecipeVM.swift in Sources */,
 				ACBBE53E27C103FF002B59C8 /* UnityFormViewModel.swift in Sources */,
+				AC6F156327D2836B000A61F4 /* Validators.swift in Sources */,
 				ACBBE52627C10308002B59C8 /* IngredientCategoryForm.swift in Sources */,
 				AC60AEBE27CA30E600AD4876 /* StepToIngredientDTO.swift in Sources */,
 				ACBBE51127C1021E002B59C8 /* IngredientGetDTO.swift in Sources */,

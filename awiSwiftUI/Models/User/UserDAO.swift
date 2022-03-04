@@ -78,16 +78,19 @@ struct UserDAO{
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
             let httpresponse = response as! HTTPURLResponse
-            
-            if httpresponse.statusCode == 201{
-                guard let decoded : UserDTO = JSONHelper.decode(data: data) else {
-                    return .failure(HTTPError.emptyDTO)
-                }
-                return .success(UserDAO.dtoToUser(dto: decoded))
+
+            switch(httpresponse.statusCode){
                 
+            case 201 :
+                guard let decoded : UserDTO = JSONHelper.decode(data: data)
+                else {return .failure(HTTPError.emptyDTO)}
+                return .success(UserDAO.dtoToUser(dto: decoded))
                 //self.users.append(decoded.data)
-            }
-            else{
+                
+            case 401 :
+                return .failure(HTTPError.unauthorized)
+                
+            default :
                 return .failure(HTTPError.error(httpresponse))
             }
         }
@@ -103,10 +106,8 @@ struct UserDAO{
         let loginDTO = UserLoginDTO(mail: mail, password: password)
         print(loginDTO)
         //Construction de l'url
-        guard let url = URL(string: Utils.apiURL + "auth/login") else {
-            return .failure(HTTPError.badURL)
-        }
-        
+        guard let url = URL(string: Utils.apiURL + "auth/login") else {return .failure(HTTPError.badURL)}
+
         do{
             var request = URLRequest(url: url)
             
@@ -120,19 +121,19 @@ struct UserDAO{
             
             let httpresponse = response as! HTTPURLResponse
             
-            if httpresponse.statusCode == 201{
+            switch(httpresponse.statusCode){
                 
+            case 201 :
                 guard let decoded : UserDTO = JSONHelper.decode(data: data)
                 else {return .failure(HTTPError.emptyDTO)}
                 self.access_token = decoded.access_token
-                
-                if(access_token != nil){
-                    KeychainHelper.standard.saveJWT(token: access_token!)
-                }
+                if(access_token != nil){KeychainHelper.standard.saveJWT(token: access_token!)}
                 return .success(UserDAO.dtoToUser(dto: decoded))
-            }
-            else{
-                print(httpresponse.statusCode)
+
+            case 401 :
+                return .failure(HTTPError.unauthorized)
+                
+            default :
                 return .failure(HTTPError.error(httpresponse))
             }
         }
@@ -141,5 +142,4 @@ struct UserDAO{
             return .failure(error)
         }
     }
-    
 }
