@@ -9,18 +9,19 @@ import SwiftUI
 
 struct CreateAccountForm: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var userVM : UserVM
     var intent = UserIntent()
     @State private var birthDate : Date = Date()
+    @Binding var isSheetShown : Bool
     
-    init(userVM : UserVM? = nil){
+    init(userVM : UserVM? = nil, isSheetShown : Binding<Bool>){
         if let userVM = userVM {
             self.userVM = userVM
         }
         else{
             self.userVM = UserVM(model: User(name: "", last_name: "", mail: "", phone: "", isAdmin: false, birthdate: ""))
         }
+        self._isSheetShown = isSheetShown
         self.intent.addObserver(viewModel: self.userVM)
     }
     
@@ -66,7 +67,7 @@ struct CreateAccountForm: View {
                     Button("Create"){
                         Task{
                             await self.intent.intentToPostUser(user: self.userVM.model)
-                            self.presentationMode.wrappedValue.dismiss()
+                            self.isSheetShown = false
                         }
                         
                     }
@@ -81,12 +82,14 @@ struct CreateAccountForm: View {
         
         
     }
-
+}
+/*
 struct CreateAccountForm_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            CreateAccountForm(userVM: UserVM(model: User.users[0]))
+            CreateAccountForm(userVM: UserVM(model: User.users[0]),isSheetShown: &true)
         }
     }
 }
-}
+
+*/

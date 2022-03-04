@@ -10,6 +10,9 @@ import SwiftUI
 struct Users: View {
     
     @ObservedObject var userListVM  = UserListVM(users: [])
+    @State var selectedUser : User? = nil
+    @State var isSheetShown : Bool = false
+    
     var body: some View {
         VStack{
             List(userListVM.users){
@@ -17,9 +20,13 @@ struct Users: View {
                 
                 UserRow(user: user)
                     .swipeActions {
-                        NavigationLink(destination : CreateAccountForm(userVM: UserVM(model: user))){
-                            Image(systemName: "square.and.pencil")
+                        Button {
+                            self.selectedUser = user
+                            isSheetShown = true
                         }
+                    label: {
+                        Image(systemName: "square.and.pencil")
+                    }
                         
                         Button {
                             Task{
@@ -39,18 +46,15 @@ struct Users: View {
                     Spacer()
                     HStack{
                         Spacer()
-                        NavigationLink(destination :
-                                        CreateAccountForm()
-                        ){
-                            Text("+")
-                                .frame(width: 25, height: 25)
-                                .font(.title)
-                                .padding()
-                                .background(Color.salmon)
-                                .foregroundColor(.white)
-                                .clipShape(Circle())
+                        Button("+"){
+                            isSheetShown = true
                         }
-                        
+                        .frame(width: 25, height: 25)
+                        .font(.title)
+                        .padding()
+                        .background(Color.salmon)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
                     }
                 }
                     .padding()
@@ -64,6 +68,16 @@ struct Users: View {
                     self.userListVM.users = users
                 case .failure(_):
                     print("failure while retrieving users")
+                }
+            }
+            .sheet(isPresented: $isSheetShown, onDismiss: {
+                self.selectedUser = nil
+            }){
+                if let selectedUser = selectedUser {
+                    CreateAccountForm(userVM: UserVM(model: selectedUser), isSheetShown: $isSheetShown)
+                }
+                else{
+                    CreateAccountForm(isSheetShown: $isSheetShown)
                 }
             }
         }
