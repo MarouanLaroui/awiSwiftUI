@@ -14,6 +14,7 @@ struct LabelManagement: View {
     @State var ingredients : [Ingredient:Int] = [:]
     @State private var decrementStock : Bool = false
     @State private var nbPortions = 1
+    @State private var enoughIngredients = false
     
     var etiquette: some View {
         VStack{
@@ -91,6 +92,12 @@ struct LabelManagement: View {
            /* let image = etiquette.snapshot()
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             */
+            
+            Task{
+                async let requestEnoughIngredients =  RecipeDAO.declareRecipe(idRecipe: self.recipe.id!, nbPortion: self.nbPortions)
+                
+                print(String(enoughIngredients))
+            }
         }
         .padding()
         .foregroundColor(.white)

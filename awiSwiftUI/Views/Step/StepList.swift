@@ -39,66 +39,14 @@ struct StepList: View {
             Spacer()
             HStack{
                 Spacer()
-                /*
-                Button("Publish steps"){
-                    Task{
-                        let res = await self.intent.intentToCreateSteps(recipeId: recipe.id!, steps: self.stepListVM.steps)
-                        
-                        switch(res){
-                            
-                        case .success(let postedRecipe):
-                            
-                            //self.$previousPagePresentationMode.wrappedValue.dismiss()
-                            self.presentationMode.wrappedValue.dismiss()
-                            
-                        case .failure(_):
-                            print("failure in steplist view")
-                        }
-                    }
-                }
-                .padding()
-                .background(Color.salmon)
-                .foregroundColor(.white)
-                .cornerRadius(15)
-                .padding(.bottom)
-                 */
+                
                 Spacer()
-                /*
-                Button("Publish recipe"){
-                    Task{
-                        let res = await self.recipeIntent.intentToCreateRecipe(recipe: self.recipeModel)
-                        
-                        switch(res){
-                            
-                        case .success(let postedRecipe):
-                            await self.intent.intentToCreateSteps(recipeId: postedRecipe.id!, steps: self.stepListVM.steps)
-                            //self.$previousPagePresentationMode.wrappedValue.dismiss()
-                            self.presentationMode.wrappedValue.dismiss()
-                            
-                        case .failure(_):
-                            print("failure in steplist view")
-                        }
-                    }
-                }
-                .padding()
-                .background(Color.salmon)
-                .foregroundColor(.white)
-                .cornerRadius(15)
-                .padding(.bottom)
-                Spacer()
-                 */
+                
             }
-            /*
-            NavigationLink(destination: StepForm(intent: self.intent, stepFormVM: nil,recipe : self.recipe)){
-                Text("Testt")
-            }
-            .background(.green)
-             */
-            
             
         }
         .padding()
-        .navigationTitle("Steps")
+        .navigationTitle("Etapes")
         .navigationBarItems(trailing: NavigationLink(destination: StepForm(intent: self.intent, stepFormVM: nil,recipe : self.recipe)){
             Image(systemName: "plus")
         })
@@ -119,10 +67,3 @@ struct StepList: View {
         
     }
 }
-/*
- struct StepList_Previews: PreviewProvider {
- static var previews: some View {
- StepList()
- }
- }
- */

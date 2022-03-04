@@ -13,20 +13,19 @@ struct StepRow: View {
     @StateObject var step : Step
     
     var body: some View {
-        HStack{
-            VStack(alignment: .leading){
-                HStack{
-                    Text("Etape " + String(numEtape) + " :")
-                        .font(.title2)
-                        .bold()
-                    Text(step.title)
-                        .font(.title3)
-                }
-                Text(step.description)
-                    .font(.body)
-                
+        VStack(alignment: .leading){
+            HStack{
+                Text("Etape " + String(numEtape) + " :")
+                    .font(.title2)
+                    .bold()
+                Text(step.title)
+                    .font(.title3)
             }
+            Text(step.description)
+                .font(.body)
+            
         }
+        .padding(.horizontal)
         
         
     }

@@ -141,7 +141,46 @@ struct RecipeDAO{
         }
     }
     
+    static func isThereEnoughIngredientForRecipe(idRecipe: Int, nbPortion: Int) async -> Result<Bool, Error>{
+        let getIsThereEnoughIngr : Result<Bool, Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/"+String(idRecipe)+"/isthereenough/"+String(nbPortion))
+        
+        print("--- dans isThereEnoughIngredientForRecipe ----- ")
+        print(getIsThereEnoughIngr)
+        
+        switch(getIsThereEnoughIngr){
+        case .success(let enoughIngredient):
+            return .success(enoughIngredient )
+        case .failure(let error):
+            return .failure(error)
+        
+        }
+    }
     
+    static func declareRecipe(idRecipe: Int, nbPortion: Int) async {
+        
+        //Assez d'igrédients ?
+        let result = await RecipeDAO.isThereEnoughIngredientForRecipe(idRecipe: idRecipe, nbPortion: nbPortion)
+
+        switch(result){
+            
+        case .success(let enoughIngredient):
+            //Appel à declare recipe si enoughIngredient est true
+            if(enoughIngredient){
+                //do smth
+                print("--------- ASSEZ d'ingredient")
+                //return .success(enoughIngredient)
+            }
+            else {
+                print("------------- pas assez d'ingrédients en stock ")
+            }
+        
+        case .failure(let error):
+            print("error while checking if enough ingredient to print label " + error.localizedDescription)
+            //return .failure(error)
+        }
+        
+        
+        
+    }
     
-    //TODO: fonction de post d'une recette 
 }
