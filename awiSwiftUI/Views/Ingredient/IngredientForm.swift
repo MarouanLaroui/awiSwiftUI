@@ -39,6 +39,12 @@ struct IngredientForm: View {
         NavigationView{
             
             VStack{
+                
+                Text("Formulaire ingrédient")
+                    .font(.title)
+                    .bold()
+                    .padding(.vertical)
+                
                 Group{
                     TextField("nom :",text:$ingredientFormVM.name)
                         .onSubmit {
@@ -56,7 +62,7 @@ struct IngredientForm: View {
                 }
                 
                 Group{
-                    TextField("",value : $ingredientFormVM.unitaryPrice, formatter:  Formatters.decimal)
+                    TextField("unitary price",value : $ingredientFormVM.unitaryPrice, formatter:  Formatters.decimal)
                         .onSubmit {
                             self.intent.intentToChange(unitaryPrice: self.ingredientFormVM.unitaryPrice)
                         }
@@ -70,41 +76,68 @@ struct IngredientForm: View {
                     }
                     
                 }
-                
+                /*
                 Group{
                     Stepper(value: $ingredientFormVM.unitaryPrice, in:0...200, step:2){
                         //CHANGE THAT TO EURO
                         Label("\(ingredientFormVM.unitaryPrice)",systemImage: "eurosign.circle.fill")
                     }
                 }
-                
+                */
                 Group{
                     /*DROPDOWN*/
-                    Picker("Catégorie : " + ingredientFormVM.category.category_name, selection: $ingredientFormVM.category) {
-                        ForEach(ingredientCategories) { category in
-                            Text(category.category_name)
+                    HStack{
+                        Text("Catégorie :")
+                        Picker("Catégorie : ", selection: $ingredientFormVM.category) {
+                            Text("Aucun")
+                                .tag(nil as IngredientCategory?)
+                            ForEach(ingredientCategories) { category in
+                                Text(category.category_name)
+                            }
                         }
+                        Spacer()
                     }
+                    Text(self.ingredientFormVM.categoryErrorMsg)
+                        .font(.caption)
+                        .foregroundColor(.red)
+                    
                 }
 
-                
-                Picker("Unité : " + ingredientFormVM.unity.unityName, selection: $ingredientFormVM.unity) {
-                    ForEach(units) { unity in
-                        Text(unity.unityName)
+                Group{
+                    HStack{
+                        Text("Unité :")
+                        Picker("Unité : ", selection: $ingredientFormVM.unity) {
+                            Text("Aucun")
+                                .tag(nil as Unity?)
+                            ForEach(units) { unity in
+                                Text(unity.unityName)
+                            }
+                        }
+                        Spacer()
                     }
+                    Text(self.ingredientFormVM.unityErrorMsg)
+                        .font(.caption)
+                        .foregroundColor(.red)
                 }
+                
                 .padding(.bottom,5)
-                
-                Divider()
-                Picker("Allergène :", selection: $ingredientFormVM.allergen) {
-                    Text("Aucun")
-                        .tag(nil as AllergenCategory?)
-                    ForEach(allergenCategories) { allergen in
-                        Text(allergen.name)
+
+                Group{
+                    HStack{
+                        Text("Allergène :")
+                        Picker("Allergène :", selection: $ingredientFormVM.allergen) {
+                            Text("Aucun")
+                                .tag(nil as AllergenCategory?)
+                            ForEach(allergenCategories) { allergen in
+                                Text(allergen.name)
+                            }
+                        }
+                        Spacer()
                     }
                 }
                 
-                Divider()
+                
+                Spacer()
                 
             }
             .padding(.horizontal,20)
@@ -146,6 +179,7 @@ struct IngredientForm: View {
             case .success(let resUnits):
                 print("Success unit")
                 units = resUnits
+                self.intent.intentToChange(unity: units[0])
             case .failure(let error):
                 print(error)
             }
@@ -155,6 +189,8 @@ struct IngredientForm: View {
             case .success(let resIngredientCategories):
                 print("Success ingredientCategory")
                 ingredientCategories = resIngredientCategories
+                self.intent.intentToChange(ingredientCategory: ingredientCategories[0])
+                
             case .failure(let error):
                 print(error)
             }

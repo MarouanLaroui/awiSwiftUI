@@ -61,6 +61,7 @@ struct Intent{
     }
     
     func intentToChange(ingredientCategory : IngredientCategory){
+        print("intentToChangeCategory")
         self.state.send(.ingredientCategoryChanging(ingredientCategory: ingredientCategory))
     }
     

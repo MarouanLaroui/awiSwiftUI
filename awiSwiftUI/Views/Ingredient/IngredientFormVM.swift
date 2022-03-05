@@ -19,10 +19,12 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     @Published var unitaryPrice : Double
     @Published var nbInStock : Double
     @Published var allergen : AllergenCategory?
-    @Published var category : IngredientCategory
-    @Published var unity : Unity
+    @Published var category : IngredientCategory?
+    @Published var unity : Unity?
     
     var isDefaultName = true
+    var isDefaultCategory = true
+    var isDefaultUnity = true
     
     init(model : Ingredient){
         
@@ -43,7 +45,8 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
             allergen: model.allergen,
             ingredientCategory: model.category,
             unity: model.unity)
-        self.model.delegate = self
+        
+        self.copy.delegate = self
     }
     
     // MARK: -
@@ -67,7 +70,9 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     func ingredientChange(ingredientCategory: IngredientCategory) {
+        print("ingredient category changing")
         self.category = ingredientCategory
+        self.objectWillChange.send()
     }
     
     func ingredientChange(unity: Unity) {
@@ -142,29 +147,50 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.model.unity = copy.unity
     }
     var isValid : Bool {
-        self.copy.isValid
+        self.copy.isValid && !isDefaultCategory && !isDefaultUnity
     }
     var nameErrorMsg : String{
-        if(self.isDefaultName || self.copy.name.count > 0  ){
-            return ""
+        if(!self.isDefaultName && self.copy.name.count == 0  ){
+            return "Ce champs est obligatoire"
+            
         }
-        return "Ce champs est obligatoire"
+        return ""
+        
     }
     
     var unitaryPriceErrorMsg : String{
-        if(self.copy.unitaryPrice > 0){
-            return ""
+        if(self.copy.unitaryPrice < 0){
+            return "Le prix unitaire doit être superieur à 0"
+            
         }
-        return "Le prix unitaire doit être superieur à 0"
+        return ""
+        
     }
     
     var nbInStockErrorMsg : String{
         if(self.nbInStock >= 0){
-            return ""
+            return "Ce champs est obligatoirement positif"
         }
-        return "Ce champs est obligatoire"
+        return ""
+        
     }
     
+    var categoryErrorMsg : String{
+        if(self.category != nil && !self.isDefaultCategory){
+            return "Ce champs est obligatoire"
+        }
+        return ""
+        
+    }
+    
+    var unityErrorMsg : String{
+        if(self.unity != nil && !self.isDefaultCategory){
+            return "Ce champs est obligatoire"
+            
+        }
+        return ""
+        
+    }
     
     
     
