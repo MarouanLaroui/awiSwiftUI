@@ -77,13 +77,13 @@ struct IngredientForm: View {
                     
                 }
                 /*
-                Group{
-                    Stepper(value: $ingredientFormVM.unitaryPrice, in:0...200, step:2){
-                        //CHANGE THAT TO EURO
-                        Label("\(ingredientFormVM.unitaryPrice)",systemImage: "eurosign.circle.fill")
-                    }
-                }
-                */
+                 Group{
+                 Stepper(value: $ingredientFormVM.unitaryPrice, in:0...200, step:2){
+                 //CHANGE THAT TO EURO
+                 Label("\(ingredientFormVM.unitaryPrice)",systemImage: "eurosign.circle.fill")
+                 }
+                 }
+                 */
                 Group{
                     /*DROPDOWN*/
                     HStack{
@@ -102,7 +102,7 @@ struct IngredientForm: View {
                         .foregroundColor(.red)
                     
                 }
-
+                
                 Group{
                     HStack{
                         Text("Unité :")
@@ -120,8 +120,7 @@ struct IngredientForm: View {
                         .foregroundColor(.red)
                 }
                 
-                .padding(.bottom,5)
-
+                
                 Group{
                     HStack{
                         Text("Allergène :")
@@ -136,11 +135,7 @@ struct IngredientForm: View {
                     }
                 }
                 
-                
-                Spacer()
-                
             }
-            .padding(.horizontal,20)
             
             
         }
@@ -204,6 +199,7 @@ struct IngredientForm: View {
                 print(error)
             }
         }
+        Spacer()
         
         
         
