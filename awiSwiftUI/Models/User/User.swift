@@ -68,7 +68,8 @@ class User : Identifiable, ObservableObject{
     
     
     var isValid : Bool {
-        return self.name.count > 0 && self.last_name.count > 0 && Validators.isMailValid(mail: self.mail) && Validators.isPhoneValid(phone: self.phone) && Validators.isDateValid(date: self.birthdate)
+        return self.name.count > 0 && self.last_name.count > 0 && Validators.isMailValid(mail: self.mail)
+        //&& Validators.isPhoneValid(phone: self.phone) && Validators.isDateValid(date: self.birthdate)
     }
     
 
