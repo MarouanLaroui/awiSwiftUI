@@ -12,10 +12,10 @@ struct ContentView: View {
     @State var isLoggedIn : Bool = false
     
     var body: some View {
-        if(!isLoggedIn){
+        /*if(!isLoggedIn){
             LoginView(isLoggedIn: $isLoggedIn)
         }
-        else{
+        else{*/
             TabView{
                 //TODO :  mettre un . quelque chose pour résoudre les contraintes doubles
                 NavigationView{
@@ -72,7 +72,7 @@ struct ContentView: View {
         }
         //LoginView()
         //Badge(backgroundColor: Color.red, fontColor: Color.white, text: "Allergen")
-    }
+    //}
 }
 
 struct ContentView_Previews: PreviewProvider {

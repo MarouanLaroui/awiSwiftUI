@@ -166,8 +166,8 @@ struct RecipeDAO{
         case .success(let enoughIngredient):
             //Appel à declare recipe si enoughIngredient est true
             if(enoughIngredient){
-                //do smth
                 print("--------- ASSEZ d'ingredient")
+                let result = await declareRecipePost(idRecipe: idRecipe, nbPortion: nbPortion)
                 //return .success(enoughIngredient)
             }
             else {
@@ -181,6 +181,44 @@ struct RecipeDAO{
         
         
         
+    }
+    
+    static func declareRecipePost(idRecipe: Int, nbPortion: Int) async -> Result<Data, Error>{
+        
+        print("---- Dans declareRecipePost")
+        
+        guard let url = URL(string: "https://awi-api.herokuapp.com/recipe/"+String(idRecipe)+"/declare/"+String(nbPortion))
+        else {return .failure(HTTPError.badURL)}
+        
+        do{
+            var request = URLRequest(url: url)
+    
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("NoAuth", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "POST"
+            //request.setValue("Bearer 1ccac66927c25f08de582f3919708e7aee6219352bb3f571e29566dd429ee0f0", forHTTPHeaderField: "Authorization")
+            
+            //Empty body
+            let encoded: Data = "".data(using: .utf8)!
+            
+            let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
+            let httpresponse = response as! HTTPURLResponse
+            if httpresponse.statusCode == 201{
+                print("----- dans declarerecipePost : success")
+                return .success(data)
+            }
+            else{
+                print("Error dans declareRecipePost \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
+                return .failure(HTTPError.badURL)
+            }
+                
+        }
+        catch(let error){
+            print("-erreur dans le post declare recipe")
+            //Error -999 ici
+            print(error)
+            return .failure(HTTPError.badRequest)
+        }
     }
     
 }
