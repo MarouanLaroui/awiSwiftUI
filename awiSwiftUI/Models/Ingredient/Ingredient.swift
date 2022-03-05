@@ -52,7 +52,6 @@ class Ingredient : Identifiable, ObservableObject, Hashable, Comparable{
     }
     var category : IngredientCategory{
         didSet{
-            print("didset category")
             self.delegate?.ingredientChange(ingredientCategory: category)
         }
     }

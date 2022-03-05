@@ -19,8 +19,18 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     @Published var unitaryPrice : Double
     @Published var nbInStock : Double
     @Published var allergen : AllergenCategory?
-    @Published var category : IngredientCategory?
-    @Published var unity : Unity?
+    
+    @Published var category : IngredientCategory?{
+        didSet{
+            self.isDefaultCategory = false
+            
+        }
+    }
+    @Published var unity : Unity?{
+        didSet{
+            self.isDefaultUnity = false
+        }
+    }
     
     var isDefaultName = true
     var isDefaultCategory = true
@@ -101,6 +111,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
             break
 
         case .ingredientNameChanging(let name):
+            print("isDefault name to false")
             self.isDefaultName = false
             self.copy.name = name
             
@@ -115,9 +126,11 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
             self.copy.allergen = allergenCategory
             
         case .ingredientCategoryChanging(let ingredientCategory):
+            self.isDefaultCategory = false
             self.copy.category = ingredientCategory
             
         case .unityChanging(let unity):
+            self.isDefaultUnity = false
             self.copy.unity = unity
             
         case .validateChange:
@@ -147,8 +160,12 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.model.unity = copy.unity
     }
     var isValid : Bool {
-        self.copy.isValid && !isDefaultCategory && !isDefaultUnity
+        print(self.copy.isValid)
+        print(!isDefaultCategory)
+        print(!isDefaultUnity)
+        return self.copy.isValid && !isDefaultCategory && !isDefaultUnity
     }
+    
     var nameErrorMsg : String{
         if(!self.isDefaultName && self.copy.name.count == 0  ){
             return "Ce champs est obligatoire"
@@ -176,7 +193,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     var categoryErrorMsg : String{
-        if(self.category != nil && !self.isDefaultCategory){
+        if(self.category == nil && !self.isDefaultCategory){
             return "Ce champs est obligatoire"
         }
         return ""
@@ -184,12 +201,19 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     var unityErrorMsg : String{
-        if(self.unity != nil && !self.isDefaultCategory){
+        if(self.unity == nil && !self.isDefaultUnity){
             return "Ce champs est obligatoire"
             
         }
         return ""
         
+    }
+    
+    func fieldAreNotDefault(){
+        self.isDefaultUnity = false
+        self.isDefaultCategory = false
+        self.isDefaultName = false
+        print("why")
     }
     
     

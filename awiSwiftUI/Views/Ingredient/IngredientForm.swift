@@ -97,9 +97,12 @@ struct IngredientForm: View {
                         }
                         Spacer()
                     }
-                    Text(self.ingredientFormVM.categoryErrorMsg)
-                        .font(.caption)
-                        .foregroundColor(.red)
+                    HStack{
+                        Text(self.ingredientFormVM.categoryErrorMsg)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
                     
                 }
                 
@@ -115,9 +118,13 @@ struct IngredientForm: View {
                         }
                         Spacer()
                     }
-                    Text(self.ingredientFormVM.unityErrorMsg)
-                        .font(.caption)
-                        .foregroundColor(.red)
+                    HStack{
+                        Text(self.ingredientFormVM.unityErrorMsg)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                    
                 }
                 
                 
@@ -131,6 +138,7 @@ struct IngredientForm: View {
                                 Text(allergen.name)
                             }
                         }
+                        
                         Spacer()
                     }
                 }
@@ -148,12 +156,17 @@ struct IngredientForm: View {
             .foregroundColor(.white)
             .cornerRadius(10)
             Button("Ajouter"){
+                
+                self.ingredientFormVM.fieldAreNotDefault()
+                
                 if(ingredientFormVM.isValid){
+                    print("ingredientcreation")
                     Task{
                         await self.intent.intentToCreateIngredient(ingredient : ingredientFormVM.copy, isUpdate: isUpdate)
                         self.isFormDisplayed = false
                     }
                 }
+                print("end button func")
                 
             }
             .padding(10)
@@ -174,7 +187,7 @@ struct IngredientForm: View {
             case .success(let resUnits):
                 print("Success unit")
                 units = resUnits
-                self.intent.intentToChange(unity: units[0])
+                //self.intent.intentToChange(unity: units[0])
             case .failure(let error):
                 print(error)
             }
@@ -184,7 +197,7 @@ struct IngredientForm: View {
             case .success(let resIngredientCategories):
                 print("Success ingredientCategory")
                 ingredientCategories = resIngredientCategories
-                self.intent.intentToChange(ingredientCategory: ingredientCategories[0])
+                //self.intent.intentToChange(ingredientCategory: ingredientCategories[0])
                 
             case .failure(let error):
                 print(error)
