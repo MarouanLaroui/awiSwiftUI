@@ -100,17 +100,39 @@ struct StepForm: View {
             .padding()
             .navigationTitle("Informations sur l'étape")
             
-            Button("Enregistrer l'étape"){
-                print(self.stepVM.model.ingredients)
-                Task{
-                    await self.listIntent.intentToChange(stepToAdd: self.stepVM.model, recipeId: self.recipe.id!)
-                    self.presentationMode.wrappedValue.dismiss()
+            HStack{
+                Button("Supprimer"){
+                    Task{
+                        let deletionRes = await self.intent.intentToDeleteStep(step: self.stepVM.model)
+                        
+                        switch(deletionRes){
+                            
+                        case .success(_):
+                            self.presentationMode.wrappedValue.dismiss()
+                        case .failure(_):
+                            print("Error while deleting")
+                        }
+               
+                        
+                    }
                 }
-            }
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(15)
+                
+                Button("Enregistrer"){
+                    Task{
+                        await self.listIntent.intentToChange(stepToAdd: self.stepVM.model, recipeId: self.recipe.id!)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
                 .padding()
                 .background(Color.salmon)
                 .foregroundColor(.white)
                 .cornerRadius(15)
+            }
+            
         }
         
     }

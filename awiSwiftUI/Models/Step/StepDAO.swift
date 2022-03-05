@@ -206,5 +206,9 @@ struct StepDAO{
             return .failure(HTTPError.badRequest)
         }
     }
+    
+    static func deleteStep(stepId : Int) async ->Result<Int,Error>{
+        return await JSONHelper.httpDelete(url: Utils.apiURL + "step/" + String(stepId))
+    }
 
 }

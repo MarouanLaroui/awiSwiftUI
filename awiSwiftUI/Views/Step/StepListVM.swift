@@ -51,8 +51,10 @@ class StepListVM :  ObservableObject, Subscriber {
                 print($0.title)
             })
             
-        case .deleteElement(stepIndex: let stepIndex):
-            self.steps.remove(at: stepIndex)
+        case .deleteElement(step: let step):
+            if let indexToDelete = self.steps.firstIndex(where: {$0 == step}){
+                self.steps.remove(at: indexToDelete)
+            }
         }
         return .none
         

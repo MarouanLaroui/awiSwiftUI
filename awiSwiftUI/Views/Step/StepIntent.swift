@@ -28,7 +28,7 @@ enum IntentStepListState{
     case upToDate
     case listUpdated
     case appendList(step: Step)
-    case deleteElement(stepIndex: Int)
+    case deleteElement(step: Step)
 }
 
 class StepIntent{
@@ -113,6 +113,26 @@ class StepIntent{
         
         return .success([])
 
+    }
+    
+    func intentToDeleteStep(step : Step) async -> Result<Int,Error>{
+        if let stepId = step.id{
+            let deletionRes = await StepDAO.deleteStep(stepId: stepId)
+            
+            switch(deletionRes){
+                
+            case .success(let nbRows):
+                self.listState.send(.deleteElement(step: step))
+                return .success(nbRows)
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+        else{
+            self.listState.send(.deleteElement(step: step))
+            return .success(1)
+        }
+        
     }
 
 
