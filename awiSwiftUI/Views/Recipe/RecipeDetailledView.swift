@@ -259,7 +259,7 @@ struct RecipeDetailledView: View {
                     VStack{
                         ForEach(ingredients.sorted(by: ==), id: \.key.id) { ingredient, qtty in
                             HStack{
-                                Text(ingredient.name + " - ")
+                                Text(ingredient.name + " -")
                                     .fontWeight(.bold)
                                 Text("\(qtty)" + ingredient.unity.unityName)
                             }

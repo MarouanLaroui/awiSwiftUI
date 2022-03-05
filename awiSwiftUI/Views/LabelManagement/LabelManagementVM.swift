@@ -9,9 +9,5 @@ import Foundation
 
 class LabelManagementVM {
     
-    @Published var decrementStock : Bool = false
-    @Published private var nbPortions : Int = 1
-    
-    //TODO
 }
  

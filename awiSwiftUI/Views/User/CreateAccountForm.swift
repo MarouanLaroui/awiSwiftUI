@@ -31,23 +31,23 @@ struct CreateAccountForm: View {
         ScrollView{
             
             VStack(alignment: .leading){
-                
-                Text("Formulaire d'utilisateur")
-                    .font(.title)
-                    .bold()
-                    .padding(.vertical)
-                
-                HStack{
-                    Spacer()
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .frame(width: 70.0, height: 70.0)
-                    Spacer()
+                if(userVM.name == ""){
+                    Text("Ajouter un utilisateur")
+                        .font(.title)
+                        .bold()
+                        .padding(.vertical)
+                }
+                else {
+                    Text("Modifier un compte")
+                        .font(.title)
+                        .bold()
+                        .padding(.vertical)
                 }
                 
+               
                 
                 Group{
-                    TextField("firstname",text: $userVM.name)
+                    TextField("Prénom",text: $userVM.name)
                         .onSubmit {
                             print("OnSubmit firstname")
                             self.intent.intentToChange(name: self.userVM.name)
@@ -62,7 +62,7 @@ struct CreateAccountForm: View {
                 
                 
                 Group{
-                    TextField("lastname",text: $userVM.last_name)
+                    TextField("Nom",text: $userVM.last_name)
                         .onSubmit {
                             self.intent.intentToChange(last_name: self.userVM.last_name)
                         }
@@ -79,11 +79,14 @@ struct CreateAccountForm: View {
                 
                 
                 Group{
-                    TextField("phone number", text : $userVM.phone)
-                        .onSubmit {
-                            self.intent.intentToChange(phone: self.userVM.phone)
-                        }
-                        .underlineTextField(color: .gray)
+                    HStack{
+                        Image(systemName: "phone.fill")
+                        TextField("Téléphone", text : $userVM.phone)
+                            .onSubmit {
+                                self.intent.intentToChange(phone: self.userVM.phone)
+                            }
+                            .underlineTextField(color: .gray)
+                    }
                     
                     HStack{
                         Text(self.userVM.phoneErrorMsg)
@@ -95,11 +98,14 @@ struct CreateAccountForm: View {
                 }
                 
                 Group{
-                    TextField("email adress",text: $userVM.mail)
-                        .onSubmit {
-                            self.intent.intentToChange(mail: self.userVM.mail)
-                        }
-                        .underlineTextField(color: .gray)
+                    HStack{
+                        Image(systemName: "at")
+                        TextField("Adresse mail",text: $userVM.mail)
+                            .onSubmit {
+                                self.intent.intentToChange(mail: self.userVM.mail)
+                            }
+                            .underlineTextField(color: .gray)
+                    }
                     
                     HStack{
                         Text(self.userVM.mailErrorMsg)
@@ -112,10 +118,14 @@ struct CreateAccountForm: View {
                 
                 
                 Group{
-                    DatePicker("birthdate",selection: $userVM.birthdate,displayedComponents: [.date])
-                        .onSubmit {
-                            self.intent.intentToChange(birthdate: Date.toString(date: self.userVM.birthdate))
-                        }
+                    HStack{
+                        Image(systemName: "calendar")
+                        DatePicker("Date de naissance",selection: $userVM.birthdate,displayedComponents: [.date])
+                            .onSubmit {
+                                self.intent.intentToChange(birthdate: Date.toString(date: self.userVM.birthdate))
+                            }
+                    }
+                    
                     
                     HStack{
                         Text(self.userVM.birthdateErrorMsg)
@@ -129,37 +139,35 @@ struct CreateAccountForm: View {
                 
                 
                 Group{
-                    Toggle("is Admin",isOn: $userVM.isAdmin)
+                    Toggle("Cet utilisateur est admin ?",isOn: $userVM.isAdmin)
                         .onSubmit {
                             self.intent.intentToChange(isAdmin: self.userVM.isAdmin)
                         }
                     
                 }
                 
-                
-                HStack{
-                    Spacer()
-                    Button("Create"){
-                        if(self.userVM.isValid){
-                            Task{
-                                await self.intent.intentToPostUser(user: self.userVM.model)
-                                self.isSheetShown = false
+                Group{
+                    
+                    HStack{
+                        Spacer()
+                        Button("Enregistrer"){
+                            if(self.userVM.isValid){
+                                Task{
+                                    await self.intent.intentToPostUser(user: self.userVM.model)
+                                    self.isSheetShown = false
+                                }
+                            }
+                            else{
+                                self.userVM.reloadErrorMsg()
                             }
                         }
-                        else{
-                            self.userVM.reloadErrorMsg()
-                        }
-                        
-                        
+                        .padding(10)
+                        .background(Color.salmon)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        Spacer()
                     }
-                    .padding(10)
-                    .background(Color.salmon)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    
-                    Spacer()
                 }
-                
             }
             .padding(.horizontal,30)
             
