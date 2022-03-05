@@ -72,30 +72,8 @@ struct Ingredients: View {
                             Image(systemName: "trash")
                         }
                         .background(Color.red)
-                        /*
-                        .alert("Delete ?", isPresented: $isAlertShowed) {
-                            Button(role: .cancel) {
-                            } label: {
-                                Text("No")
-                            }
-                            Button(role: .destructive) {
-                                self.isAlertShowed = false
-                                // TODO: intentToRemoveIngredient
-                            } label: {
-                                Text("Yes")
-                                
-                            }
-                        }
-                         */
                     }
             }
-             
-            
-            /*
-            .searchable(text: $searchedIngredientName,placement: .navigationBarDrawer(displayMode: .always))
-            
-        }
-        */
         }
         .onAppear{
             Task{
