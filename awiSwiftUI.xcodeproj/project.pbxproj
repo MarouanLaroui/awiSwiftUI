@@ -18,6 +18,7 @@
 		AC25CAD427C95A56001258F0 /* StepForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD327C95A56001258F0 /* StepForm.swift */; };
 		AC25CAD627C95A8C001258F0 /* StepIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD527C95A8C001258F0 /* StepIntent.swift */; };
 		AC25CAD827C95B54001258F0 /* StepFormVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25CAD727C95B54001258F0 /* StepFormVM.swift */; };
+		AC3A84D827D36580002162B6 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3A84D727D36580002162B6 /* ViewExtension.swift */; };
 		AC42458027C90BB700927F39 /* RecipeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42457F27C90BB700927F39 /* RecipeForm.swift */; };
 		AC42458227C9189B00927F39 /* RecipeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42458127C9189B00927F39 /* RecipeVM.swift */; };
 		AC42458427C91A5900927F39 /* RecipeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC42458327C91A5900927F39 /* RecipeIntent.swift */; };
@@ -83,7 +84,6 @@
 		ACBBE52627C10308002B59C8 /* IngredientCategoryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE52527C10308002B59C8 /* IngredientCategoryForm.swift */; };
 		ACBBE52927C1032B002B59C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE52827C1032B002B59C8 /* HomeView.swift */; };
 		ACBBE52B27C1033A002B59C8 /* TextUnderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE52A27C1033A002B59C8 /* TextUnderIcon.swift */; };
-		ACBBE52D27C10357002B59C8 /* CreateUserForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE52C27C10357002B59C8 /* CreateUserForm.swift */; };
 		ACBBE52F27C10369002B59C8 /* CreateAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE52E27C10369002B59C8 /* CreateAccountForm.swift */; };
 		ACBBE53127C10376002B59C8 /* HomeCoverSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE53027C10376002B59C8 /* HomeCoverSlider.swift */; };
 		ACBBE53327C10384002B59C8 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE53227C10384002B59C8 /* Badge.swift */; };
@@ -143,6 +143,7 @@
 		AC25CAD327C95A56001258F0 /* StepForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepForm.swift; sourceTree = "<group>"; };
 		AC25CAD527C95A8C001258F0 /* StepIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepIntent.swift; sourceTree = "<group>"; };
 		AC25CAD727C95B54001258F0 /* StepFormVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepFormVM.swift; sourceTree = "<group>"; };
+		AC3A84D727D36580002162B6 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		AC42457F27C90BB700927F39 /* RecipeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeForm.swift; sourceTree = "<group>"; };
 		AC42458127C9189B00927F39 /* RecipeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeVM.swift; sourceTree = "<group>"; };
 		AC42458327C91A5900927F39 /* RecipeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIntent.swift; sourceTree = "<group>"; };
@@ -212,7 +213,6 @@
 		ACBBE52527C10308002B59C8 /* IngredientCategoryForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCategoryForm.swift; sourceTree = "<group>"; };
 		ACBBE52827C1032B002B59C8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ACBBE52A27C1033A002B59C8 /* TextUnderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextUnderIcon.swift; sourceTree = "<group>"; };
-		ACBBE52C27C10357002B59C8 /* CreateUserForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserForm.swift; sourceTree = "<group>"; };
 		ACBBE52E27C10369002B59C8 /* CreateAccountForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountForm.swift; sourceTree = "<group>"; };
 		ACBBE53027C10376002B59C8 /* HomeCoverSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoverSlider.swift; sourceTree = "<group>"; };
 		ACBBE53227C10384002B59C8 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -396,6 +396,7 @@
 				AC6F156227D2836B000A61F4 /* Validators.swift */,
 				AC6F156427D28493000A61F4 /* StringExtension.swift */,
 				AC6F156627D28584000A61F4 /* NSRegularExpression.swift */,
+				AC3A84D727D36580002162B6 /* ViewExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -553,7 +554,6 @@
 			children = (
 				AC6F155827D20D82000A61F4 /* Users.swift */,
 				AC6F155627D20B4F000A61F4 /* UserRow.swift */,
-				ACBBE52C27C10357002B59C8 /* CreateUserForm.swift */,
 				ACBBE52E27C10369002B59C8 /* CreateAccountForm.swift */,
 				6F2EFC8A27D0D0FC00BCC38C /* UserAccountView.swift */,
 				AC6F155A27D20DC9000A61F4 /* UserVM.swift */,
@@ -787,6 +787,7 @@
 				ACBBE50627C101BE002B59C8 /* AllergenCategoryDAO.swift in Sources */,
 				ACBBE50B27C101E7002B59C8 /* IngredientDAO.swift in Sources */,
 				ACBBE4DC27C10029002B59C8 /* JSONError.swift in Sources */,
+				AC3A84D827D36580002162B6 /* ViewExtension.swift in Sources */,
 				AC25CAD627C95A8C001258F0 /* StepIntent.swift in Sources */,
 				ACBBE50927C101D9002B59C8 /* Ingredient.swift in Sources */,
 				ACBBE53A27C103BF002B59C8 /* Ingredients.swift in Sources */,
@@ -856,7 +857,6 @@
 				ACBBE50F27C1020E002B59C8 /* IngredientPostDTO.swift in Sources */,
 				ACBBE54B27C12978002B59C8 /* HTTPError.swift in Sources */,
 				AC6F155B27D20DC9000A61F4 /* UserVM.swift in Sources */,
-				ACBBE52D27C10357002B59C8 /* CreateUserForm.swift in Sources */,
 				ACBBE52B27C1033A002B59C8 /* TextUnderIcon.swift in Sources */,
 				ACBBE4AD27C0FFC3002B59C8 /* awiSwiftUIApp.swift in Sources */,
 				ACBBE4F827C1013F002B59C8 /* UserDAO.swift in Sources */,

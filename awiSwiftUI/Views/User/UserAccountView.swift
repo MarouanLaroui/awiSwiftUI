@@ -41,9 +41,9 @@ struct UserAccountView: View {
                 Section("credentials"){
                     
                     TextField("email",text: $connectedUser.mail)
-                    NavigationLink(destination : CreateUserForm()){
+                    //NavigationLink(destination : ){
                         Text("Mot de passe")
-                    }
+                    //}
                     
                 }
                 

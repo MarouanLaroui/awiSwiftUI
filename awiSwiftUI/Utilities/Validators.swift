@@ -25,7 +25,16 @@ struct Validators{
     }
     
     static func isValidAge(age : Int) -> Bool{
-        return age>0 && age < 120
+        return age > 0 && age < 120
+    }
+    
+    static func isDateValid(date : String) -> Bool{
+        
+        
+        return String.matchRegex(
+            str: date,
+            regexStr: #"^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$"#
+        )
     }
     
 }

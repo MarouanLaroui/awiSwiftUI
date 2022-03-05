@@ -22,6 +22,13 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
     @Published var birthdate : Date
     @Published var isAdmin : Bool
     
+    
+    var isDefaultName : Bool = true
+    var isDefaultLast_name : Bool = true
+    var isDefaultMail : Bool = true
+    var isDefaultPhone : Bool = true
+    var isDefaultbirthdate : Bool = true
+    
     init(model : User){
         
         self.model = model
@@ -81,18 +88,30 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
             
         case .ready:
             break
+            
         case .nameChanging(name: let name):
             self.copy.name = name
+            self.isDefaultName = false
+            
         case .lastNameChanging(last_name: let last_name):
             self.copy.last_name = last_name
+            self.isDefaultName = false
+            
         case .mailChanging(mail: let mail):
             self.copy.mail = mail
+            self.isDefaultMail = false
+            
         case .phoneChanging(phone: let phone):
             self.copy.phone = phone
+            self.isDefaultPhone = false
+            
         case .isAdminChanging(isAdmin: let isAdmin):
             self.copy.isAdmin = isAdmin
+            
         case .birthdateChanging(birthdate: let birthdate):
             self.copy.birthdate = birthdate
+            self.isDefaultbirthdate = false
+            
         case .validateChange:
             self.model.id = self.copy.id
             self.model.name = self.copy.name
@@ -111,6 +130,58 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
     
     func receive(completion: Subscribers.Completion<Never>) {
         return
+    }
+    
+    var isValid : Bool{
+        return self.copy.isValid
+    }
+    
+    var nameErrorMsg : String{
+        if(self.isDefaultName || self.copy.name.count > 0  ){
+            return ""
+        }
+        return "Ce champs est obligatoire"
+    }
+    
+    var last_nameErrorMsg : String{
+        if(self.copy.last_name.count > 0 || self.isDefaultLast_name){
+            return ""
+        }
+        return "Ce champs est obligatoire"
+    }
+    
+    
+    var birthdateErrorMsg : String {
+        if(Validators.isDateValid(date: self.copy.birthdate) || self.isDefaultbirthdate){
+            return ""
+        }
+        return "Format de date différente de MM/DD/YYYY"
+    }
+    
+    var phoneErrorMsg : String {
+        if(Validators.isPhoneValid(phone: self.copy.phone) || self.isDefaultPhone){
+            return ""
+        }
+        return "Numéro de téléphone invalide"
+    }
+    
+    var mailErrorMsg : String{
+        if(Validators.isMailValid(mail: self.copy.mail) || self.isDefaultMail){
+            
+            return ""
+        }
+        return "Format de mail invalide"
+    }
+    
+    /*TODO : see why not refreshing*/
+    func reloadErrorMsg(){
+       
+        self.isDefaultbirthdate = false
+        self.isDefaultMail = false
+        self.isDefaultName = false
+        self.isDefaultLast_name = false
+        self.isDefaultPhone = false
+        
     }
     
     
