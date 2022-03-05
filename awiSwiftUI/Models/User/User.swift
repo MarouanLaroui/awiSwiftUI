@@ -10,6 +10,7 @@ import Foundation
 class User : Identifiable, ObservableObject{
 
     var delegate : UserDelegate?
+    
     var id : Int?{
         didSet{
             self.delegate?.userChange(id: self.id)
@@ -60,6 +61,14 @@ class User : Identifiable, ObservableObject{
         self.phone = phone
         self.isAdmin = isAdmin
         self.birthdate = birthdate
+    }
+    
+    
+    
+    
+    
+    var isValid : Bool {
+        return self.name.count > 0 && self.last_name.count > 0 && Validators.isMailValid(mail: self.mail) && Validators.isPhoneValid(phone: self.phone) && Validators.isDateValid(date: self.birthdate)
     }
     
 

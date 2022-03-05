@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LoginView: View {
     
@@ -33,15 +34,28 @@ struct LoginView: View {
                     .frame(width: 100, height: 100, alignment: .center)
                     .padding(.bottom,30)
             
-                TextField("email",text :$mail)
-                    .padding()
-                    .cornerRadius(5.0)
-                    .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.salmon, lineWidth: 1)
-                        )
-                    .padding([.horizontal, .bottom], 20)
-    
+                Group{
+                    TextField("email",text :$mail)
+                        .padding()
+                        .cornerRadius(5.0)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.salmon, lineWidth: 1)
+                            )
+                        
+                    HStack{
+                        Text("Format d'email incorrect")
+                            .foregroundColor(.red)
+                            .font(.caption)
+                            .padding(.bottom, 20)
+                        Spacer()
+                    }
+                    
+                }
+                .padding([.horizontal], 20)
+                
+
+                
                 
                 SecureField("password",text :$password)
                     .padding()
@@ -56,7 +70,7 @@ struct LoginView: View {
                     .padding(.bottom,10)
                 
                 Button("Se connecter"){
-       
+
                     Task{
                         let result = await UserDAO.login(mail: self.mail, password: self.password)
                         

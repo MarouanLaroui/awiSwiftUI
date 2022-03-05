@@ -27,70 +27,216 @@ struct CreateAccountForm: View {
     }
     
     var body: some View {
-        VStack{
+        
+        ScrollView{
             
-            Form{
-
-                Section("informations"){
+            VStack(alignment: .leading){
+                
+                Text("Formulaire d'utilisateur")
+                    .font(.title)
+                    .bold()
+                    .padding(.vertical)
+                
+                HStack{
+                    Spacer()
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .frame(width: 70.0, height: 70.0)
+                    Spacer()
+                }
+                
+                
+                Group{
                     TextField("firstname",text: $userVM.name)
                         .onSubmit {
                             print("OnSubmit firstname")
                             self.intent.intentToChange(name: self.userVM.name)
                         }
+                        .underlineTextField(color: .gray)
+                    
+                    Text(self.userVM.nameErrorMsg)
+                        .font(.caption)
+                        .foregroundColor(.red)
+                    
+                }
+                
+                
+                Group{
                     TextField("lastname",text: $userVM.last_name)
                         .onSubmit {
                             self.intent.intentToChange(last_name: self.userVM.last_name)
                         }
+                        .underlineTextField(color: .gray)
+                    
+                    HStack{
+                        Text(self.userVM.last_nameErrorMsg)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                    
+                }
+                
+                
+                Group{
                     TextField("phone number", text : $userVM.phone)
                         .onSubmit {
                             self.intent.intentToChange(phone: self.userVM.phone)
                         }
+                        .underlineTextField(color: .gray)
+                    
+                    HStack{
+                        Text(self.userVM.phoneErrorMsg)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                    
+                }
+                
+                Group{
+                    TextField("email adress",text: $userVM.mail)
+                        .onSubmit {
+                            self.intent.intentToChange(mail: self.userVM.mail)
+                        }
+                        .underlineTextField(color: .gray)
+                    
+                    HStack{
+                        Text(self.userVM.mailErrorMsg)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                    
+                }
+                
+                
+                Group{
                     DatePicker("birthdate",selection: $userVM.birthdate,displayedComponents: [.date])
                         .onSubmit {
                             self.intent.intentToChange(birthdate: Date.toString(date: self.userVM.birthdate))
                         }
                     
+                    HStack{
+                        Text(self.userVM.birthdateErrorMsg)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        Spacer()
+                    }
+                    
                 }
                 
-                Section("credentials"){
+                
+                
+                Group{
                     Toggle("is Admin",isOn: $userVM.isAdmin)
                         .onSubmit {
                             self.intent.intentToChange(isAdmin: self.userVM.isAdmin)
                         }
-                    TextField("email adress",text: $userVM.mail)
-                        .onSubmit {
-                            self.intent.intentToChange(mail: self.userVM.mail)
-                        }
                     
                 }
+                
+                
                 HStack{
                     Spacer()
                     Button("Create"){
-                        Task{
-                            await self.intent.intentToPostUser(user: self.userVM.model)
-                            self.isSheetShown = false
+                        if(self.userVM.isValid){
+                            Task{
+                                await self.intent.intentToPostUser(user: self.userVM.model)
+                                self.isSheetShown = false
+                            }
+                        }
+                        else{
+                            self.userVM.reloadErrorMsg()
                         }
                         
+                        
                     }
+                    .padding(10)
+                    .background(Color.salmon)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    
                     Spacer()
                 }
                 
             }
+            .padding(.horizontal,30)
             
         }
-        .navigationTitle("Create account")
-        
-        
         
     }
 }
 /*
-struct CreateAccountForm_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            CreateAccountForm(userVM: UserVM(model: User.users[0]),isSheetShown: &true)
-        }
-    }
-}
+ struct CreateAccountForm_Previews: PreviewProvider {
+ static var previews: some View {
+ NavigationView{
+ CreateAccountForm(userVM: UserVM(model: User.users[0]),isSheetShown: &true)
+ }
+ }
+ }
+ 
+ */
 
-*/
+
+/*
+ 
+ var body: some View {
+ VStack{
+ 
+ Form{
+ 
+ Section("informations"){
+ TextField("firstname",text: $userVM.name)
+ .onSubmit {
+ print("OnSubmit firstname")
+ self.intent.intentToChange(name: self.userVM.name)
+ }
+ TextField("lastname",text: $userVM.last_name)
+ .onSubmit {
+ self.intent.intentToChange(last_name: self.userVM.last_name)
+ }
+ TextField("phone number", text : $userVM.phone)
+ .onSubmit {
+ self.intent.intentToChange(phone: self.userVM.phone)
+ }
+ DatePicker("birthdate",selection: $userVM.birthdate,displayedComponents: [.date])
+ .onSubmit {
+ self.intent.intentToChange(birthdate: Date.toString(date: self.userVM.birthdate))
+ }
+ 
+ }
+ 
+ Section("credentials"){
+ Toggle("is Admin",isOn: $userVM.isAdmin)
+ .onSubmit {
+ self.intent.intentToChange(isAdmin: self.userVM.isAdmin)
+ }
+ TextField("email adress",text: $userVM.mail)
+ .onSubmit {
+ self.intent.intentToChange(mail: self.userVM.mail)
+ }
+ 
+ }
+ HStack{
+ Spacer()
+ Button("Create"){
+ Task{
+ await self.intent.intentToPostUser(user: self.userVM.model)
+ self.isSheetShown = false
+ }
+ 
+ }
+ Spacer()
+ }
+ 
+ }
+ 
+ }
+ .navigationTitle("Create account")
+ 
+ 
+ 
+ }
+ */
+
