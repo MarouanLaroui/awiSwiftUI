@@ -89,8 +89,13 @@ struct IngredientForm: View {
                     HStack{
                         Text("Catégorie :")
                         Picker("Catégorie : ", selection: $ingredientFormVM.category) {
-                            Text("Aucun")
-                                .tag(nil as IngredientCategory?)
+                            if(self.ingredientFormVM.copy.id != nil){
+                                Text(self.ingredientFormVM.category!.category_name)
+                            }
+                            else{
+                                Text("Aucun")
+                                    .tag(nil as IngredientCategory?)
+                            }
                             ForEach(ingredientCategories) { category in
                                 Text(category.category_name)
                             }
@@ -110,8 +115,13 @@ struct IngredientForm: View {
                     HStack{
                         Text("Unité :")
                         Picker("Unité : ", selection: $ingredientFormVM.unity) {
-                            Text("Aucun")
-                                .tag(nil as Unity?)
+                            if(self.ingredientFormVM.copy.id != nil){
+                                Text(self.ingredientFormVM.unity!.unityName)
+                            }
+                            else{
+                                Text("Aucun")
+                                    .tag(nil as Unity?)
+                            }
                             ForEach(units) { unity in
                                 Text(unity.unityName)
                             }
@@ -132,8 +142,13 @@ struct IngredientForm: View {
                     HStack{
                         Text("Allergène :")
                         Picker("Allergène :", selection: $ingredientFormVM.allergen) {
-                            Text("Aucun")
-                                .tag(nil as AllergenCategory?)
+                            if(self.ingredientFormVM.copy.id != nil && self.ingredientFormVM.allergen != nil){
+                                Text(self.ingredientFormVM.allergen!.name)
+                            }
+                            else{
+                                Text("Aucun")
+                                    .tag(nil as IngredientCategory?)
+                            }
                             ForEach(allergenCategories) { allergen in
                                 Text(allergen.name)
                             }
