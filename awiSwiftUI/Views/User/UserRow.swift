@@ -12,7 +12,7 @@ struct UserRow: View {
     var body: some View {
         HStack(){
             VStack(alignment: .leading){
-                Image(systemName: "person.circle.fill")
+                Image(systemName: "person.crop.circle")
 
             }
             VStack(alignment: .leading){
@@ -25,7 +25,9 @@ struct UserRow: View {
                     .font(.caption)
             }
             Spacer()
-            Badge(backgroundColor: .red, fontColor: .white, text: "Admin")
+            if(userVM.isAdmin == true){
+                Badge(backgroundColor: .green, fontColor: .white, text: "Admin")
+            }
         }
         .padding()
     }

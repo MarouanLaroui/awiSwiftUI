@@ -95,8 +95,6 @@ struct LabelManagement: View {
             
             Task{
                 async let requestEnoughIngredients =  RecipeDAO.declareRecipePost(idRecipe: self.recipe.id!, nbPortion: self.nbPortions)
-                
-                print(String(enoughIngredients))
             }
         }
         .padding()

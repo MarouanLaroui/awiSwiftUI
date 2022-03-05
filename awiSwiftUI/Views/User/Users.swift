@@ -25,19 +25,19 @@ struct Users: View {
                 
                 UserRow(userVM: UserVM(model: user))
                     .swipeActions {
-                        Button {
-                            self.selectedUser = user
-                            isSheetShown = true
-                        }
+                    Button {
+                        self.selectedUser = user
+                        isSheetShown = true
+                    }
                     label: {
                         Image(systemName: "square.and.pencil")
                     }
                         
-                        Button {
-                            Task{
-                                await self.intent.intentToDeleteUser(user: user)
-                            }
+                    Button {
+                        Task{
+                            await self.intent.intentToDeleteUser(user: user)
                         }
+                    }
                     label: {
                         Image(systemName: "trash")
                     }
