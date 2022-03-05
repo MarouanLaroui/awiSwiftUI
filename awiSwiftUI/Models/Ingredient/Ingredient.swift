@@ -61,6 +61,9 @@ class Ingredient : Identifiable, ObservableObject, Hashable, Comparable{
         }
     }
     
+    var isValid : Bool {
+        return self.name.count > 0 && self.unitaryPrice > 0 && self.nbInStock >= 0
+    }
     
     internal init(id : Int? = nil,name: String, unitaryPrice: Double, nbInStock : Double, allergen: AllergenCategory? = nil, ingredientCategory: IngredientCategory, unity: Unity) {
         self.id = id

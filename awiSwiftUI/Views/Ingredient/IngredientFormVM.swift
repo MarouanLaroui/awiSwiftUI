@@ -22,6 +22,8 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     @Published var category : IngredientCategory
     @Published var unity : Unity
     
+    var isDefaultName = true
+    
     init(model : Ingredient){
         
         self.id = model.id
@@ -94,6 +96,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
             break
 
         case .ingredientNameChanging(let name):
+            self.isDefaultName = false
             self.copy.name = name
             
         case .unitaryPriceChanging(let unitaryPrice):
@@ -138,6 +141,31 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.model.category = copy.category
         self.model.unity = copy.unity
     }
+    var isValid : Bool {
+        self.copy.isValid
+    }
+    var nameErrorMsg : String{
+        if(self.isDefaultName || self.copy.name.count > 0  ){
+            return ""
+        }
+        return "Ce champs est obligatoire"
+    }
+    
+    var unitaryPriceErrorMsg : String{
+        if(self.copy.unitaryPrice > 0){
+            return ""
+        }
+        return "Le prix unitaire doit être superieur à 0"
+    }
+    
+    var nbInStockErrorMsg : String{
+        if(self.nbInStock >= 0){
+            return ""
+        }
+        return "Ce champs est obligatoire"
+    }
+    
+    
     
     
 }
