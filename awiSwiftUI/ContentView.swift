@@ -20,7 +20,7 @@ struct ContentView: View {
                 //TODO :  mettre un . quelque chose pour résoudre les contraintes doubles
                 NavigationView{
                     HomeView()
-                        .navigationTitle("ACCUEIL")
+                        .navigationTitle("Accueil, bienvenue !")
 
                 }
                 .tabItem{
