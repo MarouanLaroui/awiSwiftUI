@@ -212,6 +212,9 @@ struct StepDAO{
     }
     
     static func deleteIngredientFromStep(stepId : Int, ingredientId : Int) async -> Result<Int,Error>{
+        print("deleteIngredientFromStep")
+        print(stepId)
+        print(ingredientId)
         return await JSONHelper.httpDelete(url: Utils.apiURL + "ingredient-to-step/step/" + String(stepId) + "/ingredient/" + String(ingredientId))
     }
 

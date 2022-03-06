@@ -43,7 +43,7 @@ class StepIntent{
     func addObserverList(viewModel : StepListVM){
         self.listState.subscribe(viewModel)
     }
-
+    
     func intentToChange(title : String){
         self.state.send(.titleChanging(title: title))
     }
@@ -83,7 +83,7 @@ class StepIntent{
             case .failure(_):
                 print("deletion error in stepintent")
             }
-
+            
             res = await StepDAO.updateStepOfRecipe(recipeId: recipeId, step: stepToAdd, stepNbOfOrder: 2)
         }
         else{
@@ -112,7 +112,7 @@ class StepIntent{
         }
         
         return .success([])
-
+        
     }
     
     func intentToDeleteStep(step : Step) async -> Result<Int,Error>{
@@ -134,32 +134,28 @@ class StepIntent{
         }
         
     }
-    /*
-    func intentToDeleteIngredientFromStep(stepId : Int, ingredientId : Int) async -> Result<Int,Error>{
-        //Je suis en train de faire ça supprime pas
+    
+    func intentToDeleteIngredientFromStep(step : Step, ingredient : Ingredient) async -> Result<Int,Error>{
         
         if let stepId = step.id{
-            let deletionRes = await StepDAO.deleteIngredientFromStep(stepId: stepId, ingredientId: ingredientId)
+            
+            let deletionRes = await StepDAO.deleteIngredientFromStep(stepId: step.id!, ingredientId: ingredient.id!)
             
             switch(deletionRes){
                 
             case .success(let nbRows):
-                self.listState.send(.deleteElement(step: step))
+                self.state.send(.deleteIngredient(ingredient: ingredient))
                 return .success(nbRows)
             case .failure(let error):
                 return .failure(error)
             }
         }
-        else{
-            self.listState.send(.deleteElement(step: step))
-            return .success(1)
-        }
-         
-        
+        self.state.send(.deleteIngredient(ingredient: ingredient))
+        return .success(1)
     }
-     */
-
-
+    
+    
+    
 }
 
 

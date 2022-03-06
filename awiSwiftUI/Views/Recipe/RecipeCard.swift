@@ -46,7 +46,7 @@ struct RecipeCard: View {
             }
         }
         
-        .background(.white)
+        .background(Color("AdaptativeColor"))
         .cornerRadius(10)
         
         .task {

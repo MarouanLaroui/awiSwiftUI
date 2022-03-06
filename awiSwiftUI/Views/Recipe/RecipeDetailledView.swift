@@ -331,7 +331,7 @@ struct RecipeDetailledView: View {
             }
             .navigationTitle(recipe.title)
             
-            .background(.white)
+           // .background(Color("AdaptativeColor"))
             .cornerRadius(10)
         }
         .onAppear{

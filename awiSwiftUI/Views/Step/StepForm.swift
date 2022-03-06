@@ -78,7 +78,9 @@ struct StepForm: View {
                             }
                         Spacer()
                         Button(role: .destructive){
-                            
+                            Task{
+                                await self.intent.intentToDeleteIngredientFromStep(step: self.stepVM.model, ingredient: ingredient)
+                            }
                         }
                     label: {
                         Image(systemName: "trash")

@@ -67,6 +67,7 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
             self.objectWillChange.send()
             
         case .deleteIngredient(ingredient: let ingredient):
+            print("deletion from VM")
             self.ingredients.removeValue(forKey: ingredient)
             
         case .quantityOfIngredientChanging(ingredient: let ingredient, quantity: let quantity):
