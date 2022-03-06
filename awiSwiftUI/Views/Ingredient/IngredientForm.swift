@@ -106,9 +106,9 @@ struct IngredientForm: View {
                                 Text(category.category_name).tag(category as IngredientCategory?)
                             }
                         }
-//                        .onReceive([self.ingredientFormVM.category].publisher.first()) { (category) in
-//                            self.intent.intentToChange(ingredientCategory: category)
-//                        }
+                        .onReceive([self.ingredientFormVM.category].publisher.first()) { (category) in
+                            self.intent.intentToChange(ingredientCategory: category)
+                        }
                 
                         Spacer()
                     }
@@ -134,9 +134,9 @@ struct IngredientForm: View {
                                 Text(unity.unityName).tag(unity as Unity?)
                             }
                         }
-//                        .onReceive([self.ingredientFormVM.unity].publisher.first()) { (unity) in
-//                            self.intent.intentToChange(unity: unity)
-//                        }
+                        .onReceive([self.ingredientFormVM.unity].publisher.first()) { (unity) in
+                            self.intent.intentToChange(unity: unity)
+                        }
                         Spacer()
                     }
                     HStack{
@@ -162,9 +162,9 @@ struct IngredientForm: View {
                                 Text(allergen.name).tag(allergen as AllergenCategory?)
                             }
                         }
-//                        .onReceive([self.ingredientFormVM.allergen].publisher.first()) { (allergen) in
-//                            self.intent.intentToChange(allergenCategory: allergen)
-//                        }
+                        .onReceive([self.ingredientFormVM.allergen].publisher.first()) { (allergen) in
+                            self.intent.intentToChange(allergenCategory: allergen)
+                        }
                     }
                 }
                 Spacer()

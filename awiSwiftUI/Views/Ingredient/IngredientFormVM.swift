@@ -76,17 +76,23 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     func ingredientChange(allergenCategory: AllergenCategory?) {
-        self.allergen = allergenCategory
+        if(self.allergen != allergenCategory){
+            self.allergen = allergenCategory
+        }
+        
     }
     
     func ingredientChange(ingredientCategory: IngredientCategory) {
-        print("ingredient category changing")
-        self.category = ingredientCategory
-        self.objectWillChange.send()
+        if(self.category != ingredientCategory){
+            self.category = ingredientCategory
+            self.objectWillChange.send()
+        }
     }
     
     func ingredientChange(unity: Unity) {
-        self.unity = unity
+        if(self.unity != unity){
+            self.unity = unity
+        }
     }
     
     func ingredientChange(id: Int) {
