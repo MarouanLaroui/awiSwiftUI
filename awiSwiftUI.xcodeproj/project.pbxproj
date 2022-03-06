@@ -107,6 +107,7 @@
 		ACBBE56227C29317002B59C8 /* RecipeCategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56127C29317002B59C8 /* RecipeCategoryDTO.swift */; };
 		ACBBE56427C2933C002B59C8 /* RecipeCategoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56327C2933C002B59C8 /* RecipeCategoryDAO.swift */; };
 		ACBBE56627C2AF74002B59C8 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBBE56527C2AF74002B59C8 /* Image.swift */; };
+		ACC3222127D51A00004CE4BA /* LoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC3222027D51A00004CE4BA /* LoggedInView.swift */; };
 		ACE6A90727C507CC00D82E05 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90627C507CC00D82E05 /* Token.swift */; };
 		ACE6A90927C5080900D82E05 /* UserLoginDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */; };
 		ACE6A91327C6189800D82E05 /* DeleteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE6A91227C6189800D82E05 /* DeleteDTO.swift */; };
@@ -236,6 +237,7 @@
 		ACBBE56127C29317002B59C8 /* RecipeCategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryDTO.swift; sourceTree = "<group>"; };
 		ACBBE56327C2933C002B59C8 /* RecipeCategoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCategoryDAO.swift; sourceTree = "<group>"; };
 		ACBBE56527C2AF74002B59C8 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		ACC3222027D51A00004CE4BA /* LoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
 		ACE6A90627C507CC00D82E05 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		ACE6A90827C5080900D82E05 /* UserLoginDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginDTO.swift; sourceTree = "<group>"; };
 		ACE6A91227C6189800D82E05 /* DeleteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteDTO.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				ACBBE52A27C1033A002B59C8 /* TextUnderIcon.swift */,
 				ACBBE53027C10376002B59C8 /* HomeCoverSlider.swift */,
 				ACBBE53227C10384002B59C8 /* Badge.swift */,
+				ACC3222027D51A00004CE4BA /* LoggedInView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				ACBBE4DA27C10017002B59C8 /* Utils.swift in Sources */,
 				ACBBE4E827C10093002B59C8 /* Unity.swift in Sources */,
 				ACE6A91327C6189800D82E05 /* DeleteDTO.swift in Sources */,
+				ACC3222127D51A00004CE4BA /* LoggedInView.swift in Sources */,
 				ACBBE55527C14943002B59C8 /* IngredientListVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

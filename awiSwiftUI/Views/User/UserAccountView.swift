@@ -9,17 +9,17 @@ import Foundation
 import SwiftUI
 
 struct UserAccountView: View {
-
+    
     let dateFormatter = DateFormatter()
     
     @State var connectedUser : User  = User(id: 1, name: "", last_name: "", mail: "", phone: "", isAdmin: true, birthdate: "")
-    
+    @EnvironmentObject var loggedUser: User
     @State private var firstName : String = ""
     @State private var lastName : String = ""
     @State private var email : String = ""
     @State private var isAdmin : Bool = false
     @State private var birthDate : Date = Date()
-
+    
     var body: some View{
         VStack{
             Form{
@@ -28,28 +28,25 @@ struct UserAccountView: View {
                     TextField("nom",text: $connectedUser.last_name)
                     TextField("phone number", text : $connectedUser.phone)
                     DatePicker("birthdate",selection: $birthDate,displayedComponents: [.date])
-                    /*
-                    DatePicker(selection: $connectedUser.birthdate, in: ...Date(),displayedComponents: .date) {
-                                Text("birthdate:")
-                            }
-                            .onChange(of: connectedUser.birthdate) { (date) in
-                                connectedUser.birthdate = DateFormatter.date.string(from: date)
-                            }
-                     */
                 }
                 
                 Section("credentials"){
                     
                     TextField("email",text: $connectedUser.mail)
                     //NavigationLink(destination : ){
-                        Text("Mot de passe")
+                    Text("Mot de passe")
                     //}
                     
                 }
                 
                 HStack{
                     Spacer()
-                    Button("Déconnexion"){}
+                    Button("Déconnexion"){
+                        withAnimation(.easeOut(duration: 0.5)) {
+                            self.loggedUser.access_token = nil
+                        }
+                        
+                    }
                     .foregroundColor(.red)
                     Spacer()
                 }

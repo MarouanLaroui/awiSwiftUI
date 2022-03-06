@@ -13,12 +13,7 @@ struct LoginView: View {
     @State private var mail : String = "";
     @State private var password : String = "";
     @State private var loginFailedMessage : String?
-    //@State private var error : Error?
-    @Binding var isLoggedIn : Bool
-    
-    func login(){
-        
-    }
+    @EnvironmentObject var loggedUser: User
     
     var body: some View {
         NavigationView{
@@ -42,14 +37,6 @@ struct LoginView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.salmon, lineWidth: 1)
                             )
-                        
-                    HStack{
-                        Text("Format d'email incorrect")
-                            .foregroundColor(.red)
-                            .font(.caption)
-                            .padding(.bottom, 20)
-                        Spacer()
-                    }
                     
                 }
                 .padding([.horizontal], 20)
@@ -77,9 +64,16 @@ struct LoginView: View {
                         switch(result){
                             
                         case .success(let user):
-                            //Store user 
-                            self.isLoggedIn = true
                             
+                            self.loggedUser.id = user.id
+                            self.loggedUser.name = user.name
+                            self.loggedUser.last_name = user.last_name
+                            self.loggedUser.mail =  user.mail
+                            self.loggedUser.phone = user.phone
+                            self.loggedUser.isAdmin = user.isAdmin
+                            self.loggedUser.birthdate = user.birthdate
+                            self.loggedUser.access_token = true
+                      
                         case .failure(let error):
                             switch(error){
                             case HTTPError.unauthorized :

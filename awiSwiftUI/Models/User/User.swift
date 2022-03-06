@@ -50,7 +50,7 @@ class User : Identifiable, ObservableObject{
         }
     }
     
-    //var access_token : String?
+    @Published var access_token : Bool?
    
     
     internal init(id: Int? = nil, name: String, last_name: String, mail: String, phone : String, isAdmin: Bool, birthdate: String) {
