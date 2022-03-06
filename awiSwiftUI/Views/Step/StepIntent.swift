@@ -134,6 +134,30 @@ class StepIntent{
         }
         
     }
+    /*
+    func intentToDeleteIngredientFromStep(stepId : Int, ingredientId : Int) async -> Result<Int,Error>{
+        //Je suis en train de faire ça supprime pas
+        
+        if let stepId = step.id{
+            let deletionRes = await StepDAO.deleteIngredientFromStep(stepId: stepId, ingredientId: ingredientId)
+            
+            switch(deletionRes){
+                
+            case .success(let nbRows):
+                self.listState.send(.deleteElement(step: step))
+                return .success(nbRows)
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+        else{
+            self.listState.send(.deleteElement(step: step))
+            return .success(1)
+        }
+         
+        
+    }
+     */
 
 
 }

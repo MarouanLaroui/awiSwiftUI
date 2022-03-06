@@ -101,6 +101,10 @@ struct RecipeForm: View {
                     }
                 }
             }
+            .padding()
+            .background(Color.salmon)
+            .foregroundColor(.white)
+            .cornerRadius(15)
             /*
             NavigationLink(destination: StepList(recipeIntent: self.intent, recipeModel: self.recipeFormVM.model, previousPagePresentationMode: presentationMode)){
                 Text("Add steps")
