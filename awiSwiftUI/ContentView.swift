@@ -12,14 +12,15 @@ struct ContentView: View {
     @StateObject var loggedInUser : User = User(name: "", last_name: "", mail: "", phone: "", isAdmin: false, birthdate: "")
     
     var body: some View {
-        if(loggedInUser.access_token == nil){
+        LoggedInView()
+        /*if(loggedInUser.access_token == nil){
             LoginView()
                 .environmentObject(loggedInUser)
         }
         else{
             LoggedInView()
                 .environmentObject(loggedInUser)
-        }
+        }*/
     }
 }
 

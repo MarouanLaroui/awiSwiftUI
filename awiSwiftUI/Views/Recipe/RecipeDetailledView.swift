@@ -319,12 +319,6 @@ struct RecipeDetailledView: View {
                         StepRow(numEtape: index+1, step: element)
                             .padding(.bottom)
                     }
-                
-                /*
-                ForEach(steps){step in
-                    StepRow(numEtape: 1,step: step)
-                        .padding(.bottom)
-                }*/
                 }
 
        

@@ -141,6 +141,7 @@ struct RecipeDAO{
         }
     }
     
+    
     static func isThereEnoughIngredientForRecipe(idRecipe: Int, nbPortion: Int) async -> Result<Bool, Error>{
         let getIsThereEnoughIngr : Result<Bool, Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/"+String(idRecipe)+"/isthereenough/"+String(nbPortion))
         

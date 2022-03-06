@@ -27,7 +27,7 @@ struct CostView : View {
     @State var seasoningPercentage  = 5
     
     //Coûts matières première
-    @State var ingredientCost = 0
+    @State var ingredientCost = 12
     @State var seasoningTotal = 0
     @State var subtotal = 0
     
@@ -42,12 +42,15 @@ struct CostView : View {
     @State var beneficeByPortion : Double = 0
     @State var rentabilityThreshold : Double = 0
     
+    func getTotalCost() -> Int{
+        return self.totalCost
+    }
     
     func calculateCosts() {
         self.seasoningTotal = (self.seasoningPercentage*ingredientCost/100)
         self.subtotal = self.seasoningTotal + self.ingredientCost
-        self.fluidCost = (self.fluidCostPerHour * self.durationTime)
-        self.employeCost = (self.employeCostPerHour * (self.durationTime)/60)
+        self.fluidCost = (self.fluidCostPerHour * (self.durationTime/60))
+        self.employeCost = (self.employeCostPerHour * (self.durationTime/60))
         self.totalCost = self.subtotal + self.fluidCost + self.employeCost
         
         self.totalSellingPrice = Double(self.totalCost + self.coefficient)
@@ -283,7 +286,7 @@ struct CostView : View {
             case .success(let resIngredientCost):
                 self.ingredientCost = resIngredientCost
             case .failure(let error):
-                print("error while retrieving ingredientCost" + error.localizedDescription)
+                print("error while retrieving ingredientCost " + error.localizedDescription)
             }
             
         }
