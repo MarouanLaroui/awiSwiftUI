@@ -28,7 +28,7 @@ struct CreateAccountForm: View {
     
     var body: some View {
         
-        ScrollView{
+        VStack{
             
             VStack(alignment: .leading){
                 if(userVM.name == ""){
@@ -44,8 +44,6 @@ struct CreateAccountForm: View {
                         .padding(.vertical)
                 }
                 
-               
-                
                 Group{
                     TextField("Prénom",text: $userVM.name)
                         .onSubmit {
@@ -57,9 +55,7 @@ struct CreateAccountForm: View {
                     Text(self.userVM.nameErrorMsg)
                         .font(.caption)
                         .foregroundColor(.red)
-                    
                 }
-                
                 
                 Group{
                     TextField("Nom",text: $userVM.last_name)
@@ -74,7 +70,6 @@ struct CreateAccountForm: View {
                             .foregroundColor(.red)
                         Spacer()
                     }
-                    
                 }
                 
                 
@@ -94,7 +89,6 @@ struct CreateAccountForm: View {
                             .foregroundColor(.red)
                         Spacer()
                     }
-                    
                 }
                 
                 Group{
@@ -113,9 +107,7 @@ struct CreateAccountForm: View {
                             .foregroundColor(.red)
                         Spacer()
                     }
-                    
                 }
-                
                 
                 Group{
                     HStack{
@@ -126,30 +118,35 @@ struct CreateAccountForm: View {
                             }
                     }
                     
-                    
                     HStack{
                         Text(self.userVM.birthdateErrorMsg)
                             .font(.caption)
                             .foregroundColor(.red)
                         Spacer()
                     }
-                    
                 }
-                
-                
                 
                 Group{
                     Toggle("Cet utilisateur est admin ?",isOn: $userVM.isAdmin)
                         .onSubmit {
                             self.intent.intentToChange(isAdmin: self.userVM.isAdmin)
-                        }
-                    
+                        }                    
                 }
-                
+                Spacer()
+            }
+            .padding(30)
+            Spacer()
+            
+            VStack{
                 Group{
                     
                     HStack{
-                        Spacer()
+                        Button("Annuler"){
+                            self.isSheetShown = false
+                        }
+                        .padding(10)
+                        .foregroundColor(.salmon)
+                        .cornerRadius(10)
                         Button("Enregistrer"){
                             if(self.userVM.isValid){
                                 Task{
@@ -165,11 +162,11 @@ struct CreateAccountForm: View {
                         .background(Color.salmon)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        Spacer()
                     }
+                    
+                    .padding(.bottom, 20)
                 }
             }
-            .padding(.horizontal,30)
             
         }
         
