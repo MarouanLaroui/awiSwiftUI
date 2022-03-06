@@ -21,9 +21,21 @@ struct Recipes: View {
     
     var searchResult : [Recipe]{
         if(searchedRecipeName.isEmpty){
+            if(self.selectedCategory != nil){
+                return recipesVM.recipes.filter({ $0.recipeCategory.name == self.selectedCategory!.name})
+            }
             return recipesVM.recipes
         }
-        return recipesVM.recipes.filter({ $0.title.contains(searchedRecipeName)})
+        else{
+            if let selectedCategory = self.selectedCategory {
+                return recipesVM.recipes.filter({
+                    return $0.title.contains(searchedRecipeName) && $0.recipeCategory.name == self.selectedCategory!.name
+                    
+                })
+            }
+            return recipesVM.recipes.filter({ $0.title.contains(searchedRecipeName)})
+        }
+        
     }
     
     var body: some View {
@@ -35,7 +47,7 @@ struct Recipes: View {
                     Text("Toutes")
                         .tag(nil as RecipeCategory?)
                     ForEach(recipeCategories) { category in
-                        Text(category.name)
+                        Text(category.name).tag(category as RecipeCategory?)
                     }
                 }
 
@@ -43,7 +55,7 @@ struct Recipes: View {
             }
             ScrollView {
                 LazyVGrid(columns: gridItems,spacing: 0){
-                    ForEach(recipesVM.recipes){ recipe in
+                    ForEach(self.searchResult){ recipe in
                         NavigationLink(destination: RecipeDetailledView(recipe : recipe)){
                             RecipeCard(recipe: recipe)
                                 .frame(width: 170, height: 250)

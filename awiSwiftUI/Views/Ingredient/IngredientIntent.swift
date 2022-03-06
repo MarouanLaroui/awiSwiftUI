@@ -21,9 +21,9 @@ enum IntentState{
     case ingredientNameChanging(name : String)
     case unitaryPriceChanging(unitaryPrice : Double)
     case nbInStockChanging(nbInStock :  Double)
-    case ingredientCategoryChanging(ingredientCategory : IngredientCategory)
+    case ingredientCategoryChanging(ingredientCategory : IngredientCategory?)
     case allergenCategoryChanging(allergenCategory : AllergenCategory?)
-    case unityChanging(unity : Unity)
+    case unityChanging(unity : Unity?)
     case validateChange
 }
 
@@ -60,7 +60,7 @@ struct Intent{
         self.state.send(.nbInStockChanging(nbInStock: nbInStock))
     }
     
-    func intentToChange(ingredientCategory : IngredientCategory){
+    func intentToChange(ingredientCategory : IngredientCategory?){
         print("intentToChangeCategory")
         self.state.send(.ingredientCategoryChanging(ingredientCategory: ingredientCategory))
     }
@@ -69,7 +69,7 @@ struct Intent{
         self.state.send(.allergenCategoryChanging(allergenCategory: allergenCategory))
     }
     
-    func intentToChange(unity : Unity){
+    func intentToChange(unity : Unity?){
         self.state.send(.unityChanging(unity: unity))
     }
     

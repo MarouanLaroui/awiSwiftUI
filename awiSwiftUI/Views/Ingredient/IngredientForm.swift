@@ -52,7 +52,7 @@ struct IngredientForm: View {
                         .bold()
                         .padding(.vertical)
                 }
-                
+
                 Group{
                     TextField("Nom de l'ingrédient",text:$ingredientFormVM.name)
                         .onSubmit {
@@ -103,9 +103,13 @@ struct IngredientForm: View {
                                     .foregroundColor(.salmon)
                             }
                             ForEach(ingredientCategories) { category in
-                                Text(category.category_name)
+                                Text(category.category_name).tag(category as IngredientCategory?)
                             }
                         }
+//                        .onReceive([self.ingredientFormVM.category].publisher.first()) { (category) in
+//                            self.intent.intentToChange(ingredientCategory: category)
+//                        }
+                
                         Spacer()
                     }
                     HStack{
@@ -127,9 +131,12 @@ struct IngredientForm: View {
                                     .tag(nil as Unity?)
                             }
                             ForEach(units) { unity in
-                                Text(unity.unityName)
+                                Text(unity.unityName).tag(unity as Unity?)
                             }
                         }
+//                        .onReceive([self.ingredientFormVM.unity].publisher.first()) { (unity) in
+//                            self.intent.intentToChange(unity: unity)
+//                        }
                         Spacer()
                     }
                     HStack{
@@ -152,9 +159,12 @@ struct IngredientForm: View {
                                     .tag(nil as IngredientCategory?)
                             }
                             ForEach(allergenCategories) { allergen in
-                                Text(allergen.name)
+                                Text(allergen.name).tag(allergen as AllergenCategory?)
                             }
                         }
+//                        .onReceive([self.ingredientFormVM.allergen].publisher.first()) { (allergen) in
+//                            self.intent.intentToChange(allergenCategory: allergen)
+//                        }
                     }
                 }
                 Spacer()

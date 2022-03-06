@@ -10,17 +10,27 @@ import SwiftUI
 struct Users: View {
     
     @ObservedObject var userListVM  = UserListVM(users: [])
+    @State var searchedUser : String = ""
     @State var selectedUser : User? = nil
     @State var isSheetShown : Bool = false
+    var displayedUsers : [User] {
+        if(searchedUser.count > 0){
+            return userListVM.users.filter({
+                $0.name.contains(searchedUser) || $0.last_name.contains(searchedUser)
+            })
+        }
+        return userListVM.users
+    }
     var intent : UserIntent
     
     init(){
         self.intent = UserIntent()
         self.intent.addListObserver(viewModel: userListVM)
     }
+    
     var body: some View {
         VStack{
-            List(userListVM.users){
+            List(displayedUsers){
                 user in
                 
                 UserRow(userVM: UserVM(model: user))
@@ -46,6 +56,7 @@ struct Users: View {
                     }
                 
             }
+            .searchable(text: $searchedUser)
             .overlay(
                 VStack{
                     Spacer()

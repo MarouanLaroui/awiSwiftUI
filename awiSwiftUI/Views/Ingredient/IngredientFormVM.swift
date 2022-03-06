@@ -127,11 +127,17 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
             
         case .ingredientCategoryChanging(let ingredientCategory):
             self.isDefaultCategory = false
-            self.copy.category = ingredientCategory
+            if let ingredientCategory = ingredientCategory {
+                self.copy.category = ingredientCategory
+            }
+            
             
         case .unityChanging(let unity):
             self.isDefaultUnity = false
-            self.copy.unity = unity
+            if let unity = unity {
+                self.copy.unity = unity
+            }
+            
             
         case .validateChange:
             self.model.name = copy.name
