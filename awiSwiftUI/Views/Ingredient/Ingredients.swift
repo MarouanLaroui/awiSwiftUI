@@ -86,7 +86,6 @@ struct Ingredients: View {
                         
                     case .success(let resIngredients):
                         ingredientsVM.ingredients = resIngredients
-                        print("sucess ingredient")
                     case .failure(let error):
                         print(error)
                     }
@@ -95,7 +94,6 @@ struct Ingredients: View {
                         
                     case .success(let resIngredientCategories):
                         ingredientCategories = resIngredientCategories
-                        print("success category")
                         
                     case .failure(let error):
                         print(error)

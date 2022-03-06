@@ -140,14 +140,14 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
         if(self.isDefaultName || self.copy.name.count > 0  ){
             return ""
         }
-        return "Ce champs est obligatoire"
+        return "Ce champ est obligatoire."
     }
     
     var last_nameErrorMsg : String{
         if(self.copy.last_name.count > 0 || self.isDefaultLast_name){
             return ""
         }
-        return "Ce champs est obligatoire"
+        return "Ce champ est obligatoire."
     }
     
     
@@ -155,14 +155,14 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
         if(Validators.isDateValid(date: self.copy.birthdate) || self.isDefaultbirthdate){
             return ""
         }
-        return "Format de date différente de MM/DD/YYYY"
+        return "Format de date différent de MM/DD/YYYY."
     }
     
     var phoneErrorMsg : String {
         if(Validators.isPhoneValid(phone: self.copy.phone) || self.isDefaultPhone){
             return ""
         }
-        return "Numéro de téléphone invalide"
+        return "Numéro de téléphone invalide."
     }
     
     var mailErrorMsg : String{
@@ -170,7 +170,7 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
             
             return ""
         }
-        return "Format de mail invalide"
+        return "Format de mail invalide."
     }
     
     /*TODO : see why not refreshing*/

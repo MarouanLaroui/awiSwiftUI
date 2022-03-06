@@ -168,7 +168,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
     var nameErrorMsg : String{
         if(!self.isDefaultName && self.copy.name.count == 0  ){
-            return "Ce champs est obligatoire"
+            return "Ce champ est obligatoire."
             
         }
         return ""
@@ -177,7 +177,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
     var unitaryPriceErrorMsg : String{
         if(self.copy.unitaryPrice < 0){
-            return "Le prix unitaire doit être superieur à 0"
+            return "Le prix unitaire doit être superieur à 0."
             
         }
         return ""
@@ -186,7 +186,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
     var nbInStockErrorMsg : String{
         if(self.nbInStock >= 0){
-            return "Ce champs est obligatoirement positif"
+            return "Ce champ est obligatoirement positif."
         }
         return ""
         
@@ -194,7 +194,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
     var categoryErrorMsg : String{
         if(self.category == nil && !self.isDefaultCategory){
-            return "Ce champs est obligatoire"
+            return "Ce champ est obligatoire."
         }
         return ""
         
@@ -202,7 +202,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     
     var unityErrorMsg : String{
         if(self.unity == nil && !self.isDefaultUnity){
-            return "Ce champs est obligatoire"
+            return "Ce champ est obligatoire."
             
         }
         return ""
