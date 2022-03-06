@@ -26,72 +26,74 @@ struct StepForm: View {
     }
     
     var body: some View {
-        ScrollView{
+        VStack{
             VStack(alignment : .leading){
-                LazyVGrid(columns: gridItems, alignment : .leading){
-                    Group{
-                        Text("Titre : ")
-                        TextField("Renseignez un titre", text: $stepVM.title)
-                            .onSubmit {
-                                self.intent.intentToChange(title: self.stepVM.title)
-                            }
-                        
-                        
-                        Text("Description :")
-                        TextField("Renseignez une description", text: $stepVM.description)
-                            .onSubmit {
-                                self.intent.intentToChange(description: self.stepVM.description)
-                            }
-                        
-                        
-                        Text("Durée :")
-                        TextField("Renseignez une durée", value: $stepVM.time, formatter: Formatters.int)
-                            .onSubmit {
-                                self.intent.intentToChange(time: self.stepVM.time)
-                            }
-                    }
-                }
-                
-                Spacer()
-                
-                Text("Ingredients")
-                    .font(.largeTitle)
-                    .bold()
-                
-                HStack{
-                    Spacer()
-                    NavigationLink(destination: SelectIngredientForStep(intent : self.intent)){
-                        Image(systemName: "plus")
-                    }
+                Group{
+                    TextField("Titre", text: $stepVM.title)
+                        .onSubmit {
+                            self.intent.intentToChange(title: self.stepVM.title)
+                        }
+                        .underlineTextField(color: .gray)
+                        .padding(.bottom, 5)
                     
+                    
+                    TextField("Description", text: $stepVM.description)
+                        .onSubmit {
+                            self.intent.intentToChange(description: self.stepVM.description)
+                        }
+                        .underlineTextField(color: .gray)
+                        .padding(.bottom, 5)
+                    
+                    
+                    TextField("Temps de préparation", value: $stepVM.time, formatter: Formatters.int)
+                        .onSubmit {
+                            self.intent.intentToChange(time: self.stepVM.time)
+                        }
+                        .underlineTextField(color: .gray)
+                        .padding(.bottom, 5)
+                
                 }
-                .padding(.bottom)
                 
-                
-                ForEach(Array(self.stepVM.ingredients.keys), id: \.self) { ingredient in
+                Group{
+                    Text("Ingredients")
+                        .font(.title)
+                        .bold()
+                    
                     HStack{
-                        Text(ingredient.name)
                         Spacer()
-                        TextField("",value: $stepVM.ingredients[ingredient],formatter : Formatters.int)
-                            .onSubmit {
-                                self.intent.intentToChange(ingredient: ingredient, quantity: stepVM.ingredients[ingredient]!)
+                        NavigationLink(destination: SelectIngredientForStep(intent : self.intent)){
+                            Image(systemName: "plus")
+                        }
+                    }
+                    .padding(.bottom)
+                    
+                    ForEach(Array(self.stepVM.ingredients.keys), id: \.self) { ingredient in
+                        HStack{
+                            Text(ingredient.name)
+                            Spacer()
+                            TextField("",value: $stepVM.ingredients[ingredient],formatter : Formatters.int)
+                                .onSubmit {
+                                    self.intent.intentToChange(ingredient: ingredient, quantity: stepVM.ingredients[ingredient]!)
+                                }
+                            Spacer()
+                            Button(role: .destructive){
+                                Task{
+                                    await self.intent.intentToDeleteIngredientFromStep(step: self.stepVM.model, ingredient: ingredient)
+                                }
                             }
-                        Spacer()
-                        Button(role: .destructive){
-                            Task{
-                                await self.intent.intentToDeleteIngredientFromStep(step: self.stepVM.model, ingredient: ingredient)
+                            label: {
+                                Image(systemName: "trash")
                             }
                         }
-                    label: {
-                        Image(systemName: "trash")
+                        Divider()
                     }
-                    }
-                    Divider()
                 }
-                
+                Spacer()
             }
-            .padding()
+            .padding(30)
             .navigationTitle("Informations sur l'étape")
+            
+            Spacer()
             
             HStack{
                 Button("Supprimer"){
@@ -105,14 +107,11 @@ struct StepForm: View {
                         case .failure(_):
                             print("Error while deleting")
                         }
-                        
-                        
                     }
                 }
-                .padding()
-                .background(Color.red)
-                .foregroundColor(.white)
-                .cornerRadius(15)
+                .padding(10)
+                .foregroundColor(.salmon)
+                .cornerRadius(10)
                 
                 Button("Enregistrer"){
                     Task{
@@ -125,6 +124,7 @@ struct StepForm: View {
                 .foregroundColor(.white)
                 .cornerRadius(15)
             }
+            .padding(.bottom, 20)
             
         }
         
