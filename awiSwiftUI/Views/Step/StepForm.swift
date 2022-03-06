@@ -128,10 +128,3 @@ struct StepForm: View {
         
     }
 }
-/*
- struct StepForm_Previews: PreviewProvider {
- static var previews: some View {
- StepForm()
- }
- }
- */

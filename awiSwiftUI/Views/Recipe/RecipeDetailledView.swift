@@ -34,109 +34,7 @@ struct RecipeDetailledView: View {
     private var editButton: some View {
         return NavigationLink(destination : StepList(recipe: self.recipe, intent: StepIntent())){
             Text("Modifier")
-            //Image(systemName: "plus")
         }
-    }
-    
-    var cost: some View {
-        VStack{
-            Text("Statistiques de vente")
-                .font(.largeTitle)
-                .bold()
-            
-            
-            LazyVGrid(columns: twoColumns){
-                //totalCost
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Coût total de la recette")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                //costPerPortion = this.totalCost / this.nbOfServing
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Coût par portion")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                
-            }
-            
-            HStack{
-                Text("Coefficient")
-                //coefficient
-            }
-            
-            LazyVGrid(columns: twoColumns){
-                //totalSellingPrice = this.totalCost * this.coefficient
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Prix de vente total")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                //sellingPriceByPortion = this.totalSellingPrice / this.nbOfServing
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Prix de vente par unité")
-                        .opacity(0.7)
-                }
-                .padding(15)
-               
-            }
-        
-            HStack{
-                //totalBenefice = this.totalSellingPrice - this.totalCost;
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Bénéfice total de la recette")
-                        .opacity(0.7)
-                }
-                .padding(15)
-            }
-            
-            LazyVGrid(columns: twoColumns){
-                //beneficeByPortion = this.totalBenefice / this.nbOfServing;
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Bénéfice par portion")
-                        .opacity(0.7)
-                }
-                .padding(15)
-                
-                //rentabilityThreshold = Math.ceil(this.totalCost / this.sellingPriceByPortion)
-                VStack{
-                    Text("\(self.recipe.nbOfServing)€")
-                        .font(.title2)
-                        .foregroundColor(Color.salmon)
-                    Text("Seuil de rentabilité de la recette")
-                        .opacity(0.7)
-                        .multilineTextAlignment(.center)
-                }
-                .padding(15)
-                
-            }
-            
-        }
-        .padding(.bottom, 50)
-        .padding(.top, 50)
-        
     }
     
     var body: some View {
@@ -188,7 +86,6 @@ struct RecipeDetailledView: View {
                         .cornerRadius(40)
                     }
                     .sheet(isPresented: $showCosts){
-                        //----------- Coûts -----------
                         CostView(recipe: recipe, durationTime: durationTime)
                         
                         Spacer()

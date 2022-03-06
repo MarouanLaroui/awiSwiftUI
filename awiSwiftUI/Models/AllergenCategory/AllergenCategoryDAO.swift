@@ -108,16 +108,12 @@ struct AllergenCategoryDAO{
 
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
-            let sdata = String(data: data, encoding: .utf8)!
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
-                print("GoRest Result: \(sdata)")
                 guard let decoded : AllergenCategoryDTO = JSONHelper.decode(data: data) else {
                     print("GoRest: mauvaise récupération de données")
                     return nil
                 }
-                print("---------successs----------------")
-                print(decoded)
                 return AllergenCategoryDAO.DTOtoAllergenCategory(dto: decoded)
                 
             }
@@ -126,7 +122,6 @@ struct AllergenCategoryDAO{
             }
         }
         catch(let error ){
-            
             print("GoRest: bad request \(error)")
         }
         return nil

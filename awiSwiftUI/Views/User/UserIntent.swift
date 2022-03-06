@@ -47,8 +47,6 @@ struct UserIntent{
         self.listState.send(.listUpdated)
     }
     
-    // 2) avertit les subsscriber que l'état a changé
-    
     func intentToChange(name : String){
         self.state.send(.nameChanging(name: name))
     }
@@ -107,7 +105,6 @@ struct UserIntent{
             if(nbAffectedRows>0){
                 self.listState.send(.deleteElement(userId : user.id!))
             }
-            //Gérer cas fail ?
             else{
                 self.listState.send(.listUpdated)
             }

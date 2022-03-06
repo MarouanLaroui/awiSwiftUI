@@ -38,7 +38,6 @@ class RecipeListVM :  ObservableObject, Subscriber {
             break
             
         case .listUpdated:
-            print("Listeupdated")
             self.objectWillChange.send()
         case .appendList(ingredient: let ingredient):
             print(ingredient.unitaryPrice)

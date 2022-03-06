@@ -110,14 +110,11 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     func receive(_ input: IntentState) -> Subscribers.Demand {
-        print("receive Intent IngredientFormVM : ")
         switch(input){
-            
         case .ready:
             break
 
         case .ingredientNameChanging(let name):
-            print("isDefault name to false")
             self.isDefaultName = false
             self.copy.name = name
             
@@ -220,7 +217,6 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.isDefaultUnity = false
         self.isDefaultCategory = false
         self.isDefaultName = false
-        print("why")
     }
     
     

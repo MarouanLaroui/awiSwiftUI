@@ -49,11 +49,9 @@ struct JSONHelper{
                     return .failure(HTTPError.badRecoveryOfData)
                     
                 }
-                print("SUCCESS------------------------")
                 return .success(decoded.affected)
             }
             else{
-                //ERROR TO CHANGE
                 print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
                 return .failure(HTTPError.badURL)
             }
@@ -73,7 +71,6 @@ struct JSONHelper{
             guard let jsonData = json else {
                 print("json is empty")
                 return
-                
             }
             do{
                 try jsonData.write(to: fileURL)
@@ -119,7 +116,6 @@ struct JSONHelper{
         do {
             return try encoder.encode(data)
         } catch {
-            print("l'erreur elle est la gros")
             return nil
         }
     }

@@ -56,7 +56,6 @@ struct UserDAO{
     static func postUser(user: User) async -> Result<User, Error> {
 
         let userDTO = UserDAO.userToDTO(user: user)
-        print("postUser in UserDAO, name : ")
         print(userDTO.name)
         
         //Construction de l'url
@@ -85,7 +84,6 @@ struct UserDAO{
                 guard let decoded : UserDTO = JSONHelper.decode(data: data)
                 else {return .failure(HTTPError.emptyDTO)}
                 return .success(UserDAO.dtoToUser(dto: decoded))
-                //self.users.append(decoded.data)
                 
             case 401 :
                 return .failure(HTTPError.unauthorized)
@@ -138,7 +136,6 @@ struct UserDAO{
             }
         }
         catch(let error){
-            //Bad request
             return .failure(error)
         }
     }

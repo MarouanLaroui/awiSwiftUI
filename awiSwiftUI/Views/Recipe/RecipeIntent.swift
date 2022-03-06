@@ -64,18 +64,14 @@ struct RecipeIntent{
     
     
     func intentToCreateRecipe(recipe : Recipe) async -> Result<Recipe,Error> {
-        print("intentToCreateRecipe")
         let response = await RecipeDAO.createRecipe(recipe: recipe)
         
         switch(response){
     
         case .success(let postedRecipe):
-            print("success post recipe")
             return .success(postedRecipe)
-            
-            
         case .failure(let error):
-            print("ERROR : " + error.localizedDescription)
+            print(error.localizedDescription)
             return .failure(error)
         }
 

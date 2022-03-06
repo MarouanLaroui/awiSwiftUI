@@ -79,7 +79,7 @@ struct LoginView: View {
                             case HTTPError.unauthorized :
                                 self.loginFailedMessage = "Mauvais identifiants de connexion"
                             default :
-                                self.loginFailedMessage = "Erreur de connection" + error.localizedDescription
+                                self.loginFailedMessage = "Erreur de connexion " + error.localizedDescription
                             }
                         }
                     }

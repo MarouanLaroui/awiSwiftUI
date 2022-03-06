@@ -92,6 +92,8 @@ struct Users: View {
                 }
                 
             }
+            
+            //Formulaire d'ajout/de modification d'utilisateur
             .sheet(isPresented: $isSheetShown, onDismiss: {
                 self.selectedUser = nil
             }){

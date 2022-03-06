@@ -30,10 +30,3 @@ struct StepRow: View {
         
     }
 }
-/*
-struct StepRow_Previews: PreviewProvider {
-    static var previews: some View {
-       // StepRow(numEtape: 2)
-    }
-}
-*/

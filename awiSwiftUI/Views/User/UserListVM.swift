@@ -38,7 +38,6 @@ class UserListVM :  ObservableObject, Subscriber {
             break
             
         case .listUpdated:
-            print("----- user list object will change -----")
             self.objectWillChange.send()
             
         case .appendList(user: let user):

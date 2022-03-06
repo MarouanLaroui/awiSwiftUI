@@ -54,12 +54,10 @@ struct RecipeDAO{
         switch(getRecipeQuery){
             
         case .success(let recipeDTOs):
-            print("success in getRecipes RecipeDAO")
             return .success(RecipeDAO.DTOsToRecipes(dtos: recipeDTOs))
             
             
         case .failure(let error):
-            print("failure in getRecipes RecipeDAO")
             return .failure(error)
         }
     }
@@ -108,7 +106,6 @@ struct RecipeDAO{
                 
             }
             else{
-                //ERROR TO CHANGE
                 print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
                 return .failure(HTTPError.badURL)
             }
@@ -145,9 +142,6 @@ struct RecipeDAO{
     static func isThereEnoughIngredientForRecipe(idRecipe: Int, nbPortion: Int) async -> Result<Bool, Error>{
         let getIsThereEnoughIngr : Result<Bool, Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/"+String(idRecipe)+"/isthereenough/"+String(nbPortion))
         
-        print("--- dans isThereEnoughIngredientForRecipe ----- ")
-        print(getIsThereEnoughIngr)
-        
         switch(getIsThereEnoughIngr){
         case .success(let enoughIngredient):
             return .success(enoughIngredient )
@@ -158,7 +152,6 @@ struct RecipeDAO{
     }
     
     static func declareRecipe(idRecipe: Int, nbPortion: Int) async {
-        
         //Assez d'igrédients ?
         let result = await RecipeDAO.isThereEnoughIngredientForRecipe(idRecipe: idRecipe, nbPortion: nbPortion)
 
@@ -167,17 +160,12 @@ struct RecipeDAO{
         case .success(let enoughIngredient):
             //Appel à declare recipe si enoughIngredient est true
             if(enoughIngredient){
-                print("--------- ASSEZ d'ingredient")
                 let result = await declareRecipePost(idRecipe: idRecipe, nbPortion: nbPortion)
                 //return .success(enoughIngredient)
-            }
-            else {
-                print("------------- pas assez d'ingrédients en stock ")
             }
         
         case .failure(let error):
             print("error while checking if enough ingredient to print label " + error.localizedDescription)
-            //return .failure(error)
         }
         
         
@@ -185,9 +173,6 @@ struct RecipeDAO{
     }
     
     static func declareRecipePost(idRecipe: Int, nbPortion: Int) async -> Result<Data, Error>{
-        
-        print("---- Dans declareRecipePost")
-        
         guard let url = URL(string: "https://awi-api.herokuapp.com/recipe/"+String(idRecipe)+"/declare/"+String(nbPortion))
         else {return .failure(HTTPError.badURL)}
         
@@ -205,7 +190,6 @@ struct RecipeDAO{
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
-                print("----- dans declarerecipePost : success")
                 return .success(data)
             }
             else{
@@ -215,8 +199,6 @@ struct RecipeDAO{
                 
         }
         catch(let error){
-            print("-erreur dans le post declare recipe")
-            //Error -999 ici
             print(error)
             return .failure(HTTPError.badRequest)
         }

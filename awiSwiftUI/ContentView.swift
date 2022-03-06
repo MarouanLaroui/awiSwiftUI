@@ -13,15 +13,15 @@ struct ContentView: View {
     
     
     var body: some View {
-        LoggedInView()
-        /*if(loggedInUser.access_token == nil){
+        //LoggedInView()
+        if(loggedInUser.access_token == nil){
             LoginView()
                 .environmentObject(loggedInUser)
         }
         else{
             LoggedInView()
                 .environmentObject(loggedInUser)
-        }*/
+        }
     }
 }
 

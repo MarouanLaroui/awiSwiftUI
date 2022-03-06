@@ -39,11 +39,3 @@ struct IngredientRow: View {
         
     }
 }
-
-/*
-struct IngredientRow_Previews: PreviewProvider {
-    static var previews: some View {
-        IngredientRow(ingredient : Ingredient.ingredients[0])
-    }
-}
-*/

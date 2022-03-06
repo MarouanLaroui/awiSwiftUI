@@ -38,14 +38,12 @@ class IngredientListVM :  ObservableObject, Subscriber {
             break
             
         case .listUpdated:
-            print("----- object will change -----")
             self.objectWillChange.send()
             
         case .appendList(ingredient: let ingredient):
             self.ingredients.append(ingredient)
             
         case .deleteElement(ingredientId: let ingredientId):
-            print("DeleteElement state detected in IngredientListVM")
             if let indexToDelete = self.ingredients.firstIndex(where: {$0.id == ingredientId}){
                 self.ingredients.remove(at: indexToDelete)
             }

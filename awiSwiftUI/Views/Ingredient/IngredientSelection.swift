@@ -40,10 +40,3 @@ struct IngredientSelection: View {
         .navigationTitle("Ingredient Selection")
     }
 }
-/*
-struct IngredientSelection_Previews: PreviewProvider {
-    static var previews: some View {
-        StepForm()
-    }
-}
-*/

@@ -26,10 +26,6 @@ class Unity : Identifiable, Hashable{
     static func == (lhs: Unity, rhs: Unity) -> Bool {
         return lhs.id == rhs.id && lhs.unityName == rhs.unityName
     }
-    
-
-    
-    
 }
 
 extension Unity{
