@@ -74,14 +74,11 @@ struct StepDAO{
                 switch(result){
                     
                 case .success(let ingredients):
-                    print("getStepIngredientSuccess")
                     step.ingredients = ingredients
                 case .failure(let error):
-                    print("getStepIngredientFail")
                     return .failure(error)
                 }
             }
-            print("getStepOfRecipeDetailled Success")
             return .success(steps)
             
         case .failure(let error):
@@ -108,18 +105,13 @@ struct StepDAO{
                 return .failure(JSONError.JsonEncodingFailed)
             }
             
-            let sencoded = String(data: encoded, encoding: .utf8)!
-            print("json to send : " + sencoded)
-            
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
                 
                 guard let decoded : StepDTO = JSONHelper.decode(data: data)
                 else {
-                    print("decodedError")
                     return .failure(HTTPError.badRecoveryOfData)
-                    
                 }
                 
                 /*IngredientToStep*/
@@ -129,17 +121,15 @@ struct StepDAO{
                 return .success(step)
             }
             else{
-                //ERROR TO CHANGE
                 print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
                 return .failure(HTTPError.badURL)
             }
         }
         catch(_){
-            print("failure stepDAO2")
             return .failure(HTTPError.badRequest)
         }
     }
-    //pas de sens changer la fonction
+    
     static func createStepOfRecipe(recipeId : Int, step : Step, stepNbOfOrder : Int) async -> Result<Step,Error>{
         
         let stepDTO = StepDAO.stepToDTO(step: step)
@@ -198,9 +188,6 @@ struct StepDAO{
     }
     
     static func deleteIngredientFromStep(stepId : Int, ingredientId : Int) async -> Result<Int,Error>{
-        print("deleteIngredientFromStep")
-        print(stepId)
-        print(ingredientId)
         return await JSONHelper.httpDelete(url: Utils.apiURL + "ingredient-to-step/step/" + String(stepId) + "/ingredient/" + String(ingredientId))
     }
 
