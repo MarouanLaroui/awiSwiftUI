@@ -83,7 +83,7 @@ struct Recipes: View {
                         }
                     }
                 }
-                .padding()
+                //.padding()
             )
             .searchable(text: $searchedRecipeName,placement: .navigationBarDrawer(displayMode: .always))
         }

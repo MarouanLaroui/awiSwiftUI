@@ -17,7 +17,6 @@ struct HorizontalScrollRecipes: View {
                 ForEach(recipes){ recipe in
                     RecipeCard(recipe: recipe)
                         .frame(width: 170, height: 240)
-                        .shadow(radius: 3)
                 }
             }
             
