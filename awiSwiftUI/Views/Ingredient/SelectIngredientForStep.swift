@@ -42,7 +42,6 @@ struct SelectIngredientForStep: View {
                 
             case .success(let resIngredients):
                 self.ingredients = resIngredients
-                print("sucess ingredient")
                 
             case .failure(let error):
                 print(error)

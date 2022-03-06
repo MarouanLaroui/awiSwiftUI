@@ -60,13 +60,10 @@ struct StepDAO{
     }
     
     static func getStepOfRecipeDetailled(recipeId : Int) async -> Result<[Step], Error> {
-        
-        print("getStepOfRecipeDetailled")
         let getUsersTask : Result<[StepDTO], Error> = await JSONHelper.httpGet(url: Utils.apiURL + "recipe/" + String(recipeId) + "/steps")
         
         switch(getUsersTask){
         case .success(let stepsDTOs):
-            print("recipe steps retrieved successfully")
             let steps  = StepDAO.dtosToSteps(stepDTOs: stepsDTOs)
             for step in steps {
                 let result = await StepDAO.getStepIngredients(stepId: step.id!)
