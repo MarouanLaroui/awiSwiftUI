@@ -63,11 +63,11 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
             self.model.title = title
             
         case .servingChanging(nbOfServing: let nbOfServing):
-            self.isDefaultNbOfServing
+            self.isDefaultNbOfServing = false
             self.model.nbOfServing = nbOfServing
             
         case .personInChargeChanging(personInCharge: let personInCharge):
-            self.isDefaultPersonInCharge
+            self.isDefaultPersonInCharge = false
             self.model.personInCharge = personInCharge
             
         case .specEquipementChanging(specificEquipment: let specificEquipment):
@@ -78,7 +78,10 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
             
         case .recipeCatChanging(recipeCategory: let recipeCategory):
             self.isDefaultCategory = false
-            self.model.recipeCategory = recipeCategory
+            if let recipeCategory = recipeCategory {
+                self.model.recipeCategory = recipeCategory
+            }
+            
             
         case .authorChanging(author: let author):
             self.model.author = author
@@ -121,7 +124,10 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
     }
     
     func RecipeChange(recipeCategory: RecipeCategory) {
-        self.recipeCategory = recipeCategory
+        if(self.recipeCategory != recipeCategory){
+            self.recipeCategory = recipeCategory
+        }
+        
     }
     
     var isValid : Bool{

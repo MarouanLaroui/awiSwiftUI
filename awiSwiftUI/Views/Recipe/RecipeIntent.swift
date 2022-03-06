@@ -17,7 +17,7 @@ enum RecipeIntentState{
     case personInChargeChanging(personInCharge : String)
     case specEquipementChanging(specificEquipment : String)
     case dressEquipmentChanging(dressingEquipment : String)
-    case recipeCatChanging(recipeCategory : RecipeCategory)
+    case recipeCatChanging(recipeCategory : RecipeCategory?)
     case authorChanging(author : User)
     case createRecipe(recipe : Recipe)
     
@@ -54,7 +54,7 @@ struct RecipeIntent{
         self.state.send(.dressEquipmentChanging(dressingEquipment: dressingEquipment))
     }
     
-    func intentToChange(recipeCategory : RecipeCategory){
+    func intentToChange(recipeCategory : RecipeCategory?){
         self.state.send(.recipeCatChanging(recipeCategory: recipeCategory))
     }
     

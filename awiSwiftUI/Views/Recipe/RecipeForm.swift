@@ -70,8 +70,11 @@ struct RecipeForm: View {
                                 .tag(nil as IngredientCategory?)
                         }
                         ForEach(recipeCategories) { category in
-                            Text(category.name)
+                            Text(category.name).tag(category as RecipeCategory?)
                         }
+                    }
+                    .onReceive([self.recipeFormVM.recipeCategory].publisher.first()) { (recipeCategory) in
+                        self.intent.intentToChange(recipeCategory: recipeCategory)
                     }
                 }
                 
