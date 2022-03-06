@@ -64,15 +64,8 @@ struct Ingredients: View {
                 ingredient in
                 IngredientRow(ingredientVM: IngredientFormVM(model: ingredient))
                     .swipeActions {
-                        Button {
-                            selectedIngredient = ingredient
-                            isFormDisplayed = true
-                        }
-                        label: {
-                            Image(systemName: "square.and.pencil")
-                        }
-                
-                        Button {
+                        
+                        Button(role: .destructive){
                             self.isAlertShowed = true
                             Task{
                                 await self.intent.intentToDeleteIngredient(ingredientId: ingredient.id!)
@@ -83,6 +76,16 @@ struct Ingredients: View {
                             Image(systemName: "trash")
                         }
                         .background(Color.red)
+                        
+                        Button {
+                            selectedIngredient = ingredient
+                            isFormDisplayed = true
+                        }
+                        label: {
+                            Image(systemName: "square.and.pencil")
+                        }
+                
+                        
                     }
             }
             .searchable(text: $searchedIngredientName)

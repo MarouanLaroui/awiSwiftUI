@@ -53,7 +53,7 @@ class User : Identifiable, ObservableObject{
     @Published var access_token : Bool?
    
     
-    internal init(id: Int? = nil, name: String, last_name: String, mail: String, phone : String, isAdmin: Bool, birthdate: String) {
+    internal init(id: Int? = nil, name: String, last_name: String, mail: String, phone : String, isAdmin: Bool, birthdate: String, access_token : Bool? = nil) {
         self.id = id
         self.name = name
         self.last_name = last_name
@@ -61,6 +61,7 @@ class User : Identifiable, ObservableObject{
         self.phone = phone
         self.isAdmin = isAdmin
         self.birthdate = birthdate
+        self.access_token = access_token
     }
     
     

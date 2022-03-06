@@ -17,7 +17,7 @@ struct StepForm: View {
     var intent = StepIntent()
     
     init(intent : StepIntent, stepFormVM : StepFormVM? = nil, recipe : Recipe){
-
+        
         self.recipe = recipe
         if (stepFormVM != nil) {self.stepVM = stepFormVM!}
         
@@ -63,8 +63,9 @@ struct StepForm: View {
                     NavigationLink(destination: SelectIngredientForStep(intent : self.intent)){
                         Image(systemName: "plus")
                     }
-                     
+                    
                 }
+                .padding(.bottom)
                 
                 
                 ForEach(Array(self.stepVM.ingredients.keys), id: \.self) { ingredient in
@@ -75,26 +76,16 @@ struct StepForm: View {
                             .onSubmit {
                                 self.intent.intentToChange(ingredient: ingredient, quantity: stepVM.ingredients[ingredient]!)
                             }
-//                        Text("\(stepVM.ingredients[ingredient]!)")
+                        Spacer()
+                        Button(role: .destructive){
+                            
+                        }
+                    label: {
+                        Image(systemName: "trash")
+                    }
                     }
                     Divider()
                 }
-                
-                //                    ForEach(stepVM.ingredients.keys.sorted(), id : \.self){
-                //
-                //                        ingredient in
-                //                        HStack{
-                //                            Text("ok")
-                //                            Text(ingredient.name)
-                //                            Text("\(stepVM.ingredients[ingredient]!)")
-                //                        }
-                //                        .padding(.horizontal)
-                //                    }
-                //                    ForEach(self.stepVM.ingredients.sorted(by: >), id: \.key) { key, value in
-                //                        HStack{
-                //                            Text("ok")
-                //                        }
-                //                    }
                 
             }
             .padding()
@@ -112,7 +103,7 @@ struct StepForm: View {
                         case .failure(_):
                             print("Error while deleting")
                         }
-               
+                        
                         
                     }
                 }
