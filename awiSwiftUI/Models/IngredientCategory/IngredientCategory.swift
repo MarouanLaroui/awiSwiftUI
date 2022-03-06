@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IngredientCategory : Identifiable, Hashable, Equatable{
+class IngredientCategory : Identifiable, Hashable, Equatable, ObservableObject{
     
     static func == (lhs: IngredientCategory, rhs: IngredientCategory) -> Bool {
         return lhs.category_name == rhs.category_name && rhs.id == lhs.id

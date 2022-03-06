@@ -17,7 +17,8 @@ struct Ingredients: View {
     @State var searchedIngredientName = ""
     @State var isFormDisplayed = false
     @State var isAlertShowed = false
-    @State var selectedCategory : IngredientCategory? = nil
+    @State var selectedCategory : IngredientCategory?
+    @State var selectedCategoryId : Int = -1
     @State var isDataLoading : Bool = false
     
     init(){
@@ -26,10 +27,20 @@ struct Ingredients: View {
     }
     
     var searchResult : [Ingredient]{
-        if(searchedIngredientName.isEmpty){
+        if(searchedIngredientName.isEmpty && selectedCategory == nil){
             return ingredientsVM.ingredients;
         }
-        return ingredientsVM.ingredients.filter({$0.name.contains(searchedIngredientName)})
+        return ingredientsVM.ingredients.filter({
+            if let selectedCategory = selectedCategory {
+                if(searchedIngredientName.count > 0){
+                    return $0.name.contains(searchedIngredientName) && $0.category.category_name == selectedCategory.category_name
+                }
+                return $0.category.category_name == selectedCategory.category_name
+            }
+            else{
+                return $0.name.contains(searchedIngredientName)
+            }
+        })
     }  
     
     var body: some View {
@@ -42,6 +53,7 @@ struct Ingredients: View {
                         .tag(nil as IngredientCategory?)
                     ForEach(ingredientCategories) { category in
                         Text(category.category_name)
+                            .tag(category as IngredientCategory?)
                     }
                     
                 }
@@ -73,7 +85,7 @@ struct Ingredients: View {
                         .background(Color.red)
                     }
             }
-           // .searchable(text: &searchedIngredientName)
+            .searchable(text: $searchedIngredientName)
         }
         .onAppear{
             Task{
