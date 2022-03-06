@@ -93,7 +93,6 @@ struct RecipeForm: View {
                     switch(res){
                         
                     case .success(let postedRecipe):
-                        print("success create recipe in view")
                         self.presentationMode.wrappedValue.dismiss()
                         
                     case .failure(_):
@@ -105,15 +104,7 @@ struct RecipeForm: View {
             .background(Color.salmon)
             .foregroundColor(.white)
             .cornerRadius(15)
-            /*
-            NavigationLink(destination: StepList(recipeIntent: self.intent, recipeModel: self.recipeFormVM.model, previousPagePresentationMode: presentationMode)){
-                Text("Add steps")
-                    .padding()
-                    .background(Color.salmon)
-                    .foregroundColor(.white)
-                    .cornerRadius(15)
-            }
-             */
+            
             Spacer()
         }
         .task {
@@ -122,7 +113,6 @@ struct RecipeForm: View {
             switch(res){
                 
             case .success(let categories):
-                print("success retrieving categories")
                 self.recipeFormVM.RecipeChange(recipeCategory: categories[0])
                 self.recipeCategories = categories
 
@@ -132,13 +122,3 @@ struct RecipeForm: View {
         }
     }
 }
-
-/*
-struct RecipeForm_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            RecipeForm(recipeFormVM: RecipeVM(model: Recipe.recipes[0]), recipeCategories: [])
-        }
-    }
-}
-*/

@@ -28,7 +28,7 @@ enum HTTPError : Error{
         case .badRequest:
             return "Bad request"
         case .badRecoveryOfData:
-            return "bad recovery of dataÒ"
+            return "bad recovery of data"
         case .unauthorized:
             return "unauthorized request"
         }

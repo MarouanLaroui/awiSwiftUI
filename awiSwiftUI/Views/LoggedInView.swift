@@ -10,7 +10,6 @@ import SwiftUI
 struct LoggedInView: View {
     var body: some View {
         TabView{
-            //TODO :  mettre un . quelque chose pour résoudre les contraintes doubles
             NavigationView{
                 HomeView()
                     .navigationTitle("Accueil, bienvenue !")

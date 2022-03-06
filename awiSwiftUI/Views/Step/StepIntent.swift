@@ -93,8 +93,7 @@ class StepIntent{
         
         
         switch(res){
-        case .success(let step):
-            //if(stepToAdd.id == nil)self.listState.send(.appendList(step: stepToAdd))
+        case .success:
             print("success")
         case .failure(let error):
             print("error")
@@ -103,7 +102,6 @@ class StepIntent{
     }
     
     func intentToCreateSteps(recipeId : Int, steps : [Step]) async -> Result<[Step],Error>{
-        print("intent to create steps in stepIntent")
         var nbOfOrder = 1
         
         for step in steps {

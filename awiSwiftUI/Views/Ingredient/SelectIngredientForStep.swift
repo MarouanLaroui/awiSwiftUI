@@ -51,10 +51,3 @@ struct SelectIngredientForStep: View {
         }
     }
 }
-/*
-struct SelectIngredientForStep_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectIngredientForStep(in)
-    }
-}
-*/

@@ -26,23 +26,18 @@ struct RecipeIsComposedOfGeneralStepDAO{
                 return .failure(JSONError.JsonEncodingFailed)
             }
             
-            let sencoded = String(data: encoded, encoding: .utf8)!
-            print("json to send : " + sencoded)
-            
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
                 
                 guard let decoded : RecipeIsComposedOfGeneralStepDTO = JSONHelper.decode(data: data)
                 else {
-                    print("decodedError")
                     return .failure(HTTPError.badRecoveryOfData)
                     
                 }
                 return .success(decoded)
             }
             else{
-                //ERROR TO CHANGE
                 print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
                 return .failure(HTTPError.badURL)
             }

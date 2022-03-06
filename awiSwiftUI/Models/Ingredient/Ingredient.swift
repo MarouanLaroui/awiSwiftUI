@@ -13,8 +13,6 @@ class Ingredient : Identifiable, ObservableObject, Hashable, Comparable{
         return lhs.id > rhs.id
     }
     
-    
-    
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
         return lhs.id == rhs.id
     }
@@ -31,7 +29,6 @@ class Ingredient : Identifiable, ObservableObject, Hashable, Comparable{
     
     var name : String{
         didSet{
-            print("didSet Ingredient")
             self.delegate?.ingredientChange(name: name)
         }
     }

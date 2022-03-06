@@ -64,15 +64,12 @@ struct RecipeCategoryDAO{
 
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             
-            let sdata = String(data: data, encoding: .utf8)!
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
-                print("GoRest Result: \(sdata)")
                 guard let decoded : RecipeCategoryDTO = JSONHelper.decode(data: data) else {
                     print("GoRest: mauvaise récupération de données")
                     return nil
                 }
-                print("---------successs----------------")
                 print(decoded)
                 return RecipeCategoryDAO.DTOtoRecipeCategory(dto: decoded)
                 

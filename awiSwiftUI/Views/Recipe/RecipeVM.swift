@@ -56,7 +56,6 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
         switch(input){
             
         case .ready:
-            //todo ?
             break
         case .titleChanging(title: let title):
             self.isDefaultTitle = false
@@ -87,7 +86,6 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
             self.model.author = author
             
         case .createRecipe(recipe: let recipe):
-            //TODO
             break
         }
         
@@ -135,21 +133,21 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
     }
     var titleErrorMsg : String{
         if(self.model.title.count == 0 && !isDefaultTitle){
-            return "Champs requis"
+            return "Champ requis."
         }
         return ""
     }
     
     var nbOfServingErrorMsg : String{
         if(self.model.nbOfServing <= 0 && !isDefaultNbOfServing){
-            return "Champs requis"
+            return "Champ requis."
         }
         return ""
     }
     
     var personInChargeErrorMsg : String{
         if(self.model.personInCharge.count == 0 && !isDefaultPersonInCharge){
-            return "Champs requis"
+            return "Champ requis."
         }
         return ""
     }

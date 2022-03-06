@@ -30,11 +30,8 @@ struct UserAccountView: View {
                 }
                 
                 Section("credentials"){
-                    
                     TextField("email",text: $loggedUser.mail)
-                    //NavigationLink(destination : ){
                     Text("Mot de passe")
-                    //}
                     
                 }
                 
@@ -56,20 +53,5 @@ struct UserAccountView: View {
             Spacer()
         }
         .navigationTitle("Mon compte")
-        .task {
-            /*
-            let connectedUser = await UserDAO.getUser(mail: "ophelie@gmail.com")
-            print("dans la task connected user")
-            
-            //Recettes
-            switch(connectedUser){
-            case .success(let resUser):
-                self.connectedUser = resUser
-                print("\(resUser.name)")
-            case .failure(let error):
-                print("error while retrieving connected user" + error.localizedDescription)
-            }
-             */
-        }
     }
 }

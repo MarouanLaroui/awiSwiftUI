@@ -44,23 +44,18 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
         switch(input){
             
         case .ready:
-            //todo
             break
         case .titleChanging(title: let title):
-            print("title changin in StepFormVM")
             self.model.title = title
         case .descriptionChanging(description: let description):
             self.model.description = description
         case .timeChanging(time: let time):
             self.model.time = time
         case .createStep(recipeId: let recipeId):
-            //todo
             break
         case .createStepToRecipe(recipeId: let recipeId):
-            //todo
             break
         case .createStepToIngredient:
-            //todo
             break
         case .addIngredient(ingredient: let ingredient):
             self.model.ingredients[ingredient] = 1
@@ -71,7 +66,6 @@ class StepFormVM : ObservableObject, StepDelegate, Subscriber{
             self.ingredients.removeValue(forKey: ingredient)
             
         case .quantityOfIngredientChanging(ingredient: let ingredient, quantity: let quantity):
-            print("StepFormVM quantityOfIngredientChanging")
             self.model.ingredients[ingredient] = quantity
         }
         return .none

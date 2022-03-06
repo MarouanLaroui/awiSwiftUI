@@ -39,7 +39,6 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
         self.last_name = self.model.last_name
         self.mail = self.model.mail
         self.phone = self.model.phone
-        //Gérer après
         self.birthdate = Date()
         self.isAdmin = self.model.isAdmin
      
@@ -70,7 +69,6 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
         self.isAdmin = isAdmin
     }
     
-    /*Gérer plus tard*/
     func userChange(birthdate: String) {
         self.birthdate = Date()
     }
@@ -122,7 +120,6 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
             self.model.mail = self.copy.mail
             break
         case .userCreation(user: let user):
-            
             break
         }
         return .none
@@ -173,7 +170,6 @@ class UserVM : UserDelegate, ObservableObject, Subscriber{
         return "Format de mail invalide."
     }
     
-    /*TODO : see why not refreshing*/
     func reloadErrorMsg(){
        
         self.isDefaultbirthdate = false

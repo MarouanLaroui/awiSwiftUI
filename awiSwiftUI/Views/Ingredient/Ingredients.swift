@@ -136,6 +136,7 @@ struct Ingredients: View {
             .padding()
         )
         
+        //Formulaire d'ajout/modification d'ingrédient
         .sheet(isPresented: $isFormDisplayed){
             if let selectedIngredient = selectedIngredient {
                 IngredientForm(ingredientVM: IngredientFormVM(model: selectedIngredient), intent : self.intent, isFormDisplayed: $isFormDisplayed)

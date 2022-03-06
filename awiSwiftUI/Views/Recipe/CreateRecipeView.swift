@@ -10,7 +10,6 @@ import SwiftUI
 struct CreateRecipeView: View {
     
     var gridItems = [GridItem(.adaptive(minimum : 150))]
-    //var steps : [Stepable] = [Recipe.recipes[0],S]
     var body: some View {
         LazyVGrid(columns: gridItems, alignment : .leading){
             Text("Titre :")
@@ -26,24 +25,6 @@ struct CreateRecipeView: View {
             Text(" ")
         }
         .padding()
-        /*
-        VStack{
-            HStack{
-                Text("Titre :")
-                //TextField("", text: $title)
-            }
-            HStack{
-                Text("Description :")
-                //TextField("",text: $description)
-            }
-            HStack{
-                Text("Nombre de couverts :")
-            }
-            HStack{
-                Text("Responsable :")
-            }
-        }
-         */
         .navigationTitle("Créer une recette")
     }
 }

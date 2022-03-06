@@ -65,31 +65,29 @@ struct Recipes: View {
                     }
                 }
             }
-            //RecipeGrid(recipes: searchResult)
-                .overlay(
-                    VStack{
+            .overlay(
+                VStack{
+                    Spacer()
+                    HStack{
                         Spacer()
-                        HStack{
-                            Spacer()
-                            
-                            NavigationLink(destination: RecipeForm(recipeVM: RecipeVM(model: Recipe(title: "", nbOfServing: 1, personInCharge: "", specificEquipment: "", dressingEquipment: "", recipeCategory: RecipeCategory.categories[0], author: User.users[0])))) {
-                                Text("+")
-                                .frame(width: 25, height: 25)
-                                .font(.title)
-                                .padding()
-                                .background(Color.salmon)
-                                .foregroundColor(.white)
-                                .clipShape(Circle())
-                             
-                            }
+                        
+                        NavigationLink(destination: RecipeForm(recipeVM: RecipeVM(model: Recipe(title: "", nbOfServing: 1, personInCharge: "", specificEquipment: "", dressingEquipment: "", recipeCategory: RecipeCategory.categories[0], author: User.users[0])))) {
+                            Text("+")
+                            .frame(width: 25, height: 25)
+                            .font(.title)
+                            .padding()
+                            .background(Color.salmon)
+                            .foregroundColor(.white)
+                            .clipShape(Circle())
+                         
                         }
                     }
-                        .padding()
-                )
-                .searchable(text: $searchedRecipeName,placement: .navigationBarDrawer(displayMode: .always))
+                }
+                .padding()
+            )
+            .searchable(text: $searchedRecipeName,placement: .navigationBarDrawer(displayMode: .always))
         }
         .task{
-            //if(self.recipesVM.recipes.count == 0){
                 async let reqRecipes =  RecipeDAO.getRecipes()
                 async let reqRecipeCategories =  RecipeCategoryDAO.getRecipeCategories()
                 
@@ -110,8 +108,6 @@ struct Recipes: View {
                     print(error)
     
                 }
-    
-            //}
         }
 
         .toolbar {

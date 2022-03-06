@@ -142,11 +142,7 @@ struct StepDAO{
     //pas de sens changer la fonction
     static func createStepOfRecipe(recipeId : Int, step : Step, stepNbOfOrder : Int) async -> Result<Step,Error>{
         
-        print("create step of recipe in stepDAO")
         let stepDTO = StepDAO.stepToDTO(step: step)
-        print("ID IN CREATESTEP in STEPDAO : ")
-        print(stepDTO.id)
-        print("-----------------")
         guard let url = URL(string: "https://awi-api.herokuapp.com/step")
         else {return .failure(HTTPError.badURL)}
         
@@ -162,18 +158,12 @@ struct StepDAO{
                 return .failure(JSONError.JsonEncodingFailed)
             }
             
-            let sencoded = String(data: encoded, encoding: .utf8)!
-            print("json to send : " + sencoded)
-            
             let (data, response) = try await URLSession.shared.upload(for: request, from: encoded)
             let httpresponse = response as! HTTPURLResponse
             if httpresponse.statusCode == 201{
-                
                 guard let decoded : StepDTO = JSONHelper.decode(data: data)
                 else {
-                    print("decodedError")
                     return .failure(HTTPError.badRecoveryOfData)
-                    
                 }
                 
                 /*StepIsComposeOfGeneralSteps*/
@@ -184,25 +174,21 @@ struct StepDAO{
                 case .success(_):
                     /*Ingredient To Step */
                     for (ingredient, quantity) in step.ingredients {
-                        print("ingredient To step creation")
                         print(quantity)
                         await StepToIngredientDAO.createStepToIngredient(ingredientId: ingredient.id!, stepId: decoded.id!, quantity: quantity)
                     }
                     return .success(step)
                     
                 case .failure(let error):
-                    print("failure StepDAO")
                     return .failure(error)
                 }
             }
             else{
-                //ERROR TO CHANGE
                 print("Error \(httpresponse.statusCode): \(HTTPURLResponse.localizedString(forStatusCode: httpresponse.statusCode))")
                 return .failure(HTTPError.badURL)
             }
         }
         catch(_){
-            print("failure stepDAO2")
             return .failure(HTTPError.badRequest)
         }
     }

@@ -46,14 +46,12 @@ struct Intent{
         self.listState.send(.listUpdated)
     }
     
-    // 2) avertit les subsscriber que l'état a changé
     func intentToChange(name : String){
         self.state.send(.ingredientNameChanging(name : name))
     }
     
     func intentToChange(unitaryPrice : Double){
         self.state.send(.unitaryPriceChanging(unitaryPrice: unitaryPrice))
-        
     }
     
     func intentToChange(nbInStock : Double){
@@ -109,7 +107,6 @@ struct Intent{
             if(nbAffectedRows>0){
                 self.listState.send(.deleteElement(ingredientId: ingredientId))
             }
-            //Gérer cas fail ?
             else{
                 self.listState.send(.listUpdated)
             }

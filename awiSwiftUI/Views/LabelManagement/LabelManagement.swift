@@ -92,10 +92,6 @@ struct LabelManagement: View {
            /* let image = etiquette.snapshot()
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             */
-            
-            Task{
-                async let requestEnoughIngredients =  RecipeDAO.declareRecipePost(idRecipe: self.recipe.id!, nbPortion: self.nbPortions)
-            }
         }
         .padding()
         .foregroundColor(.white)
