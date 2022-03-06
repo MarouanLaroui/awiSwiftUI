@@ -12,7 +12,6 @@ struct UserAccountView: View {
     
     let dateFormatter = DateFormatter()
     
-    @State var connectedUser : User  = User(id: 1, name: "", last_name: "", mail: "", phone: "", isAdmin: true, birthdate: "")
     @EnvironmentObject var loggedUser: User
     @State private var firstName : String = ""
     @State private var lastName : String = ""
@@ -24,15 +23,15 @@ struct UserAccountView: View {
         VStack{
             Form{
                 Section("informations"){
-                    TextField("prénom",text: $connectedUser.name)
-                    TextField("nom",text: $connectedUser.last_name)
-                    TextField("phone number", text : $connectedUser.phone)
+                    TextField("prénom",text: $loggedUser.name)
+                    TextField("nom",text: $loggedUser.last_name)
+                    TextField("phone number", text : $loggedUser.phone)
                     DatePicker("birthdate",selection: $birthDate,displayedComponents: [.date])
                 }
                 
                 Section("credentials"){
                     
-                    TextField("email",text: $connectedUser.mail)
+                    TextField("email",text: $loggedUser.mail)
                     //NavigationLink(destination : ){
                     Text("Mot de passe")
                     //}
@@ -58,6 +57,7 @@ struct UserAccountView: View {
         }
         .navigationTitle("Mon compte")
         .task {
+            /*
             let connectedUser = await UserDAO.getUser(mail: "ophelie@gmail.com")
             print("dans la task connected user")
             
@@ -69,6 +69,7 @@ struct UserAccountView: View {
             case .failure(let error):
                 print("error while retrieving connected user" + error.localizedDescription)
             }
+             */
         }
     }
 }
