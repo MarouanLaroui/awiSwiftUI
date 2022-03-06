@@ -60,7 +60,7 @@ struct Recipes: View {
                         HStack{
                             Spacer()
                             
-                            NavigationLink(destination: RecipeForm(recipeVM: RecipeVM(model: Recipe.recipes[0]))) {
+                            NavigationLink(destination: RecipeForm(recipeVM: RecipeVM(model: Recipe(title: "", nbOfServing: 1, personInCharge: "", specificEquipment: "", dressingEquipment: "", recipeCategory: RecipeCategory.categories[0], author: User.users[0])))) {
                                 Text("+")
                                 .frame(width: 25, height: 25)
                                 .font(.title)

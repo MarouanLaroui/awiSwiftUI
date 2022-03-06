@@ -24,8 +24,13 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
     @Published var personInCharge : String
     @Published var specificEquipment : String
     @Published var dressingEquipment : String
-    @Published var recipeCategory : RecipeCategory
+    @Published var recipeCategory : RecipeCategory?
     @Published var author : User
+    
+    var isDefaultTitle : Bool = true
+    var isDefaultNbOfServing : Bool = true
+    var isDefaultPersonInCharge : Bool = true
+    var isDefaultCategory : Bool = true
     
     
     init(model : Recipe){
@@ -54,12 +59,15 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
             //todo ?
             break
         case .titleChanging(title: let title):
+            self.isDefaultTitle = false
             self.model.title = title
             
         case .servingChanging(nbOfServing: let nbOfServing):
+            self.isDefaultNbOfServing
             self.model.nbOfServing = nbOfServing
             
         case .personInChargeChanging(personInCharge: let personInCharge):
+            self.isDefaultPersonInCharge
             self.model.personInCharge = personInCharge
             
         case .specEquipementChanging(specificEquipment: let specificEquipment):
@@ -69,6 +77,7 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
             self.model.dressingEquipment = dressingEquipment
             
         case .recipeCatChanging(recipeCategory: let recipeCategory):
+            self.isDefaultCategory = false
             self.model.recipeCategory = recipeCategory
             
         case .authorChanging(author: let author):
@@ -115,5 +124,35 @@ class RecipeVM : ObservableObject, RecipeDelegate, Subscriber{
         self.recipeCategory = recipeCategory
     }
     
+    var isValid : Bool{
+        return self.model.isValid && self.recipeCategory != nil && self.isDefaultCategory
+    }
+    var titleErrorMsg : String{
+        if(self.model.title.count == 0 && !isDefaultTitle){
+            return "Champs requis"
+        }
+        return ""
+    }
+    
+    var nbOfServingErrorMsg : String{
+        if(self.model.nbOfServing <= 0 && !isDefaultNbOfServing){
+            return "Champs requis"
+        }
+        return ""
+    }
+    
+    var personInChargeErrorMsg : String{
+        if(self.model.personInCharge.count == 0 && !isDefaultPersonInCharge){
+            return "Champs requis"
+        }
+        return ""
+    }
+    
+    var categoryErrorMsg : String{
+        if(self.recipeCategory == nil && !isDefaultCategory){
+            return "Champs requis"
+        }
+        return ""
+    }
     
 }

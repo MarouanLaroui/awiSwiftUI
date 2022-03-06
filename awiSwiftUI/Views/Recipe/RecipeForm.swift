@@ -58,19 +58,29 @@ struct RecipeForm: View {
                         }
                 }
                 
-                Text("Recipe category :")
-                /*DROPDOWN*/
-                
+                HStack{
+                    Text("Catégorie :")
+                    
+                    Picker("", selection: $recipeFormVM.recipeCategory) {
+                        if(self.recipeFormVM.id != nil){
+                            Text(self.recipeFormVM.recipeCategory!.name)
+                        }
+                        else{
+                            Text("Aucun")
+                                .tag(nil as IngredientCategory?)
+                        }
+                        ForEach(recipeCategories) { category in
+                            Text(category.name)
+                        }
+                    }
+                }
                 
             }
             .navigationTitle("Create Recipe")
             .padding()
             
-            Picker("Catégorie : ", selection: $recipeFormVM.recipeCategory) {
-                ForEach(recipeCategories) { category in
-                    Text(category.name)
-                }
-            }
+            
+            
             
             
             Button("Create recipe"){

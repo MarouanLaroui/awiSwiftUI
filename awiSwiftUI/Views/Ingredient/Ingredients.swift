@@ -21,7 +21,6 @@ struct Ingredients: View {
     @State var isDataLoading : Bool = false
     
     init(){
-        print("--------init ingredients-------")
         self.intent = Intent()
         self.intent.addListObserver(viewModel: ingredientsVM)
     }
@@ -49,7 +48,7 @@ struct Ingredients: View {
                 
             }
 
-            List(ingredientsVM.ingredients){
+            List(searchResult){
                 ingredient in
                 IngredientRow(ingredientVM: IngredientFormVM(model: ingredient))
                     .swipeActions {
@@ -74,6 +73,7 @@ struct Ingredients: View {
                         .background(Color.red)
                     }
             }
+           // .searchable(text: &searchedIngredientName)
         }
         .onAppear{
             Task{

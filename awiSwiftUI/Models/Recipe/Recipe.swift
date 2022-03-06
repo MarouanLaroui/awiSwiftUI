@@ -10,6 +10,11 @@ import Foundation
 class Recipe : Stepable, ObservableObject, Identifiable{
     
     var delegate : RecipeDelegate?
+    
+    var isValid : Bool{
+        return title.count > 0 && nbOfServing > 0 && personInCharge.count > 0 
+    }
+    
     var id : Int?
     
     var title : String{

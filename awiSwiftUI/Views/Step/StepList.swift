@@ -39,7 +39,6 @@ struct StepList: View {
             Spacer()
             HStack{
                 Spacer()
-                
                 Spacer()
                 
             }

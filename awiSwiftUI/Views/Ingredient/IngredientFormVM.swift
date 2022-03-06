@@ -149,8 +149,6 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
     }
     
     func rollback(){
-        print("--------rollback-----")
-        print(copy.name)
         self.model.id = copy.id
         self.model.name = copy.name
         self.model.unitaryPrice = copy.unitaryPrice
@@ -160,10 +158,7 @@ class IngredientFormVM : IngredientDelegate, ObservableObject, Subscriber {
         self.model.unity = copy.unity
     }
     var isValid : Bool {
-        print(self.copy.isValid)
-        print(!isDefaultCategory)
-        print(!isDefaultUnity)
-        return self.copy.isValid && !isDefaultCategory && !isDefaultUnity
+        return self.copy.isValid && !isDefaultCategory && !isDefaultUnity && self.category != nil && self.unity != nil
     }
     
     var nameErrorMsg : String{
