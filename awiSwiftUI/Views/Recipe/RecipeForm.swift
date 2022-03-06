@@ -25,68 +25,82 @@ struct RecipeForm: View {
         
         VStack{
             
-            LazyVGrid(columns: gridItems, alignment : .leading){
+            VStack(alignment: .leading){
                 Group{
-                    Text("Title")
-                    TextField("Title", text: $recipeFormVM.title)
+                    TextField("Titre de la recette", text: $recipeFormVM.title)
                         .onSubmit {
                             self.intent.intentToChange(title: self.recipeFormVM.title)
                         }
+                        .underlineTextField(color: .gray)
+                        .padding(.bottom, 5)
                     
-                    Text("Person in charge :")
-                    TextField("Person in charge", text: $recipeFormVM.personInCharge)
-                        .onSubmit {
-                            self.intent.intentToChange(personInCharge: self.recipeFormVM.personInCharge)
-                        }
+                    HStack{
+                        Image(systemName: "figure.wave")
+                        TextField("Responsable", text: $recipeFormVM.personInCharge)
+                            .onSubmit {
+                                self.intent.intentToChange(personInCharge: self.recipeFormVM.personInCharge)
+                            }
+                            .underlineTextField(color: .gray)
+                    }
                     
+                    .padding(.bottom, 5)
                     
-                    Text("Number of serving :")
-                    TextField("Number of serving", value: $recipeFormVM.nbOfServing, formatter: Formatters.int)
-                        .onSubmit {
-                            self.intent.intentToChange(nbOfServing: self.recipeFormVM.nbOfServing)
-                        }
+                    HStack{
+                        Image(systemName: "fork.knife")
+                        TextField("Nombre de portions", value: $recipeFormVM.nbOfServing, formatter: Formatters.int)
+                            .onSubmit {
+                                self.intent.intentToChange(nbOfServing: self.recipeFormVM.nbOfServing)
+                            }
+                            .underlineTextField(color: .gray)
+                    }
                     
-                    Text("Dressing equipment :")
-                    TextField("Dressing equipment", text: $recipeFormVM.dressingEquipment)
+                    .padding(.bottom, 5)
+                    
+                    TextField("Outils de dressage", text: $recipeFormVM.dressingEquipment)
                         .onSubmit {
                             self.intent.intentToChange(dressingEquipment: self.recipeFormVM.dressingEquipment)
                         }
-                    Text("Specific equipment :")
-                    TextField("Specific equipment", text: $recipeFormVM.specificEquipment)
+                        .underlineTextField(color: .gray)
+                        .padding(.bottom, 5)
+                    
+                    TextField("Equipement spécifique", text: $recipeFormVM.specificEquipment)
                         .onSubmit {
                             self.intent.intentToChange(specificEquipment: self.recipeFormVM.specificEquipment)
                         }
+                        .underlineTextField(color: .gray)
+                        .padding(.bottom, 5)
                 }
                 
-                HStack{
-                    Text("Catégorie :")
-                    
-                    Picker("", selection: $recipeFormVM.recipeCategory) {
-                        if(self.recipeFormVM.id != nil){
-                            Text(self.recipeFormVM.recipeCategory!.name)
+                Group{
+                    HStack{
+                        Text("Catégorie :")
+                        
+                        Picker("", selection: $recipeFormVM.recipeCategory) {
+                            if(self.recipeFormVM.id != nil){
+                                Text(self.recipeFormVM.recipeCategory!.name)
+                            }
+                            else{
+                                Text("Aucun")
+                                    .tag(nil as IngredientCategory?)
+                            }
+                            ForEach(recipeCategories) { category in
+                                Text(category.name).tag(category as RecipeCategory?)
+                            }
                         }
-                        else{
-                            Text("Aucun")
-                                .tag(nil as IngredientCategory?)
+                        .onReceive([self.recipeFormVM.recipeCategory].publisher.first()) { (recipeCategory) in
+                            self.intent.intentToChange(recipeCategory: recipeCategory)
                         }
-                        ForEach(recipeCategories) { category in
-                            Text(category.name).tag(category as RecipeCategory?)
-                        }
-                    }
-                    .onReceive([self.recipeFormVM.recipeCategory].publisher.first()) { (recipeCategory) in
-                        self.intent.intentToChange(recipeCategory: recipeCategory)
                     }
                 }
+                Spacer()
                 
             }
-            .navigationTitle("Create Recipe")
-            .padding()
+            .navigationTitle("Nouvelle recette")
+            .padding(30)
             
+            Spacer()
             
-            
-            
-            
-            Button("Create recipe"){
+            Button("Enregistrer"){
                 Task{
                     let res = await self.intent.intentToCreateRecipe(recipe: self.recipeFormVM.model)
                 
@@ -100,7 +114,7 @@ struct RecipeForm: View {
                     }
                 }
             }
-            .padding()
+            .padding(10)
             .background(Color.salmon)
             .foregroundColor(.white)
             .cornerRadius(15)
